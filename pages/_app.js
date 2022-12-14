@@ -6,7 +6,7 @@ import "../styles/globals.css";
 // import { Inter } from "@next/font/google";
 // const inter = Inter({ subsets: ["latin"] });
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <LanguageProvider>
       <Layout />
@@ -18,4 +18,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default App;
