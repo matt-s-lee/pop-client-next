@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Link from "next/link";
 // import ReactComponent from "../assets/headerLogo.png";
 import { useContext } from "react";
-import { LanguageContext } from "../context/LanguageContext";
+import { LanguageContext } from "../../context/LanguageContext";
 // import SearchBar from "./SearchBar";
 
-const Navbar = () => {
+const FullNavbar = () => {
   const { language, toggleLanguage } = useContext(LanguageContext);
 
   return (
@@ -44,7 +44,7 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default FullNavbar;
 
 const Nav = styled.nav`
   background-color: #fff;
@@ -53,10 +53,11 @@ const Nav = styled.nav`
   align-items: center;
   height: 5em;
   padding: 15px;
-  /* margin: 5px; */
   z-index: 10;
+  display: none;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 450px) {
+    display: contents;
   }
 `;
 
