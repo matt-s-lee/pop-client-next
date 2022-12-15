@@ -10,7 +10,6 @@ export default function SearchField({ value, setValue, handleKeydown }) {
         }}
         onKeyDown={handleKeydown}
       ></input>
-      SearchResults
     </div>
   );
 }

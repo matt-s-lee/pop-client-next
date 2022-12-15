@@ -1,7 +1,9 @@
 import { useState } from "react";
 
+import styled from "styled-components";
+
 import SearchField from "./SearchField";
-import SearchResults from "./SearchResults";
+import SearchPreview from "./SearchPreview";
 
 export default function Search() {
   const [value, setValue] = useState("");
@@ -32,13 +34,18 @@ export default function Search() {
   const handleSelect = (ev) => {};
 
   return (
-    <div>
+    <Wrapper>
       <SearchField
         value={value}
         setValue={setValue}
         handleKeydown={handleKeydown}
       />
-      <SearchResults value={value} setValue={setValue} />
-    </div>
+      <SearchPreview value={value} setValue={setValue} />
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
