@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useHideComponent from "../../hooks/useHideComponent";
 
 import styled from "styled-components";
 
 import SearchField from "./SearchField";
-import SearchPreview from "./SearchPreview";
+import SearchPreview from "./SearchPreview/index.js";
 
-export default function Search() {
+export default function Search(props) {
   const [value, setValue] = useState("");
   const [resultIndex, setResultIndex] = useState(0);
+  const [isSuggestionVisible, setIsSuggestionVisible] = useState(false);
+
+  const wrapperRef = useRef(null);
+  useHideComponent(wrapperRef, isSuggestionVisible, setIsSuggestionVisible);
 
   // When users hit enter or up/down-arrow while typing
   const handleKeydown = (ev) => {
@@ -39,8 +44,14 @@ export default function Search() {
         value={value}
         setValue={setValue}
         handleKeydown={handleKeydown}
+        isSuggestionVisible={isSuggestionVisible}
+        setIsSuggestionVisible={setIsSuggestionVisible}
       />
-      <SearchPreview value={value} setValue={setValue} />
+      {/* <SearchPreview
+        value={value}
+        setValue={setValue}
+        isSuggestionVisible={isSuggestionVisible}
+      /> */}
     </Wrapper>
   );
 }
@@ -48,4 +59,6 @@ export default function Search() {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 2em 0;
 `;
