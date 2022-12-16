@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
-// import ReactComponent from "../assets/headerLogo.png";
+import Image from "next/image";
+
+import ReactComponent from "../../public/popFr.png";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 // import SearchBar from "./SearchBar";
@@ -17,21 +19,19 @@ const FullNavbar = () => {
       </Notif>
       <Nav>
         <Ul>
-          <Header href="/">{/* <StyledLogo src={ReactComponent} /> */}</Header>
-        </Ul>
-        <Ul>
+          <LogoLi>
+            <StyledLogo src={ReactComponent} />
+          </LogoLi>
           <Li>
             {language === "en" ? "Tools and Support" : "Outils et assistance"}
           </Li>
-          <StyledButton>
-            {language === "en" ? "Create an account" : "Créer un compte"}
-          </StyledButton>
           <ClickLi
             onClick={language === "fr" ? toggleLanguage : null}
             className={language === "en" && "clicked"}
           >
             EN
           </ClickLi>
+          <Li>|</Li>
           <ClickLi
             onClick={language === "en" ? toggleLanguage : null}
             className={language === "fr" && "clicked"}
@@ -52,28 +52,30 @@ const Nav = styled.nav`
   justify-content: space-around;
   align-items: center;
   height: 5em;
-  padding: 15px;
+  padding: 1em;
   z-index: 10;
   display: none;
 
   @media only screen and (min-width: 450px) {
     display: contents;
+    padding: 1em;
   }
 `;
 
-const Notif = styled.nav`
+const Notif = styled.div`
   background-color: #0a69b5;
   font-size: 14px;
   color: #fff;
-  height: 60px;
+  height: 4;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 15px;
+  padding: 1em 2em;
 `;
 
-const StyledLogo = styled.img`
+const StyledLogo = styled(Image)`
   height: 60px;
+  width: auto;
 `;
 
 const Tab = styled(Link)`
@@ -94,49 +96,48 @@ const Tab = styled(Link)`
   }
 `;
 
-const Ul = styled.nav`
+const Ul = styled.ul`
   display: flex;
   margin-right: 1.5em;
   align-items: center;
   list-style-type: none;
-  & > * {
-    margin-left: 1.5em;
-  }
+  height: 4em;
 `;
 
-const StyledButton = styled.button`
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #f54e5f;
-  border: none;
-  outline: none;
-  border-radius: 3px;
-  padding: 10px 20px;
-`;
+// const StyledButton = styled.button`
+//   font-size: 16px;
+//   font-weight: 700;
+//   color: #fff;
+//   background-color: #f54e5f;
+//   border: none;
+//   outline: none;
+//   border-radius: 3px;
+//   padding: 10px 20px;
+// `;
 
-const Header = styled(Link)`
-  font-size: 32px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 0 20px;
-  color: var(--clr-primary);
-`;
+// const Header = styled(Link)`
+//   font-size: 32px;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0 0 0 20px;
+//   color: var(--clr-primary);
+// `;
 
 const Li = styled.li`
   color: #666666;
   font-size: 15px;
   font-weight: 700;
+  margin-left: 1.5em;
 `;
 
-const ClickLi = styled.li`
-  color: #666666;
-  font-size: 15px;
-  font-weight: 700;
+const LogoLi = styled(Li)`
+  flex-grow: 6;
+`;
 
+const ClickLi = styled(Li)`
   &:hover {
     cursor: pointer;
   }
