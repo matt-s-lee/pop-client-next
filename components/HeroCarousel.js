@@ -19,59 +19,67 @@ const HeroCarousel = ({ language }) => {
   };
 
   return (
-    <Carousel
-      responsive={responsive}
-      arrows
-      draggable
-      swipeable
-      showDots={true}
-      infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={5000}
-      transitionDuration={5}
-      containerClass="carousel-container"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
+    <div
+      style={{
+        paddingBottom: "30px",
+        position: "relative",
+      }}
     >
-      <Banner
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1662668862763-dc613ee191ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
-        }}
+      <Carousel
+        responsive={responsive}
+        arrows
+        draggable
+        swipeable
+        showDots={true}
+        infinite={true}
+        // autoPlay={true}
+        // autoPlaySpeed={10000}
+        transitionDuration={5}
+        renderDotsOutside
+        containerClass="carousel-container"
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
       >
-        <Row>
-          <TextBox>
-            <Title>
-              <Span>
-                {language === "eng" ? "Sample Text" : "Texte d'essai"}
-              </Span>
-            </Title>
-            <Body>
-              <Span>{language === "eng" ? "More text" : "Plus de texte"}</Span>
-            </Body>
-          </TextBox>
-        </Row>
-      </Banner>
-      <Banner
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1661846601758-28ce69e3d480?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
-        }}
-      />
-      <Banner
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1662673965352-0fc620737c77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80")`,
-        }}
-      />
-      <Banner
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1662369981337-81c330d439f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")`,
-        }}
-      />
-      <Banner
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1648334674879-d5f353b518e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2068&q=80")`,
-        }}
-      />
-    </Carousel>
+        <Banner
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1662668862763-dc613ee191ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
+          }}
+        >
+          <Row>
+            <TextBox>
+              <Title>
+                <Span>
+                  {language === "en" ? "Sample Text" : "Texte d'essai"}
+                </Span>
+              </Title>
+              <Body>
+                <Span>{language === "en" ? "More text" : "Plus de texte"}</Span>
+              </Body>
+            </TextBox>
+          </Row>
+        </Banner>
+        <Banner
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1661846601758-28ce69e3d480?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
+          }}
+        />
+        <Banner
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1662673965352-0fc620737c77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80")`,
+          }}
+        />
+        <Banner
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1662369981337-81c330d439f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")`,
+          }}
+        />
+        <Banner
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1648334674879-d5f353b518e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2068&q=80")`,
+          }}
+        />
+      </Carousel>
+    </div>
   );
 };
 
@@ -120,6 +128,5 @@ const Body = styled.div`
 `;
 
 const Span = styled.span`
-  background-color: green;
   padding: 5px 15px;
 `;

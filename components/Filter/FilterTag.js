@@ -10,6 +10,8 @@ const Tag = styled.div`
   border-radius: 1em;
   margin: 0.4em;
   padding: 0.4em 0.7em;
+  -webkit-box-shadow: 6px 3px 9px -2px rgba(116, 128, 237, 0.91);
+  box-shadow: 6px 3px 9px -2px rgba(116, 128, 237, 0.91);
 
   &:hover {
     cursor: pointer;
