@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const LanguageContext = createContext(null);
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("fr");
+  const [language, setLanguage] = useState("en");
 
   useEffect(() => {
     const isEnglish = localStorage.getItem("powerOverPainLang") === "en";
