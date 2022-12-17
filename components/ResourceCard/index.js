@@ -8,6 +8,8 @@ import Image from "next/image";
 // import Button from "@mui/material/Button";
 
 export default function ResourceCard() {
+  const src =
+    "https://images.ctfassets.net/xavhorxgg9l4/728mGLkxA9JaIBA7jXtqJs/5f1c806cbc4cced446e8b8eda0c3a7f7/299744979_437053958476752_8835657168708456563_n.png";
   return (
     <Wrapper>
       {/* <CardMedia
@@ -18,10 +20,11 @@ export default function ResourceCard() {
       /> */}
       <Media>
         <Image
-          src="https://images.ctfassets.net/xavhorxgg9l4/23XMFNG8HDYC2tiLha1Teq/51eaf3b29d65b624d7b3bb6f61761db9/Option_2_pexels-lukas-296282.jpg?w=1200&h=795&q=50"
+          loader={() => src}
+          src={src}
           alt="Surmonter sa douleur logo"
-          width={100}
-          height={100}
+          width={350}
+          height={350}
           style={{
             objectFit: "cover",
           }}
@@ -29,18 +32,6 @@ export default function ResourceCard() {
       </Media>
     </Wrapper>
   );
-}
-
-{
-  /* <Image
-alt="Next.js logo"
-src="https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js-bg.png"
-width={1200}
-height={400}
-style={{
-  maxWidth: '100%',
-  height: 'auto',
-}} */
 }
 
 const Wrapper = styled.div`
@@ -56,9 +47,9 @@ const Wrapper = styled.div`
     rgba(242, 242, 217, 1) 100%
   );
   border-radius: 1em;
-  padding-top: 1em;
   text-align: center;
   position: relative;
+  overflow: hidden;
 `;
 
 const Media = styled.div`
