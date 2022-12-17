@@ -7,18 +7,9 @@ export default function SearchField({
   setValue,
   handleKeydown,
   setIsSuggestionVisible,
-  isSuggestionVisible,
 }) {
-  // When users begins search by clicking on input
-  // const handleSearch = (ev) => {
-  //   ev.preventDefault();
-  //   setIsSuggestionVisible(!isSuggestionVisible);
-  // };
-  // console.log(isSuggestionVisible);
-  const wrapperRef = useRef(null);
-  useHideComponent(wrapperRef, isSuggestionVisible, setIsSuggestionVisible);
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper>
       <Input
         placeholder="What do you want to learn about?"
         type="text"
@@ -40,6 +31,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   height: 3em;
   width: 70vw;
+  margin-bottom: 1em;
   border-radius: 1em;
   border: none;
   box-shadow: 0px 2px 45px -16px rgba(13, 5, 46, 0.58);

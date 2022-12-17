@@ -1,20 +1,14 @@
 import styled from "styled-components";
-import { useState } from "react";
 import CommonSuggestions from "./CommonSuggestions";
 import MatchedSuggestions from "./MatchedSuggestions";
 
-export default function SearchPreview({ value, isSuggestionVisible }) {
+export default function SearchPreview({ value }) {
   return (
-    <Wrapper isSuggestionVisible={isSuggestionVisible}>
-      {value ? <MatchedSuggestions /> : <CommonSuggestions />}
-    </Wrapper>
+    <Wrapper>{value ? <MatchedSuggestions /> : <CommonSuggestions />}</Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  visibility: ${(props) => (props.isSuggestionVisible ? "visible" : "hidden")};
-  position: absolute;
-  top: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;

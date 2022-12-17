@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
-import useHideComponent from "../../hooks/useHideComponent";
+import { useState } from "react";
 
 import styled from "styled-components";
+import HideComponent from "../../hooks/useHideComponent";
 
 import SearchField from "./SearchField";
 import SearchPreview from "./SearchPreview/index.js";
@@ -10,9 +10,6 @@ export default function Search(props) {
   const [value, setValue] = useState("");
   const [resultIndex, setResultIndex] = useState(0);
   const [isSuggestionVisible, setIsSuggestionVisible] = useState(false);
-
-  const wrapperRef = useRef(null);
-  useHideComponent(wrapperRef, isSuggestionVisible, setIsSuggestionVisible);
 
   // When users hit enter or up/down-arrow while typing
   const handleKeydown = (ev) => {
@@ -47,11 +44,16 @@ export default function Search(props) {
         isSuggestionVisible={isSuggestionVisible}
         setIsSuggestionVisible={setIsSuggestionVisible}
       />
-      {/* <SearchPreview
-        value={value}
-        setValue={setValue}
-        isSuggestionVisible={isSuggestionVisible}
-      /> */}
+      {isSuggestionVisible ? (
+        <HideComponent
+          state={isSuggestionVisible}
+          setState={setIsSuggestionVisible}
+        >
+          <SearchPreview value={value} setValue={setValue} />
+        </HideComponent>
+      ) : (
+        <div></div>
+      )}
     </Wrapper>
   );
 }
@@ -61,4 +63,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2em 0;
+  height: 15em;
+  z-index: 5;
 `;
