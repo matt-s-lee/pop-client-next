@@ -4,7 +4,7 @@ import Suggestion from "./Suggestion";
 export default function MatchedSuggestions() {
   return (
     <SuggestionUl>
-      MatchedSuggestions
+      Matched Suggestions
       <Suggestion />
     </SuggestionUl>
   );

@@ -4,7 +4,7 @@ import Suggestion from "./Suggestion";
 export default function CommonSuggestions() {
   return (
     <SuggestionUl>
-      CommonSuggestions
+      Common Suggestions
       <Suggestion />
     </SuggestionUl>
   );
