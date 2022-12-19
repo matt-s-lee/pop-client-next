@@ -10,6 +10,8 @@ import Search from "../components/Search/index";
 import Continue from "../components/Continue";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
+import BigCalendar from "../components/Calendars/BigCalendar";
+import Calendars from "../components/Calendars";
 
 export default function Home() {
   return (
@@ -26,6 +28,7 @@ export default function Home() {
         <Filter />
         <Continue />
         <Category />
+        <Calendars />
         <Footer />
       </main>
     </Wrapper>
