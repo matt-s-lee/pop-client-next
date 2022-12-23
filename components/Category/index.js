@@ -7,48 +7,44 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { IoChevronDown } from "react-icons/io5";
 
 import ResourceCarousel from "./ResourceCarousel";
+import ClientOnly from "../ClientOnly";
 
-export default function Category() {
+export default function Category({ categories, resources }) {
+  console.log("Category comp, REsources", resources);
   return (
-    <Wrapper>
-      <AccordionStyled>
-        <AccordianSummaryStyled
-          expandIcon={<IoChevronDown />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Text>
-            <h2>Neuroscience</h2>
-            <p>
-              Learn about the ways that your brain and pain understand each
-              other.
-            </p>
-          </Text>
-        </AccordianSummaryStyled>
-        <AccordionDetailsStyled>
-          <ResourceCarousel />
-        </AccordionDetailsStyled>
-      </AccordionStyled>
-      {/* second */}
-      <AccordionStyled>
-        <AccordianSummaryStyled
-          expandIcon={<IoChevronDown />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Text>
-            <h2>Podcasts</h2>
-            <p>Use podcasts to learn about pain management.</p>
-          </Text>
-        </AccordianSummaryStyled>
-        <AccordionDetailsStyled>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </p>
-        </AccordionDetailsStyled>
-      </AccordionStyled>
-    </Wrapper>
+    <>
+      {categories.items.map((category) => {
+        return (
+          <ClientOnly key={category.sys.id}>
+            <Wrapper>
+              <AccordionStyled>
+                <AccordianSummaryStyled
+                  expandIcon={<IoChevronDown />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Text>
+                    <h2>{category.fields.sectionTitle}</h2>
+                    <p>
+                      {
+                        category?.fields?.description?.content[0]?.content[0]
+                          ?.value
+                      }
+                    </p>
+                  </Text>
+                </AccordianSummaryStyled>
+                <AccordionDetailsStyled>
+                  <ResourceCarousel
+                    resources={resources}
+                    tag={category?.metadata?.tags[0]?.sys?.id}
+                  />
+                </AccordionDetailsStyled>
+              </AccordionStyled>
+            </Wrapper>
+          </ClientOnly>
+        );
+      })}
+    </>
   );
 }
 
