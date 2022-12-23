@@ -6,10 +6,18 @@ import HideComponent from "../../hooks/useHideComponent";
 import SearchField from "./SearchField";
 import SearchPreview from "./SearchPreview/index.js";
 
-export default function Search(props) {
+export default function Search({ categories }) {
   const [value, setValue] = useState("");
   const [resultIndex, setResultIndex] = useState(0);
+  const [matches, setMatches] = useState();
   const [isSuggestionVisible, setIsSuggestionVisible] = useState(false);
+
+  // Make list of all categories
+  const allCategories = [];
+  categories.items.forEach((category) => {
+    allCategories.push(category.fields.sectionTitle);
+  });
+  // console.log("allCategories", allCategories);
 
   // When users hit enter or up/down-arrow while typing
   const handleKeydown = (ev) => {
@@ -49,7 +57,11 @@ export default function Search(props) {
           state={isSuggestionVisible}
           setState={setIsSuggestionVisible}
         >
-          <SearchPreview value={value} setValue={setValue} />
+          <SearchPreview
+            value={value}
+            setValue={setValue}
+            allCategories={allCategories}
+          />
         </HideComponent>
       ) : (
         <div></div>

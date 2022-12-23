@@ -2,9 +2,15 @@ import styled from "styled-components";
 import CommonSuggestions from "./CommonSuggestions";
 import MatchedSuggestions from "./MatchedSuggestions";
 
-export default function SearchPreview({ value }) {
+export default function SearchPreview({ value, allCategories }) {
   return (
-    <Wrapper>{value ? <MatchedSuggestions /> : <CommonSuggestions />}</Wrapper>
+    <Wrapper>
+      {value ? (
+        <MatchedSuggestions allCategories={allCategories} />
+      ) : (
+        <CommonSuggestions />
+      )}
+    </Wrapper>
   );
 }
 

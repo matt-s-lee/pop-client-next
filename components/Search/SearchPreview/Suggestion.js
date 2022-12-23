@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function Suggestion() {
-  return <SuggestedLi>Suggestion</SuggestedLi>;
+export default function Suggestion({ suggestion }) {
+  return <SuggestedLi>{suggestion}</SuggestedLi>;
 }
 
 const SuggestedLi = styled.li`
