@@ -5,17 +5,19 @@ import Image from "next/image";
 import ReactComponent from "../../public/popEN.png";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
-import FullDropdown from "../NavDropdown/FullDropdown";
+import FullDropdown from "./NavDropdown/FullDropdown";
 
-const FullNavbar = () => {
+const FullNavbar = ({ categories }) => {
   const { language, toggleLanguage } = useContext(LanguageContext);
 
   return (
     <>
       <Notif>
-        {language === "en"
+        In need of immediate crisis support? Call 911 if you or someone you know
+        is in immediate danger or needs urgent medical care.
+        {/* {language === "en"
           ? "In need of immediate crisis support? Call 911 if you or someone you know is in immediate danger or needs urgent medical care."
-          : "Besoin d'un soutien immédiat en cas de crise ? Appelez le 911 si vous ou quelqu'un que vous connaissez êtes en danger immédiat ou avez besoin de soins médicaux urgents."}
+          : "Besoin d'un soutien immédiat en cas de crise ? Appelez le 911 si vous ou quelqu'un que vous connaissez êtes en danger immédiat ou avez besoin de soins médicaux urgents."} */}
       </Notif>
       <Nav>
         <Ul>
@@ -25,7 +27,13 @@ const FullNavbar = () => {
             </Link>
           </LogoLi>
           <Li>
-            <FullDropdown />
+            <FullDropdown data={categories} text={"About Us"} />
+          </Li>
+          <Li>
+            <FullDropdown data={categories} text={"Explore by Province"} />
+          </Li>
+          <Li>
+            <FullDropdown data={categories} text={"Access Resources"} />
             {/* {language === "en" ? "Tools and Support" : "Outils et assistance"} */}
           </Li>
           <ClickLi

@@ -3,11 +3,11 @@
 import FullNavbar from "./FullNavbar";
 import MobileNavbar from "./MobileNavbar";
 
-export default function Navbar() {
+export default function Navbar({ categories }) {
   return (
     <>
-      <MobileNavbar />
-      <FullNavbar />
+      <MobileNavbar categories={categories} />
+      <FullNavbar categories={categories} />
     </>
   );
 }
