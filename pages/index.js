@@ -4,13 +4,14 @@ import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 
 import Filter from "../components/Filter";
-import HeroCarousel from "../components/HeroCarousel";
+import HeroCarousel from "../components/Hero/HeroCarousel";
 import Search from "../components/Search/index";
 import Continue from "../components/Continue";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
 import Calendars from "../components/Calendars";
 import Layout from "../components/Layout";
+import Trending from "../components/Trending";
 
 export default function Home({ categories, resources, hero }) {
   return (
@@ -23,7 +24,7 @@ export default function Home({ categories, resources, hero }) {
       <main className={styles.main}>
         <Layout categories={categories} />
         <HeroCarousel hero={hero} />
-        <Search categories={categories} />
+        <Trending />
         <Filter />
         <Continue />
         <Category categories={categories} resources={resources} />
@@ -41,9 +42,9 @@ export async function getStaticProps() {
     fetch(
       `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&order=fields.categoryOrderNumber`
     ),
-    // All resources
+    // All resources (in order)
     fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceCard`
+      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceBilingual&order=fields.resourceOrderNumber`
     ),
     // Hero carousel content
     fetch(
@@ -55,7 +56,6 @@ export async function getStaticProps() {
       Promise.all([categoriesRes.json(), resourcesRes.json(), heroRes.json()])
     )
     .then(([categoriesJson, resourcesJson, heroJson]) => {
-      console.log("herojson", heroJson);
       return {
         props: {
           categories: categoriesJson,
