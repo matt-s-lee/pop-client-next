@@ -14,7 +14,7 @@ export default function BigCalendar() {
         )} */}
         <div className="fc-event-title-container">
           <div className="fc-event-title fc-sticky">
-            {innerProps.timeText + "" + innerProps.event.title}
+            {innerProps.event.title}
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@ export default function BigCalendar() {
           end: "today prev,next", // will normally be on the right. if RTL, will be on the left
         }}
         plugins={[dayGridPlugin, list]}
-        initialView="dayGridMonth"
+        initialView="listMonth"
         eventDisplay="block"
         weekends={false}
         events={[
@@ -46,7 +46,12 @@ export default function BigCalendar() {
             start: "2022-12-15T10:30:00",
             end: "2022-12-15T12:30:00",
           },
-          { title: "event 2", date: "2022-12-19" },
+          {
+            title: "Workshop: intro to the Power over Pain portal",
+            description: "Click event to register",
+            start: "2022-12-20T10:30:00",
+            end: "2022-12-20T12:30:00",
+          },
         ]}
       />
     </Wrapper>
