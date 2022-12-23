@@ -7,7 +7,7 @@ export default function Filter() {
   return (
     <Wrapper>
       <Description>
-        <span>Browse a topic or scroll down to see all information</span>
+        <span>Browse a topic or scroll down to see all resources</span>
       </Description>
       <TagsWrapper>
         {sampleTags.map((tag) => {
