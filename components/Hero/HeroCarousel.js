@@ -1,8 +1,10 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styled from "styled-components";
+import HeroImage from "./HeroImage";
 
-const HeroCarousel = ({ language }) => {
+function HeroCarousel({ hero }) {
+  const assetDetails = hero.includes.Asset; // Details for all assets, to link to resources
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -21,7 +23,7 @@ const HeroCarousel = ({ language }) => {
   return (
     <div
       style={{
-        paddingBottom: "30px",
+        // paddingBottom: "30px",
         position: "relative",
       }}
     >
@@ -30,34 +32,32 @@ const HeroCarousel = ({ language }) => {
         arrows
         draggable
         swipeable
-        showDots={true}
+        // showDots={true}
         infinite={true}
         // autoPlay={true}
         // autoPlaySpeed={10000}
         transitionDuration={5}
-        renderDotsOutside
+        // renderDotsOutside
         containerClass="carousel-container"
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        <Banner
-          style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1662668862763-dc613ee191ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
-          }}
-        >
-          <Row>
-            <TextBox>
-              <Title>
-                <Span>
-                  {language === "en" ? "Sample Text" : "Texte d'essai"}
-                </Span>
-              </Title>
-              <Body>
-                <Span>{language === "en" ? "More text" : "Plus de texte"}</Span>
-              </Body>
-            </TextBox>
-          </Row>
-        </Banner>
+        {hero.items.map((image) => {
+          return (
+            <HeroImage
+              key={image.sys.id}
+              title={image.fields.titleForCarouselImage}
+              text={image.fields.textForCarouselImage}
+              imageUrl={
+                assetDetails.find((asset) => {
+                  return (
+                    asset.sys.id === image.fields.imageForCarouselImage.sys.id
+                  );
+                }).fields.file.url
+              }
+            />
+          );
+        })}
         <Banner
           style={{
             backgroundImage: `url("https://images.unsplash.com/photo-1661846601758-28ce69e3d480?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")`,
@@ -81,7 +81,7 @@ const HeroCarousel = ({ language }) => {
       </Carousel>
     </div>
   );
-};
+}
 
 export default HeroCarousel;
 
