@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 // import Card from "@mui/material/Card";
 // import CardActions from "@mui/material/CardActions";
@@ -7,29 +8,26 @@ import Image from "next/image";
 // import CardMedia from "@mui/material/CardMedia";
 // import Button from "@mui/material/Button";
 
-export default function ResourceCard() {
-  const src =
-    "https://images.ctfassets.net/xavhorxgg9l4/728mGLkxA9JaIBA7jXtqJs/5f1c806cbc4cced446e8b8eda0c3a7f7/299744979_437053958476752_8835657168708456563_n.png";
+export default function ResourceCard({ title, link, description, imageUrl }) {
+  const src = `https:${imageUrl}`;
   return (
-    <Wrapper>
-      {/* <CardMedia
-        component="img"
-        height="140"
-        image="/public/popFr.png"
-        alt="green iguana"
-      /> */}
+    <Wrapper onClick={() => window.open(link)}>
       <Media>
         <Image
           loader={() => src}
           src={src}
-          alt="Surmonter sa douleur logo"
+          alt={title}
           width={350}
-          height={350}
+          height={200}
           style={{
             objectFit: "cover",
           }}
         />
       </Media>
+      <Text>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+      </Text>
     </Wrapper>
   );
 }
@@ -37,8 +35,7 @@ export default function ResourceCard() {
 const Wrapper = styled.div`
   height: 20em;
   width: 20em;
-  color: white;
-  font-weight: 600;
+  color: black;
   background: rgb(60, 58, 180);
   background: linear-gradient(
     140deg,
@@ -57,7 +54,20 @@ const Media = styled.div`
   overflow: hidden;
 `;
 
-const Pic = styled(Image)`
-  height: 100%;
-  width: auto;
-`;
+const Text = styled.div`
+padding: 1em 1em 1em 1.3em;
+`
+
+const Title = styled.h3`
+font-weight: 600;
+margin-bottom: 0.5em;
+`
+
+const Description = styled.p`
+text-align: left;
+font-size: 0.9em;
+`
+// const Pic = styled(Image)`
+//   height: 100%;
+//   width: auto;
+// `;
