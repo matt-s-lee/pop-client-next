@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
-import ReactComponent from "../../public/popFr.png";
+import ReactComponent from "../../public/popEN.png";
 import { CgMenu, CgMenuMotion } from "react-icons/cg";
 
 export default function MobileNavbar() {
@@ -16,7 +17,9 @@ export default function MobileNavbar() {
     <Wrapper>
       <NavItems>
         <NavElement>
-          <Logo src={ReactComponent} alt={"Surmonter sa douleur logo"}></Logo>
+          <Link href="/">
+            <Logo src={ReactComponent} alt="Surmonter sa douleur logo"></Logo>
+          </Link>
         </NavElement>
         <HamburgerElement onClick={handleClick}>
           {isMenuOpen ? (
@@ -39,7 +42,7 @@ const Wrapper = styled.div`
 const NavItems = styled.ul`
   display: flex;
   justify-content: left;
-  padding-left: 0;
+  padding: 0.5em;
 `;
 
 const NavElement = styled.li`

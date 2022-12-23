@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
-import ReactComponent from "../../public/popFr.png";
+import ReactComponent from "../../public/popEN.png";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
-// import SearchBar from "./SearchBar";
+import FullDropdown from "../NavDropdown/FullDropdown";
 
 const FullNavbar = () => {
   const { language, toggleLanguage } = useContext(LanguageContext);
@@ -20,10 +20,13 @@ const FullNavbar = () => {
       <Nav>
         <Ul>
           <LogoLi>
-            <StyledLogo src={ReactComponent} />
+            <Link href="/">
+              <StyledLogo alt="Power over Pain logo" src={ReactComponent} />
+            </Link>
           </LogoLi>
           <Li>
-            {language === "en" ? "Tools and Support" : "Outils et assistance"}
+            <FullDropdown />
+            {/* {language === "en" ? "Tools and Support" : "Outils et assistance"} */}
           </Li>
           <ClickLi
             onClick={language === "fr" ? toggleLanguage : null}
@@ -46,22 +49,6 @@ const FullNavbar = () => {
 
 export default FullNavbar;
 
-const Nav = styled.nav`
-  background-color: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 5em;
-  padding: 1em;
-  z-index: 10;
-  display: none;
-
-  @media only screen and (min-width: 450px) {
-    display: contents;
-    padding: 1em;
-  }
-`;
-
 const Notif = styled.div`
   background-color: #0a69b5;
   font-size: 14px;
@@ -71,6 +58,20 @@ const Notif = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 1em 2em;
+`;
+
+const Nav = styled.nav`
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 5em;
+  z-index: 10;
+  display: none;
+
+  @media only screen and (min-width: 450px) {
+    display: contents;
+  }
 `;
 
 const StyledLogo = styled(Image)`
@@ -98,10 +99,12 @@ const Tab = styled(Link)`
 
 const Ul = styled.ul`
   display: flex;
-  margin-right: 1.5em;
+  /* width: 100%; */
+  /* margin-right: 1.5em; */
   align-items: center;
   list-style-type: none;
-  height: 4em;
+  padding: 0.5em 1em;
+  background: white;
 `;
 
 // const StyledButton = styled.button`
