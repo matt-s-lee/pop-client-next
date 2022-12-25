@@ -4,17 +4,17 @@ import ResourceCard from "../ResourceCard";
 
 // export default function CarouselContainer({ taggedResources, assetDetails }) {
 export default function ResourceCarousel({ resources, tag }) {
-  // console.log("carousel", resources);
   const assetDetails = resources.includes.Asset; // Details for all assets, to link to resources
 
   // Create array of resources with a specific tag
   let matchedResources = [];
   if (tag) {
-    matchedResources = resources.items.filter((resource) => {
-      return resource.metadata?.tags[0]?.sys?.id === tag;
+    resources.items.forEach((resource) => {
+      if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
+        matchedResources.push(resource);
+      }
     });
   }
-  // console.log("matched", matchedResources);
 
   // Breakpoints for Resource Carousel
   const responsive = {
@@ -87,6 +87,19 @@ export default function ResourceCarousel({ resources, tag }) {
     </Carousel>
   );
 }
+
+ // if (tag) {
+  //   matchedResources = resources.items.filter((resource) => {
+  //     return resource.metadata?.tags[0]?.sys?.id === tag;
+  //   });
+  // }
+  // if (tag) {
+  //   matchedResources = resources.items.filter((resource) => {
+  //     if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
+  //       return resource;
+  //     }
+  //   });
+  // }
 
 // tag &&
 //   resources.items
