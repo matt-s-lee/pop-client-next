@@ -13,13 +13,20 @@ import Footer from "../components/Footer";
 import Calendars from "../components/Calendars";
 import Layout from "../components/Layout";
 import Trending from "../components/Trending/index";
+import fetchAllData from "../lib/api";
 
-export default function Home({ categories, resources, hero, topics }) {
+export default function Home({
+  categories,
+  resources,
+  hero,
+  searchTerms,
+  topics,
+}) {
   // Set categories to context on component load
-  const { setCategories } = useContext(CategoriesContext);
-  useEffect(() => {
-    setCategories(categories);
-  }, [setCategories, categories]);
+  // const { setCategories } = useContext(CategoriesContext);
+  // useEffect(() => {
+  //   setCategories(categories);
+  // }, [setCategories, categories]);
 
   return (
     <Wrapper className={styles.container}>
@@ -29,10 +36,10 @@ export default function Home({ categories, resources, hero, topics }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Layout categories={categories} />
+        <Layout categories={categories} topics={topics} />
         <HeroCarousel hero={hero} />
         <Trending />
-        <Filter resources={resources} topics={topics} />
+        <Filter resources={resources} searchTerms={searchTerms} />
         <Continue />
         <Category categories={categories} resources={resources} />
         <Calendars />
@@ -42,45 +49,9 @@ export default function Home({ categories, resources, hero, topics }) {
   );
 }
 
-// Fetches all data (server-side)
+// Fetches all data via SSG
 export async function getStaticProps() {
-  return Promise.all([
-    // Categories (in order)
-    fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&order=fields.categoryOrderNumber`
-    ),
-    // All resources (in order)
-    fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceBilingual&order=fields.resourceOrderNumber`
-    ),
-    // Hero carousel content
-    fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=carouselImage`
-    ),
-    // Banner content
-    // Topics for filter
-    fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/4vl1MIDfI3SUxVb7w9YHBf?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
-    ),
-  ])
-    .then(([categoriesRes, resourcesRes, heroRes, topicsRes]) =>
-      Promise.all([
-        categoriesRes.json(),
-        resourcesRes.json(),
-        heroRes.json(),
-        topicsRes.json(),
-      ])
-    )
-    .then(([categoriesJson, resourcesJson, heroJson, topicsJson]) => {
-      return {
-        props: {
-          categories: categoriesJson,
-          resources: resourcesJson,
-          hero: heroJson,
-          topics: topicsJson,
-        },
-      };
-    });
+  return fetchAllData();
 }
 
 const Wrapper = styled.div`
