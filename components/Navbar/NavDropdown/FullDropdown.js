@@ -7,9 +7,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 import ClientOnly from "../../ClientOnly";
+import { Divider } from "@mui/material";
 
 export default function FullDropdown(props) {
-  console.log("props", props);
+  // console.log("props", props);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,7 +23,7 @@ export default function FullDropdown(props) {
   return (
     <ClientOnly>
       <Wrapper>
-        <Button
+        <ButtonStyled
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
@@ -30,7 +31,7 @@ export default function FullDropdown(props) {
           onClick={handleClick}
         >
           {props.text}
-        </Button>
+        </ButtonStyled>
         <MenuStyled
           id="basic-menu"
           anchorEl={anchorEl}
@@ -40,16 +41,21 @@ export default function FullDropdown(props) {
             "aria-labelledby": "basic-button",
           }}
         >
-          {/* {data.items.map((category) => {
-            return (
-              <MenuItem key={category.sys.id} onClick={handleClose}>
-                <Link href="/categories/indigenous-resources">
-                  {category.fields.sectionTitle}
-                </Link>
-              </MenuItem>
-            );
-          })} */}
+          {props.data ? (
+            props.data.items.map((category) => {
+              return (
+                <MenuItem key={category.sys.id} onClick={handleClose}>
+                  <Link href="/categories/indigenous-resources">
+                    {category.fields.sectionTitle}
+                  </Link>
+                </MenuItem>
+              );
+            })
+          ) : (
+            <div></div>
+          )}
         </MenuStyled>
+        <Divider />
       </Wrapper>
     </ClientOnly>
   );
@@ -59,4 +65,11 @@ const Wrapper = styled.div``;
 
 const MenuStyled = styled(Menu)`
   margin-top: 1em;
+`;
+
+const ButtonStyled = styled(Button)`
+  color: #666666;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
 `;

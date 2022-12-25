@@ -1,23 +1,25 @@
+import { useContext } from "react";
+
+import { LanguageContext } from "../../context/LanguageContext";
+import { CategoriesContext } from "../../context/CategoriesContext";
+
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@mui/material";
 
 import ReactComponent from "../../public/popEN.png";
-import { useContext } from "react";
-import { LanguageContext } from "../../context/LanguageContext";
 import FullDropdown from "./NavDropdown/FullDropdown";
 
-const FullNavbar = ({ categories }) => {
+const FullNavbar = () => {
   const { language, toggleLanguage } = useContext(LanguageContext);
+  const { categories } = useContext(CategoriesContext);
 
   return (
     <>
       <Notif>
         In need of immediate crisis support? Call 911 if you or someone you know
         is in immediate danger or needs urgent medical care.
-        {/* {language === "en"
-          ? "In need of immediate crisis support? Call 911 if you or someone you know is in immediate danger or needs urgent medical care."
-          : "Besoin d'un soutien immédiat en cas de crise ? Appelez le 911 si vous ou quelqu'un que vous connaissez êtes en danger immédiat ou avez besoin de soins médicaux urgents."} */}
       </Notif>
       <Nav>
         <Ul>
@@ -27,14 +29,15 @@ const FullNavbar = ({ categories }) => {
             </Link>
           </LogoLi>
           <Li>
-            <FullDropdown data={categories} text={"About Us"} />
+            <Button>
+              <StyledLink href="/about">About Us</StyledLink>
+            </Button>
           </Li>
           <Li>
             <FullDropdown data={categories} text={"Explore by Province"} />
           </Li>
           <Li>
             <FullDropdown data={categories} text={"Access Resources"} />
-            {/* {language === "en" ? "Tools and Support" : "Outils et assistance"} */}
           </Li>
           <ClickLi
             onClick={language === "fr" ? toggleLanguage : null}
@@ -115,16 +118,20 @@ const Ul = styled.ul`
   background: white;
 `;
 
-// const StyledButton = styled.button`
-//   font-size: 16px;
-//   font-weight: 700;
-//   color: #fff;
-//   background-color: #f54e5f;
-//   border: none;
-//   outline: none;
-//   border-radius: 3px;
-//   padding: 10px 20px;
-// `;
+const StyledLink = styled(Link)`
+  color: #666666;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+  //   font-size: 16px;
+  //   font-weight: 700;
+  //   color: #fff;
+  //   background-color: #f54e5f;
+  //   border: none;
+  //   outline: none;
+  //   border-radius: 3px;
+  //   padding: 10px 20px;
+`;
 
 // const Header = styled(Link)`
 //   font-size: 32px;
