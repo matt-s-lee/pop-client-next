@@ -5,6 +5,71 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import ClientOnly from "../ClientOnly";
+
+import { IoChevronDown } from "react-icons/io5";
+
+
+export default function FilterDropdown({ items, title }) {
+  const { queryTerm, setQueryTerm } = useContext(FilterContext);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Keeps track of all query terms
+  const handleSelect = (ev) => {
+    setQueryTerm([ev.target.innerText, ...queryTerm]);
+    handleClose();
+  };
+
+  return (
+    <div>
+      <ClientOnly>
+        <ButtonStyled
+          id="demo-customized-button"
+          aria-controls={open ? "demo-customized-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          variant="contained"
+          disableElevation
+          onClick={handleClick}
+          endIcon={<IoChevronDown />}
+        >
+          {title}
+        </ButtonStyled>
+      </ClientOnly>
+      <ClientOnly>
+        <Menu
+          id="demo-customized-menu"
+          MenuListProps={{
+            "aria-labelledby": "demo-customized-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+        >
+          {items.map((item) => {
+            return (
+              <MenuItem key={item} onClick={handleSelect} disableRipple>
+                {item}
+              </MenuItem>
+            );
+          })}
+        </Menu>
+      </ClientOnly>
+    </div>
+  );
+}
+
+const ButtonStyled = styled(Button)`
+  margin: 0em 1em;
+`;
 
 // const StyledMenu = styled((props) => (
 //   <Menu
@@ -46,60 +111,3 @@ import MenuItem from "@mui/material/MenuItem";
 //     },
 //   },
 // }));
-
-export default function FilterDropdown({ items, title }) {
-  const { queryTerm, setQueryTerm } = useContext(FilterContext);
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  // Keeps track of all query terms
-  const handleSelect = (ev) => {
-    setQueryTerm([ev.target.innerText, ...queryTerm]);
-    handleClose();
-  };
-
-  return (
-    <div>
-      <ButtonStyled
-        id="demo-customized-button"
-        aria-controls={open ? "demo-customized-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        // endIcon={<KeyboardArrowDownIcon />}
-      >
-        {title}
-      </ButtonStyled>
-      <Menu
-        id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        {items.map((item) => {
-          return (
-            <MenuItem key={item} onClick={handleSelect} disableRipple>
-              {item}
-            </MenuItem>
-          );
-        })}
-      </Menu>
-    </div>
-  );
-}
-
-const ButtonStyled = styled(Button)`
-  margin: 0em 1em;
-`;
