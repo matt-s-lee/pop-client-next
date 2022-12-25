@@ -10,14 +10,14 @@ import ResourceCarousel from "./ResourceCarousel";
 import ClientOnly from "../ClientOnly";
 
 export default function Category({ categories, resources }) {
-  console.log("Category comp, REsources", resources);
+  // console.log("Category comp, REsources", resources);
   return (
     <>
-      {categories.items.map((category) => {
+      {categories.items.map((category, index) => {
         return (
           <ClientOnly key={category.sys.id}>
             <Wrapper>
-              <AccordionStyled>
+              <AccordionStyled defaultExpanded={index === 0 ? true : false}>
                 <AccordianSummaryStyled
                   expandIcon={<IoChevronDown />}
                   aria-controls="panel1a-content"
@@ -49,7 +49,7 @@ export default function Category({ categories, resources }) {
 }
 
 const Wrapper = styled.div`
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 `;
 
 const Text = styled.div`
