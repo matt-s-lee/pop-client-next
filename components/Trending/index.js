@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FilterTag from "./Filter/FilterTag";
+import TrendingTag from "./TrendingTag";
 
 export default function Trending() {
   const sampleTags = [
@@ -14,7 +14,7 @@ export default function Trending() {
       </Description>
       <TagsWrapper>
         {sampleTags.map((tag) => {
-          return <FilterTag key={tag} tag={tag} />;
+          return <TrendingTag key={tag} tag={tag} />;
         })}
       </TagsWrapper>
     </Wrapper>
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: darkblue;
+  background: #0a69b5;
   padding: 0.25em 0;
 `;
 
