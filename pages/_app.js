@@ -1,21 +1,37 @@
 import { LanguageProvider } from "../context/LanguageContext";
+import { CategoriesProvider } from "../context/CategoriesContext";
 
 import Layout from "../components/Layout";
 
 import "../styles/globals.css";
-// import { Inter } from "@next/font/google";
-// const inter = Inter({ subsets: ["latin"] });
+import { FilterProvider } from "../context/FilterContext";
 
 function App({ Component, pageProps }) {
   return (
-    <LanguageProvider>
-      <Layout />
-      {/* <main className={inter.className}> */}
-      <Component {...pageProps} />
-      {/* </main> */}
-      {/* </Layout> */}
-    </LanguageProvider>
+    <FilterProvider>
+      <CategoriesProvider>
+        <LanguageProvider>
+          <Component {...pageProps} />
+        </LanguageProvider>
+      </CategoriesProvider>
+    </FilterProvider>
   );
 }
 
 export default App;
+
+// import { Inter } from "@next/font/google";
+// const inter = Inter({ subsets: ["latin"] });
+
+// Attempt to generate MUI classnames in correct way
+// import { StylesProvider, createGenerateClassName } from "@mui/styles";
+// const generateClassName = createGenerateClassName({
+//   productionPrefix: "c",
+// });
+
+    // <StylesProvider generateClassName={generateClassName}>
+      {/* <main className={inter.className}> */}
+      {/* </main> */}
+    // </StylesProvider>
+
+
