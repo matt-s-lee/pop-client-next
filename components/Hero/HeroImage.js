@@ -53,14 +53,14 @@ const TextBox = styled.div`
 const Title = styled.div`
   font-size: 42px;
   font-weight: 700;
-  background: darkgrey;
+  background-color: rgba(66, 60, 64, 0.7);
   text-align: center;
 `;
 
 const Body = styled.div`
   font-size: 18px;
   line-height: 1.2em;
-  background: darkgrey;
+  background-color: rgba(66, 60, 64, 0.7);
   padding: 1em;
 `;
 
