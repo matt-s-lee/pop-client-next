@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import { LanguageContext } from "../../context/LanguageContext";
-import { CategoriesContext } from "../../context/CategoriesContext";
 
 import styled from "styled-components";
 import Link from "next/link";
@@ -10,10 +9,20 @@ import { Button } from "@mui/material";
 
 import ReactComponent from "../../public/popEN.png";
 import FullDropdown from "./NavDropdown/FullDropdown";
+import ClientOnly from "../ClientOnly";
 
-const FullNavbar = () => {
+const FullNavbar = ({ categories, topics }) => {
   const { language, toggleLanguage } = useContext(LanguageContext);
-  const { categories } = useContext(CategoriesContext);
+
+  // Extract topics for "Access Resources"
+  const topicsForList = [];
+  topics.fields.orderSections.forEach((topic) => {
+    categories.items.forEach((category) => {
+      if (category.sys.id === topic.sys.id) {
+        topicsForList.push(category);
+      }
+    });
+  });
 
   return (
     <>
@@ -22,37 +31,39 @@ const FullNavbar = () => {
         is in immediate danger or needs urgent medical care.
       </Notif>
       <Nav>
-        <Ul>
-          <LogoLi>
-            <Link href="/">
-              <StyledLogo alt="Power over Pain logo" src={ReactComponent} />
-            </Link>
-          </LogoLi>
-          <Li>
-            <Button>
-              <StyledLink href="/about">About Us</StyledLink>
-            </Button>
-          </Li>
-          <Li>
-            <FullDropdown data={categories} text={"Explore by Province"} />
-          </Li>
-          <Li>
-            <FullDropdown data={categories} text={"Access Resources"} />
-          </Li>
-          <ClickLi
-            onClick={language === "fr" ? toggleLanguage : null}
-            className={language === "en" && "clicked"}
-          >
-            EN
-          </ClickLi>
-          <Li>|</Li>
-          <ClickLi
-            onClick={language === "en" ? toggleLanguage : null}
-            className={language === "fr" && "clicked"}
-          >
-            FR
-          </ClickLi>
-        </Ul>
+        <ClientOnly>
+          <Ul>
+            <Logo>
+              <Link href="/">
+                <StyledLogo alt="Power over Pain logo" src={ReactComponent} />
+              </Link>
+            </Logo>
+            <Li>
+              <Button>
+                <StyledLink href="/about">About Us</StyledLink>
+              </Button>
+            </Li>
+            <Li>
+              <FullDropdown text={"Explore by Province"} />
+            </Li>
+            <Li>
+              <FullDropdown data={topicsForList} text={"Access Resources"} />
+            </Li>
+            <ClickLi
+              onClick={language === "fr" ? toggleLanguage : null}
+              className={language === "en" && "clicked"}
+            >
+              EN
+            </ClickLi>
+            <Li>|</Li>
+            <ClickLi
+              onClick={language === "en" ? toggleLanguage : null}
+              className={language === "fr" && "clicked"}
+            >
+              FR
+            </ClickLi>
+          </Ul>
+        </ClientOnly>
       </Nav>
     </>
   );
@@ -83,6 +94,10 @@ const Nav = styled.nav`
   @media only screen and (min-width: 450px) {
     display: contents;
   }
+`;
+
+const Logo = styled.div`
+  flex-grow: 6;
 `;
 
 const StyledLogo = styled(Image)`
@@ -149,10 +164,6 @@ const Li = styled.li`
   font-size: 15px;
   font-weight: 700;
   margin-left: 1.5em;
-`;
-
-const LogoLi = styled(Li)`
-  flex-grow: 6;
 `;
 
 const ClickLi = styled(Li)`

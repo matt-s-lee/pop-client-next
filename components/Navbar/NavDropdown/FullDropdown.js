@@ -5,12 +5,9 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
-import ClientOnly from "../../ClientOnly";
 import { Divider } from "@mui/material";
 
-export default function FullDropdown(props) {
-  // console.log("props", props);
+export default function FullDropdown({ data, text }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,43 +18,43 @@ export default function FullDropdown(props) {
   };
 
   return (
-    <ClientOnly>
-      <Wrapper>
-        <ButtonStyled
-          id="basic-button"
-          aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-        >
-          {props.text}
-        </ButtonStyled>
-        <MenuStyled
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          {props.data ? (
-            props.data.items.map((category) => {
-              return (
-                <MenuItem key={category.sys.id} onClick={handleClose}>
-                  <Link href="/categories/indigenous-resources">
-                    {category.fields.sectionTitle}
-                  </Link>
-                </MenuItem>
-              );
-            })
-          ) : (
-            <div></div>
-          )}
-        </MenuStyled>
+    <div>
+      <ButtonStyled
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+        {text}
+      </ButtonStyled>
+      <MenuStyled
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <Title>Explore by Topic</Title>
+        {data ? (
+          data.map((category) => {
+            return (
+              <MenuItem key={category.sys.id} onClick={handleClose}>
+                <Link href={`/categories/${category.fields.slug}`}>
+                  {category.fields.sectionTitle}
+                </Link>
+              </MenuItem>
+            );
+          })
+        ) : (
+          <div></div>
+        )}
         <Divider />
-      </Wrapper>
-    </ClientOnly>
+        <Title>Explore By Support Type</Title>
+      </MenuStyled>
+    </div>
   );
 }
 
@@ -72,4 +69,8 @@ const ButtonStyled = styled(Button)`
   font-size: 15px;
   font-weight: 700;
   text-transform: capitalize;
+`;
+
+const Title = styled.h3`
+  margin-left: 0.5em;
 `;
