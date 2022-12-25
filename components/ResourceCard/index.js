@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function ResourceCard({ title, link, description, imageUrl }) {
   const src = `https:${imageUrl}`;
   return (
-    <Wrapper onClick={() => window.open(link)}>
+    <Wrapper>
       <Media>
         <Image
           loader={() => src}
@@ -28,6 +28,10 @@ export default function ResourceCard({ title, link, description, imageUrl }) {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </Text>
+      <ButtonWrapper>
+        <Button onClick={() => window.open(link)}>Go to resource</Button>
+        <Button>Learn more</Button>
+      </ButtonWrapper>
     </Wrapper>
   );
 }
@@ -55,18 +59,33 @@ const Media = styled.div`
 `;
 
 const Text = styled.div`
-padding: 1em 1em 1em 1.3em;
-`
+  padding: 1em 1em 1em 1.3em;
+  height: 40%;
+  overflow: hidden;
+`;
 
 const Title = styled.h3`
-font-weight: 600;
-margin-bottom: 0.5em;
-`
+  font-weight: 600;
+  margin-bottom: 0.5em;
+`;
 
 const Description = styled.p`
-text-align: left;
-font-size: 0.9em;
-`
+  text-align: left;
+  font-size: 0.9em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
+
+const ButtonWrapper = styled.div`
+  height: 2em;
+`;
+
+const Button = styled.button`
+  margin: 0.2em;
+  padding: 0.1em;
+`;
 // const Pic = styled(Image)`
 //   height: 100%;
 //   width: auto;
