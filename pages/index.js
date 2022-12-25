@@ -1,19 +1,26 @@
-import Head from "next/head";
-
+import { useContext, useEffect } from "react";
+import { CategoriesContext } from "../context/CategoriesContext";
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 
+import Head from "next/head";
+
 import Filter from "../components/Filter";
-import HeroCarousel from "../components/Hero/HeroCarousel";
-import Search from "../components/Search/index";
+import HeroCarousel from "../components/Hero/index";
 import Continue from "../components/Continue";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
 import Calendars from "../components/Calendars";
 import Layout from "../components/Layout";
-import Trending from "../components/Trending";
+import Trending from "../components/Trending/index";
 
-export default function Home({ categories, resources, hero }) {
+export default function Home({ categories, resources, hero, topics }) {
+  // Set categories to context on component load
+  const { setCategories } = useContext(CategoriesContext);
+  useEffect(() => {
+    setCategories(categories);
+  }, [setCategories, categories]);
+
   return (
     <Wrapper className={styles.container}>
       <Head>
@@ -25,7 +32,7 @@ export default function Home({ categories, resources, hero }) {
         <Layout categories={categories} />
         <HeroCarousel hero={hero} />
         <Trending />
-        <Filter />
+        <Filter resources={resources} topics={topics} />
         <Continue />
         <Category categories={categories} resources={resources} />
         <Calendars />
@@ -51,16 +58,26 @@ export async function getStaticProps() {
       `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=carouselImage`
     ),
     // Banner content
+    // Topics for filter
+    fetch(
+      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/4vl1MIDfI3SUxVb7w9YHBf?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
+    ),
   ])
-    .then(([categoriesRes, resourcesRes, heroRes]) =>
-      Promise.all([categoriesRes.json(), resourcesRes.json(), heroRes.json()])
+    .then(([categoriesRes, resourcesRes, heroRes, topicsRes]) =>
+      Promise.all([
+        categoriesRes.json(),
+        resourcesRes.json(),
+        heroRes.json(),
+        topicsRes.json(),
+      ])
     )
-    .then(([categoriesJson, resourcesJson, heroJson]) => {
+    .then(([categoriesJson, resourcesJson, heroJson, topicsJson]) => {
       return {
         props: {
           categories: categoriesJson,
           resources: resourcesJson,
           hero: heroJson,
+          topics: topicsJson,
         },
       };
     });
