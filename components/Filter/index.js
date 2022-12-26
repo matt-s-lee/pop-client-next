@@ -3,8 +3,24 @@ import FilterDropdown from "./FilterDropdown";
 import FilterResults from "./FilterResults";
 import FilterTagSection from "./FilterTagSection";
 
-export default function Filter({ topics, resources }) {
-  const topicsArray = topics.fields.topicName;
+// Props from /pages/index.js
+export default function Filter({ searchTerms, resources }) {
+  let topicArray,
+    supportTypeArray,
+    formatArray = [];
+  searchTerms.items.forEach((entry) => {
+    switch (entry.fields.termType) {
+      case "Topic":
+        topicArray = entry.fields.listOfTerms;
+        break;
+      case "Format":
+        formatArray = entry.fields.listOfTerms;
+        break;
+      case "Support Type":
+        supportTypeArray = entry.fields.listOfTerms;
+        break;
+    }
+  });
 
   return (
     <Wrapper>
@@ -12,9 +28,9 @@ export default function Filter({ topics, resources }) {
         <h3>What resources are you interested in?</h3>
       </Description>
       <FilterSection>
-        <FilterDropdown items={topicsArray} title="Topics" />
-        <FilterDropdown items={topicsArray} title="Format" />
-        <FilterDropdown items={topicsArray} title="Support Type" />
+        <FilterDropdown items={topicArray} title="Topic" />
+        <FilterDropdown items={formatArray} title="Format" />
+        <FilterDropdown items={supportTypeArray} title="Support Type" />
       </FilterSection>
       <FilterTagSection />
       <FilterResults resources={resources} />
