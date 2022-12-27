@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { FilterContext } from "../../context/FilterContext";
+import ResourceCarousel from "../Category/ResourceCarousel";
 import ResourceCard from "../ResourceCard";
 
 export default function FilterResults({ resources }) {
@@ -47,29 +48,13 @@ export default function FilterResults({ resources }) {
 
   return (
     <Wrapper>
-      {filteredResources &&
-        `Showing ${filteredResources.length} resources of ${resources.total}`}
-      <ResourcesWrapper>
-        {filteredResources &&
-          filteredResources.map((resource) => {
-            return (
-              <ResourceCard
-                key={resource.sys.id}
-                title={resource.fields.title}
-                link={resource.fields.link}
-                description={
-                  resource.fields?.descriptionForSmallCard?.content[0]
-                    ?.content[0]?.value
-                }
-                imageUrl={
-                  assetDetails.find((asset) => {
-                    return asset.sys.id === resource.fields.image.sys.id;
-                  }).fields.file.url
-                }
-              />
-            );
-          })}
-      </ResourcesWrapper>
+      {filteredResources && (
+        <ShowingText>
+          Showing <Numbers>{filteredResources.length}</Numbers> of{" "}
+          <Numbers>{resources.total}</Numbers> resources
+        </ShowingText>
+      )}
+      {filteredResources && <ResourceCarousel resources={resources} />}
     </Wrapper>
   );
 }
@@ -79,10 +64,38 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const ResourcesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
+const ShowingText = styled.div`
+margin-bottom: 1em;
+`
+
+const Numbers = styled.span`
+font-weight: 600;
+`
+
+  //  {/* {filteredResources &&
+  //         filteredResources.map((resource) => {
+  //           return (
+  //             <ResourceCard
+  //               key={resource.sys.id}
+  //               title={resource.fields.title}
+  //               link={resource.fields.link}
+  //               description={
+  //                 resource.fields?.descriptionForSmallCard?.content[0]
+  //                   ?.content[0]?.value
+  //               }
+  //               imageUrl={
+  //                 assetDetails.find((asset) => {
+  //                   return asset.sys.id === resource.fields.image.sys.id;
+  //                 }).fields.file.url
+  //               }
+  //             />
+  //           );
+  //         })} */}
+
+// const ResourcesWrapper = styled.div`
+//   display: flex;
+//   flex-wrap: wrap;
+// `;
 // target.every((v) => arr.includes(v));
 // setFilteredResources([
 //   // 3. resource is returned in a shallow array.

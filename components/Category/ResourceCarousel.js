@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { FilterContext } from "../../context/FilterContext";
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 import ResourceCard from "../ResourceCard";
 
-// export default function CarouselContainer({ taggedResources, assetDetails }) {
 export default function ResourceCarousel({ resources, tag }) {
+  const { filteredResources } = useContext(FilterContext);
   const assetDetails = resources.includes.Asset; // Details for all assets, to link to resources
 
   // Create array of resources with a specific tag
@@ -14,6 +18,8 @@ export default function ResourceCarousel({ resources, tag }) {
         matchedResources.push(resource);
       }
     });
+  } else {
+    matchedResources = filteredResources;
   }
 
   // Breakpoints for Resource Carousel
@@ -62,44 +68,45 @@ export default function ResourceCarousel({ resources, tag }) {
       slidesToSlide={1}
       swipeable
     >
-      {matchedResources.map((match) => {
-        if (match.fields.image) {
-          return (
-            <ResourceCard
-              key={match.sys.id}
-              title={match.fields.title}
-              link={match.fields.link}
-              description={
-                match?.fields?.descriptionForSmallCard?.content[0]?.content[0]
-                  ?.value
-              }
-              imageUrl={
-                assetDetails.find((asset) => {
-                  return asset.sys.id === match.fields.image.sys.id;
-                }).fields.file.url
-              }
-            />
-          );
-        } else {
-          return <></>;
-        }
-      })}
+      {matchedResources &&
+        matchedResources.map((match) => {
+          if (match.fields.image) {
+            return (
+              <ResourceCard
+                key={match.sys.id}
+                title={match.fields.title}
+                link={match.fields.link}
+                description={
+                  match?.fields?.descriptionForSmallCard?.content[0]?.content[0]
+                    ?.value
+                }
+                imageUrl={
+                  assetDetails.find((asset) => {
+                    return asset.sys.id === match.fields.image.sys.id;
+                  }).fields.file.url
+                }
+              />
+            );
+          } else {
+            return <></>;
+          }
+        })}
     </Carousel>
   );
 }
 
- // if (tag) {
-  //   matchedResources = resources.items.filter((resource) => {
-  //     return resource.metadata?.tags[0]?.sys?.id === tag;
-  //   });
-  // }
-  // if (tag) {
-  //   matchedResources = resources.items.filter((resource) => {
-  //     if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
-  //       return resource;
-  //     }
-  //   });
-  // }
+// if (tag) {
+//   matchedResources = resources.items.filter((resource) => {
+//     return resource.metadata?.tags[0]?.sys?.id === tag;
+//   });
+// }
+// if (tag) {
+//   matchedResources = resources.items.filter((resource) => {
+//     if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
+//       return resource;
+//     }
+//   });
+// }
 
 // tag &&
 //   resources.items
