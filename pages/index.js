@@ -9,24 +9,28 @@ import Filter from "../components/Filter";
 import HeroCarousel from "../components/Hero/index";
 import Continue from "../components/Continue";
 import Category from "../components/Category";
-import Footer from "../components/Footer";
 import Calendars from "../components/Calendars";
-import Layout from "../components/Layout";
 import Trending from "../components/Trending/index";
 import fetchAllData from "../lib/api";
 
 export default function Home({
   categories,
   resources,
+  supportTypes,
   hero,
   searchTerms,
   topics,
+  supportNavBar,
 }) {
-  // Set categories to context on component load
-  // const { setCategories } = useContext(CategoriesContext);
-  // useEffect(() => {
-  //   setCategories(categories);
-  // }, [setCategories, categories]);
+  // Set categories to context on home page load
+  const { setTopics, setSupportTypes, setCategories, setSupportNavBar } =
+    useContext(CategoriesContext);
+  useEffect(() => {
+    setTopics(topics);
+    setSupportTypes(supportTypes);
+    setCategories(categories);
+    setSupportNavBar(supportNavBar);
+  }, []);
 
   return (
     <Wrapper className={styles.container}>
@@ -36,14 +40,12 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Layout categories={categories} topics={topics} />
         <HeroCarousel hero={hero} />
         <Trending />
         <Filter resources={resources} searchTerms={searchTerms} />
         <Continue />
         <Category categories={categories} resources={resources} />
         <Calendars />
-        <Footer />
       </main>
     </Wrapper>
   );

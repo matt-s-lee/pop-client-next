@@ -8,21 +8,11 @@ import Image from "next/image";
 import { Button } from "@mui/material";
 
 import ReactComponent from "../../public/popEN.png";
-import FullDropdown from "./NavDropdown/FullDropdown";
+import NavDropdown from "./NavDropdown/index.js";
 import ClientOnly from "../ClientOnly";
 
-const FullNavbar = ({ categories, topics }) => {
+export default function DesktopNavBar() {
   const { language, toggleLanguage } = useContext(LanguageContext);
-
-  // Extract topics for "Access Resources"
-  const topicsForList = [];
-  topics.fields.orderSections.forEach((topic) => {
-    categories.items.forEach((category) => {
-      if (category.sys.id === topic.sys.id) {
-        topicsForList.push(category);
-      }
-    });
-  });
 
   return (
     <>
@@ -44,10 +34,10 @@ const FullNavbar = ({ categories, topics }) => {
               </Button>
             </Li>
             <Li>
-              <FullDropdown text={"Explore by Province"} />
+              <NavDropdown text={"Explore by Province"} />
             </Li>
             <Li>
-              <FullDropdown data={topicsForList} text={"Access Resources"} />
+              <NavDropdown text={"Access Resources"} />
             </Li>
             <ClickLi
               onClick={language === "fr" ? toggleLanguage : null}
@@ -67,9 +57,7 @@ const FullNavbar = ({ categories, topics }) => {
       </Nav>
     </>
   );
-};
-
-export default FullNavbar;
+}
 
 const Notif = styled.div`
   background-color: #0a69b5;
