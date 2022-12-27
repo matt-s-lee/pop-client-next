@@ -53,6 +53,10 @@ export default function FilterDropdown({ items, title }) {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          PaperProps={{
+            sx: { height: 160 },
+            //maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+          }}
         >
           {items.map((item) => {
             return (
