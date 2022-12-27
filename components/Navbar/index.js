@@ -1,13 +1,13 @@
 // import { useEffect, useState } from "react";
 
-import FullNavbar from "./FullNavbar";
+import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Navbar({ categories, topics }) {
   return (
     <>
       <MobileNavbar categories={categories} topics={topics} />
-      <FullNavbar categories={categories} topics={topics} />
+      <DesktopNavBar categories={categories} topics={topics} />
     </>
   );
 }
