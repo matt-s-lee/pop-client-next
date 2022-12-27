@@ -11,7 +11,9 @@ function App({ Component, pageProps }) {
     <FilterProvider>
       <CategoriesProvider>
         <LanguageProvider>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </LanguageProvider>
       </CategoriesProvider>
     </FilterProvider>

@@ -1,14 +1,14 @@
-import { useState } from "react";
-
 // import { useRouter } from "next/router";
 
 export default function CategoryPage({ category }) {
   return (
-    <div>
-      <>{category.fields.sectionTitle}</>
-      <div>{category.fields.description.content[0].content[0].value}</div>
-      <div></div>
-    </div>
+    <>
+      <div>
+        <>{category.fields.sectionTitle}</>
+        <div>{category.fields.description.content[0].content[0].value}</div>
+        <div></div>
+      </div>
+    </>
   );
 }
 
@@ -46,9 +46,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // Get one category from Contentful API
+  // Get resource cards for this category from Contentful API
   const res = await fetch(
-    // `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA`
     `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&fields.slug[in]=${context.params.slug}`
   );
   const category = await res.json();
