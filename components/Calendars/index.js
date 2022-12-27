@@ -14,7 +14,9 @@ export default function Calendars() {
 
 const Wrapper = styled.div`
   text-align: center;
-  /* padding: 0 10vw 10vw 10vw; */
+  background: lightgrey;
+  margin-top: 2em;
+  padding: 2em;
 `;
 
 const SectionTitle = styled.h2`
