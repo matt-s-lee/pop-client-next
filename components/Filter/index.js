@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Continue from "./Continue";
 import FilterDropdown from "./FilterDropdown";
 import FilterResults from "./FilterResults";
 import FilterTagSection from "./FilterTagSection";
@@ -34,6 +35,7 @@ export default function Filter({ searchTerms, resources }) {
       </FilterSection>
       <FilterTagSection />
       <FilterResults resources={resources} />
+      <Continue />
     </Wrapper>
   );
 }
