@@ -5,10 +5,12 @@ import { createContext, useState } from "react";
 export const CategoriesContext = createContext(null);
 
 export const CategoriesProvider = ({ children }) => {
-  const [categories, setCategories] = useState();
-  const [topics, setTopics] = useState();
-  const [supportTypes, setSupportTypes] = useState();
-  const [supportNavBar, setSupportNavBar] = useState();
+  const [categories, setCategories] = useState(); // all categories (for resources on homepage)
+  const [topics, setTopics] = useState(); // topics (for navBar)
+  const [supportTypes, setSupportTypes] = useState(); // all support types (to filter
+  const [supportNavBar, setSupportNavBar] = useState(); // support types (for NavBar)
+  const [sortedTopics, setSortedTopics] = useState();
+  const [sortedTypes, setSortedTypes] = useState();
 
   return (
     <CategoriesContext.Provider
@@ -21,6 +23,10 @@ export const CategoriesProvider = ({ children }) => {
         setCategories,
         supportNavBar,
         setSupportNavBar,
+        sortedTopics,
+        setSortedTopics,
+        sortedTypes,
+        setSortedTypes,
       }}
     >
       {children}

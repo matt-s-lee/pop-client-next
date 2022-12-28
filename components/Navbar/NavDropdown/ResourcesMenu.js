@@ -9,23 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 
 export default function ResourcesMenu({ anchorEl, open, handleClose }) {
-  const { topics, categories, supportNavBar, supportTypes } =
-    useContext(CategoriesContext);
-
-  // Extract topics based on ordered lists
-  const sortedTopics = [];
-  const sortedTypes = [];
-  const extractList = (fullList, orderedList, filteredList) => {
-    orderedList.fields.orderSections.forEach((section) => {
-      fullList.items.forEach((item) => {
-        if (item.sys.id === section.sys.id) {
-          filteredList.push(item);
-        }
-      });
-    });
-  };
-  extractList(categories, topics, sortedTopics);
-  extractList(supportTypes, supportNavBar, sortedTypes);
+  const { sortedTopics, sortedTypes } = useContext(CategoriesContext);
 
   return (
     <MenuStyled
@@ -76,6 +60,24 @@ const MenuStyled = styled(Menu)`
 const Title = styled.h3`
   margin-left: 0.5em;
 `;
+
+  // const { topics, categories, supportNavBar, supportTypes } =
+  //   useContext(CategoriesContext);
+
+  // // Extract topics based on ordered lists
+  // const sortedTopics = [];
+  // const sortedTypes = [];
+  // const extractList = (fullList, orderedList, filteredList) => {
+  //   orderedList.fields.orderSections.forEach((section) => {
+  //     fullList.items.forEach((item) => {
+  //       if (item.sys.id === section.sys.id) {
+  //         filteredList.push(item);
+  //       }
+  //     });
+  //   });
+  // };
+  // extractList(categories, topics, sortedTopics);
+  // extractList(supportTypes, supportNavBar, sortedTypes);
 
 //   useEffect(() => {
 //     setSortedTopics(extractList(categories, topics, sortedTopics));

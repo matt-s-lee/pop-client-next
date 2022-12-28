@@ -1,13 +1,42 @@
-// import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { CategoriesContext } from "../../context/CategoriesContext";
 
 import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
 
-export default function Navbar({ categories, topics }) {
+export default function Navbar() {
+  const {
+    topics,
+    categories,
+    supportNavBar,
+    supportTypes,
+    setSortedTopics,
+    setSortedTypes,
+  } = useContext(CategoriesContext);
+
+  // Extract topics based on ordered lists
+  const topicsArray = [];
+  const typesArray = [];
+  const extractList = (fullList, orderedList, filteredList) => {
+    orderedList?.fields?.orderSections?.forEach((section) => {
+      fullList?.items?.forEach((item) => {
+        if (item.sys.id === section.sys.id) {
+          filteredList.push(item);
+        }
+      });
+    });
+  };
+  extractList(categories, topics, topicsArray);
+  extractList(supportTypes, supportNavBar, typesArray);
+  useEffect(() => {
+    setSortedTopics(topicsArray);
+    setSortedTypes(typesArray);
+  }, [categories, topics, supportTypes, supportNavBar]);
+
   return (
     <>
-      <MobileNavbar categories={categories} topics={topics} />
-      <DesktopNavBar categories={categories} topics={topics} />
+      <MobileNavbar />
+      <DesktopNavBar />
     </>
   );
 }
