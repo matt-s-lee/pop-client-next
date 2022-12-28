@@ -72,7 +72,7 @@ export default function FilterDropdown({ items, title }) {
 }
 
 const ButtonStyled = styled(Button)`
-  margin: 0em 1em;
+  margin: 1em 1em;
 `;
 
 // const StyledMenu = styled((props) => (

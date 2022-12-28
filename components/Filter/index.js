@@ -47,8 +47,13 @@ const Wrapper = styled.div`
 
 const FilterSection = styled.div`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   margin: 1em 0;
+
+  @media only screen and (min-width: 650px) {
+    justify-content: center;
+    margin: none;
+  }
 `;
 
 const Description = styled.div`
