@@ -63,14 +63,17 @@ const ButtonStyled = styled.button`
   backdrop-filter: blur(10px);
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
   border: none;
-  border-radius: 0.5em;
+  padding: 1em 0;
 `;
 const CloseButton = styled.button`
   width: 1em;
+  background: black;
+  color: white;
+  /* position: relative;
+  left: 0.2em; */
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
   margin-bottom: -0.2em;
   border: none;
-  border-radius: 0.1em;
 `;
 
 // const [clientWindowHeight, setClientWindowHeight] = useState("");
