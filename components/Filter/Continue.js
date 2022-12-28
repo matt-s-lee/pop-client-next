@@ -13,7 +13,7 @@ export default function Continue() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 4em;
+  margin: 2em;
   animation: 3s infinite alternate down;
 
   @keyframes down {

@@ -7,7 +7,6 @@ import Head from "next/head";
 
 import Filter from "../components/Filter";
 import HeroCarousel from "../components/Hero/index";
-import Continue from "../components/Continue";
 import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
@@ -43,7 +42,6 @@ export default function Home({
         <HeroCarousel hero={hero} />
         <Trending />
         <Filter resources={resources} searchTerms={searchTerms} />
-        <Continue />
         <Category categories={categories} resources={resources} />
         <Calendars />
       </main>
