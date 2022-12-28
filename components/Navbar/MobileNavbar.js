@@ -2,10 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import Drawer from "@mui/material/Drawer";
 
 import ReactComponent from "../../public/popEN.png";
-import { CgMenu, CgMenuMotion } from "react-icons/cg";
+import { CgMenu } from "react-icons/cg";
+import NavDrawer from "./NavDrawer";
 
 export default function MobileNavbar() {
   const [open, setOpen] = useState(false);
@@ -22,30 +22,9 @@ export default function MobileNavbar() {
           </Link>
         </NavElement>
         <HamburgerElement onClick={handleClick}>
-          {/* {open ? (
-            <CgMenuMotion fontSize="1.5em" />
-          ) : (
-            <CgMenu fontSize="1.5em" />
-          )} */}
           <CgMenu fontSize="1.5em" />
         </HamburgerElement>
-        <Drawer
-          open={open}
-          anchor="right"
-          onClick={handleClick}
-          onClose={handleClick}
-          PaperProps={{
-            sx: {
-              width: 240,
-              elevation: 8,
-              padding: 1,
-              display: flex,
-              justifyContent: right,
-            },
-          }}
-        >
-          <CgMenuMotion fontSize="1.5em" />
-        </Drawer>
+        <NavDrawer open={open} handleClick={handleClick} />
       </NavItems>
     </Wrapper>
   );
