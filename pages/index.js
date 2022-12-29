@@ -11,6 +11,7 @@ import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
 import fetchAllData from "../lib/api";
+import { FilterContext } from "../context/FilterContext";
 
 export default function Home({
   categories,
@@ -19,16 +20,19 @@ export default function Home({
   hero,
   searchTerms,
   topics,
-  supportNavBar,
+  supportTypesNav,
+  allTags,
 }) {
   // Set categories to context on home page load
-  const { setTopics, setSupportTypes, setCategories, setSupportNavBar } =
+  const { setTopics, setSupportTypes, setCategories, setSupportTypesNav } =
     useContext(CategoriesContext);
+  const { setAllTags } = useContext(FilterContext);
   useEffect(() => {
     setTopics(topics);
     setSupportTypes(supportTypes);
     setCategories(categories);
-    setSupportNavBar(supportNavBar);
+    setSupportTypesNav(supportTypesNav);
+    setAllTags(allTags);
   }, []);
 
   return (
