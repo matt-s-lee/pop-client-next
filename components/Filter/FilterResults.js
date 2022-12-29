@@ -2,44 +2,25 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { FilterContext } from "../../context/FilterContext";
 import ResourceCarousel from "../Category/ResourceCarousel";
-import ResourceCard from "../ResourceCard";
+import { editTags } from "../../hooks/useFormatTags";
 
 export default function FilterResults({ resources }) {
   const { queryTerm, filteredResources, setFilteredResources } =
     useContext(FilterContext);
   const assetDetails = resources.includes.Asset;
 
-  // -----------------------------------------------------
-  // Reformat query terms to be able to match with tag IDs
-  // -----------------------------------------------------
-  const titleCase = (str) => {
-    // Remove special characters
-    let splitStr = str.toLowerCase().split(/[\s-]/);
-    // Keep first word lowercase
-    for (let i = 1; i < splitStr.length; i++) {
-      splitStr[i] =
-        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-    }
-    return splitStr.join("").replace(/[^a-zA-Z ]/g, "");
-  };
-  const editTags = (array) => {
-    const editedTags = [];
-    array.forEach((tag) => {
-      editedTags.push(titleCase(tag));
-    });
-    return editedTags;
-  };
-  // -----------------------------------------------------
-
+  // -----------------------------------------------
+  // Filter all resources with formatted query terms
+  // -----------------------------------------------
   useEffect(() => {
-    let terms = editTags(queryTerm);
+    let editedTerms = editTags(queryTerm); // imported function
     setFilteredResources(
       resources.items.filter((resource) => {
         const resourceTags = [];
         resource.metadata.tags.forEach((tag) => {
           resourceTags.push(tag.sys.id);
         });
-        return terms.every((tag) => {
+        return editedTerms.every((tag) => {
           return resourceTags.includes(tag);
         });
       })
@@ -71,6 +52,27 @@ margin-bottom: 1em;
 const Numbers = styled.span`
 font-weight: 600;
 `
+
+  // // -----------------------------------------------------------------
+  // // Function to format query terms to be able to match with tag IDs - moved to /hooks
+  // // -----------------------------------------------------------------
+  // const titleCase = (str) => {
+  //   // Remove special characters
+  //   let splitStr = str.toLowerCase().split(/[\s-]/);
+  //   // Keep first word lowercase
+  //   for (let i = 1; i < splitStr.length; i++) {
+  //     splitStr[i] =
+  //       splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  //   }
+  //   return splitStr.join("").replace(/[^a-zA-Z ]/g, "");
+  // };
+  // const editTags = (array) => {
+  //   const editedTags = [];
+  //   array.forEach((tag) => {
+  //     editedTags.push(titleCase(tag));
+  //   });
+  //   return editedTags;
+  // };
 
   //  {/* {filteredResources &&
   //         filteredResources.map((resource) => {
