@@ -13,6 +13,9 @@ export default function Category({ categories, resources }) {
   // console.log("Category comp, REsources", resources);
   return (
     <>
+      <Title>
+        <h2>Explore all resources</h2>
+      </Title>
       {categories.items.map((category, index) => {
         return (
           <ClientOnly key={category.sys.id}>
@@ -50,6 +53,14 @@ export default function Category({ categories, resources }) {
 
 const Wrapper = styled.div`
   margin-bottom: 1em;
+`;
+
+const Title = styled.div`
+  background: white;
+  border-radius: 0.7em;
+  padding: 1em;
+  margin: 3em 10em 0 10em;
+  text-align: center;
 `;
 
 const Text = styled.div`
