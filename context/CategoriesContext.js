@@ -11,6 +11,7 @@ export const CategoriesProvider = ({ children }) => {
   const [supportTypesNav, setSupportTypesNav] = useState(); // support types (for NavBar)
   const [sortedTopics, setSortedTopics] = useState();
   const [sortedTypes, setSortedTypes] = useState();
+  const [provinces, setProvinces] = useState();
 
   return (
     <CategoriesContext.Provider
@@ -27,6 +28,8 @@ export const CategoriesProvider = ({ children }) => {
         setSortedTopics,
         sortedTypes,
         setSortedTypes,
+        provinces,
+        setProvinces,
       }}
     >
       {children}
