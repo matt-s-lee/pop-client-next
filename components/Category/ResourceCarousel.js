@@ -85,6 +85,7 @@ export default function ResourceCarousel({ resources, tag }) {
                     return asset.sys.id === match.fields.image.sys.id;
                   }).fields.file.url
                 }
+                tags={match.metadata.tags}
               />
             );
           } else {

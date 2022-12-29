@@ -1,15 +1,41 @@
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
+import ResourceModal from "../ResourceModal";
+import { FilterContext } from "../../context/FilterContext";
 
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Button from "@mui/material/Button";
+export default function ResourceCard({
+  title,
+  link,
+  description,
+  imageUrl,
+  tags,
+}) {
+  const { allTags } = useContext(FilterContext);
 
-export default function ResourceCard({ title, link, description, imageUrl }) {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  // Convert tag IDs to names to display
+  const matchedTags = [];
+  const tagsToDisplay = [];
+  tags.forEach((tag) => {
+    if (!tag.sys.id.includes("category")) {
+      matchedTags.push(tag.sys.id);
+    }
+  });
+  matchedTags.forEach((matchedTag) => {
+    tagsToDisplay.push(
+      allTags.items.find((item) => {
+        return item.sys.id === matchedTag;
+      }).name
+    );
+  });
+
   const src = `https:${imageUrl}`;
+
   return (
     <Wrapper>
       <Media>
@@ -22,6 +48,7 @@ export default function ResourceCard({ title, link, description, imageUrl }) {
           style={{
             objectFit: "cover",
           }}
+          unoptimized
         />
       </Media>
       <Text>
@@ -30,7 +57,12 @@ export default function ResourceCard({ title, link, description, imageUrl }) {
       </Text>
       <ButtonWrapper>
         <Button onClick={() => window.open(link)}>Go to resource</Button>
-        <Button>Learn more</Button>
+        <Button onClick={handleClick}>Learn more</Button>
+        <ResourceModal
+          open={open}
+          handleClick={handleClick}
+          tags={tagsToDisplay}
+        />
       </ButtonWrapper>
     </Wrapper>
   );
