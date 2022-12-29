@@ -7,7 +7,7 @@ import { editTags } from "../../hooks/useFormatTags";
 export default function FilterResults({ resources }) {
   const { queryTerm, filteredResources, setFilteredResources } =
     useContext(FilterContext);
-  const assetDetails = resources.includes.Asset;
+  // const assetDetails = resources.includes.Asset;
 
   // -----------------------------------------------
   // Filter all resources with formatted query terms

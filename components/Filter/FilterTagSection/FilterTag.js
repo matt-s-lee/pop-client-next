@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
 
 export default function FilterTag({ tag }) {
-  const { queryTerm, setQueryTerm } = useContext(FilterContext);
+  const { setQueryTerm } = useContext(FilterContext);
   function deleteTag(ev) {
     ev.stopPropagation();
     setQueryTerm((queryTerm) =>

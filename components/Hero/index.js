@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styled from "styled-components";
+// import styled from "styled-components";
 import HeroImage from "./HeroImage";
 
 function HeroCarousel({ hero }) {
@@ -65,48 +65,48 @@ function HeroCarousel({ hero }) {
 
 export default HeroCarousel;
 
-const Banner = styled.div`
-  height: 600px;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
+// const Banner = styled.div`
+//   height: 600px;
+//   width: 100%;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center;
+// `;
 
-const Row = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+// const Row = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: center;
 
-  & > * {
-    margin: 150px;
-    width: 100%;
-  }
-`;
+//   & > * {
+//     margin: 150px;
+//     width: 100%;
+//   }
+// `;
 
-const TextBox = styled.div`
-  color: white;
-  min-width: 300px;
-  width: 50%;
+// const TextBox = styled.div`
+//   color: white;
+//   min-width: 300px;
+//   width: 50%;
 
-  & > * {
-    margin: 10px;
-  }
-`;
+//   & > * {
+//     margin: 10px;
+//   }
+// `;
 
-const Title = styled.div`
-  font-size: 42px;
-  font-weight: 700;
-`;
+// const Title = styled.div`
+//   font-size: 42px;
+//   font-weight: 700;
+// `;
 
-const Body = styled.div`
-  font-size: 34px;
-  font-weight: 700;
-`;
+// const Body = styled.div`
+//   font-size: 34px;
+//   font-weight: 700;
+// `;
 
-const Span = styled.span`
-  padding: 5px 15px;
-`;
+// const Span = styled.span`
+//   padding: 5px 15px;
+// `;

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 import Button from "@mui/material/Button";
@@ -47,7 +47,7 @@ export default function NavDropdown({ text }) {
   );
 }
 
-const Wrapper = styled.div``;
+// const Wrapper = styled.div``;
 
 const ButtonStyled = styled(Button)`
   color: #666666;

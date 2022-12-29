@@ -1,10 +1,10 @@
 import { LanguageProvider } from "../context/LanguageContext";
 import { CategoriesProvider } from "../context/CategoriesContext";
+import { FilterProvider } from "../context/FilterContext";
 
 import Layout from "../components/Layout";
 
 import "../styles/globals.css";
-import { FilterProvider } from "../context/FilterContext";
 
 function App({ Component, pageProps }) {
   return (
@@ -31,9 +31,11 @@ export default App;
 //   productionPrefix: "c",
 // });
 
-    // <StylesProvider generateClassName={generateClassName}>
-      {/* <main className={inter.className}> */}
-      {/* </main> */}
-    // </StylesProvider>
-
-
+// <StylesProvider generateClassName={generateClassName}>
+{
+  /* <main className={inter.className}> */
+}
+{
+  /* </main> */
+}
+// </StylesProvider>

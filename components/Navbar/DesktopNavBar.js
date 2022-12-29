@@ -93,23 +93,23 @@ const StyledLogo = styled(Image)`
   width: auto;
 `;
 
-const Tab = styled(Link)`
-  width: 100%;
-  color: var(--clr-fg);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 24px;
-  /* Change the color of links on hover */
-  &:hover {
-    color: var(--clr-fg);
-  }
-  /* Add a color to the active/current link */
-  &:active {
-    background-color: var(--clr-primary);
-    color: var(--clr-fg);
-  }
-`;
+// const Tab = styled(Link)`
+//   width: 100%;
+//   color: var(--clr-fg);
+//   text-align: center;
+//   padding: 14px 16px;
+//   text-decoration: none;
+//   font-size: 24px;
+//   /* Change the color of links on hover */
+//   &:hover {
+//     color: var(--clr-fg);
+//   }
+//   /* Add a color to the active/current link */
+//   &:active {
+//     background-color: var(--clr-primary);
+//     color: var(--clr-fg);
+//   }
+// `;
 
 const Ul = styled.ul`
   display: flex;
