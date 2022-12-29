@@ -8,7 +8,7 @@ export default function Navbar() {
   const {
     topics,
     categories,
-    supportNavBar,
+    supportTypesNav,
     supportTypes,
     setSortedTopics,
     setSortedTypes,
@@ -27,11 +27,11 @@ export default function Navbar() {
     });
   };
   extractList(categories, topics, topicsArray);
-  extractList(supportTypes, supportNavBar, typesArray);
+  extractList(supportTypes, supportTypesNav, typesArray);
   useEffect(() => {
     setSortedTopics(topicsArray);
     setSortedTypes(typesArray);
-  }, [categories, topics, supportTypes, supportNavBar]);
+  }, [categories, topics, supportTypes, supportTypesNav]);
 
   return (
     <>

@@ -8,7 +8,7 @@ export const CategoriesProvider = ({ children }) => {
   const [categories, setCategories] = useState(); // all categories (for resources on homepage)
   const [topics, setTopics] = useState(); // topics (for navBar)
   const [supportTypes, setSupportTypes] = useState(); // all support types (to filter
-  const [supportNavBar, setSupportNavBar] = useState(); // support types (for NavBar)
+  const [supportTypesNav, setSupportTypesNav] = useState(); // support types (for NavBar)
   const [sortedTopics, setSortedTopics] = useState();
   const [sortedTypes, setSortedTypes] = useState();
 
@@ -21,8 +21,8 @@ export const CategoriesProvider = ({ children }) => {
         setSupportTypes,
         categories,
         setCategories,
-        supportNavBar,
-        setSupportNavBar,
+        supportTypesNav,
+        setSupportTypesNav,
         sortedTopics,
         setSortedTopics,
         sortedTypes,
