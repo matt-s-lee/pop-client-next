@@ -19,15 +19,16 @@ export default function ProvincesMenu({ anchorEl, open, handleClose }) {
         "aria-labelledby": "basic-button",
       }}
     >
-      {provinces.items.map((province) => {
-        return (
-          <MenuItem key={province.sys.id} onClick={handleClose}>
-            <Link href={`/provinces/${province.fields.slug}`}>
-              {province.fields.province}
-            </Link>
-          </MenuItem>
-        );
-      })}
+      {provinces &&
+        provinces.items.map((province) => {
+          return (
+            <MenuItem key={province.sys.id} onClick={handleClose}>
+              <Link href={`/provinces/${province.fields.slug}`}>
+                {province.fields.province}
+              </Link>
+            </MenuItem>
+          );
+        })}
     </MenuStyled>
   );
 }
