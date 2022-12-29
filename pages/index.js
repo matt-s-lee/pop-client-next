@@ -1,5 +1,8 @@
 import { useContext, useEffect } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
+import { FilterContext } from "../context/FilterContext";
+import { fetchHomeData } from "../lib/api";
+
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 
@@ -10,8 +13,6 @@ import HeroCarousel from "../components/Hero/index";
 import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
-import fetchAllData from "../lib/api";
-import { FilterContext } from "../context/FilterContext";
 
 export default function Home({
   categories,
@@ -53,7 +54,7 @@ export default function Home({
         <HeroCarousel hero={hero} />
         <Trending />
         <Filter resources={resources} searchTerms={searchTerms} />
-        <Category categories={categories} resources={resources} />
+        <Category resources={resources} categories={categories} />
         <Calendars />
       </main>
     </Wrapper>
@@ -62,7 +63,7 @@ export default function Home({
 
 // Fetches all data via SSG
 export async function getStaticProps() {
-  return fetchAllData();
+  return fetchHomeData();
 }
 
 const Wrapper = styled.div`
