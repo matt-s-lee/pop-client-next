@@ -1,15 +1,41 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
+import styled from "styled-components";
+import ClientOnly from "../../components/ClientOnly";
 
 export default function ProvincePage({ data }) {
   const { province, resources } = data.fields;
-  console.log("data", data);
+  const options = {
+    // renderMark: {
+    //   [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
+    // },
+    renderNode: {
+      // [INLINES.HYPERLINK]: (node, children) => {
+      //   const { uri } = node.data
+      //   return (
+      //     <a href={uri} className="underline">
+      //       {children}
+      //     </a>
+      //   )
+      // },
+      [BLOCKS.TABLE]: (node, children) => {
+        return (
+          <table className="table">
+            <tbody>{children}</tbody>
+          </table>
+        );
+      },
+    },
+  };
   return (
-    <>
-      <div>
-        <h3>{province}</h3>
-      </div>
-      {documentToReactComponents(resources)}
-    </>
+    <ClientOnly>
+      <Wrapper>
+        <div>
+          <h3>Explore resources in {province}</h3>
+        </div>
+        {documentToReactComponents(resources, options)}
+      </Wrapper>
+    </ClientOnly>
   );
 }
 
@@ -59,3 +85,15 @@ export async function getStaticProps(context) {
     props: { data: json.items[0] },
   };
 }
+
+const Wrapper = styled.div`
+  table,
+  th,
+  td {
+    border: 1px solid;
+  }
+
+  td {
+    padding: 1em;
+  }
+`;
