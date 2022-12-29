@@ -1,15 +1,14 @@
-// import { useRouter } from "next/router";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import Layout from "../../components/Layout";
-
-export default function ProvincePage() {
+export default function ProvincePage({ data }) {
+  const { province, resources } = data.fields;
+  console.log("data", data);
   return (
     <>
-      {/* <div>
-        <>{category.fields.sectionTitle}</>
-        <div>{category.fields.description.content[0].content[0].value}</div>
-        <div></div>
-      </div> */}
+      <div>
+        <h3>{province}</h3>
+      </div>
+      {documentToReactComponents(resources)}
     </>
   );
 }
@@ -25,34 +24,19 @@ export async function getStaticPaths() {
   }
 
   // Fetch all categories in English, from Contentful API
-  // const res = await fetch(
-  //   `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA`
-  // );
-  // const categories = await res.json();
+  const res = await fetch(
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&order=fields.orderNumber`
+  );
+  const json = await res.json();
 
   // Create array of slugs from objects, i.e. {locale: slug}
-  // const allSlugs = [];
-  // categories.items.forEach((category) => {
-  //   allSlugs.push(category.fields.slug);
-  // });
-  const provinces = [
-    "Alberta",
-    "British Columbia",
-    "Manitoba",
-    "New Brunswick",
-    "Newfoundland and Labrador",
-    "Northwest Territories",
-    "Nova Scotia",
-    "Nunavut",
-    "Ontario",
-    "Prince Edward Island",
-    "Quebec",
-    "Saskatchewan",
-    "Yukon",
-  ];
+  const slugs = [];
+  json.items.forEach((province) => {
+    slugs.push(province.fields.slug);
+  });
 
   // Get slug paths to prerender
-  const paths = provinces.map((slug) => {
+  const paths = slugs.map((slug) => {
     return { params: { slug } };
   });
 
@@ -63,14 +47,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // Get resource cards for this category from Contentful API
+  // Get resource cards for this province from Contentful API
   const res = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&fields.slug[in]=${context.params.slug}`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&locale=en-CA&fields.slug[in]=${context.params.slug}`
   );
-  const category = await res.json();
+  const json = await res.json();
+  console.log("json", json);
 
   // Passed to the CategoryPage component as props
   return {
-    props: { category: category.items[0] },
+    props: { data: json.items[0] },
   };
 }
