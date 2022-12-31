@@ -25,11 +25,14 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
       {sortedTopics &&
         sortedTopics.map((category) => {
           return (
-            <MenuItem key={category.sys.id} onClick={handleClose}>
-              <Link href={`/categories/${category.fields.slug}`}>
+            <Link
+              key={category.sys.id}
+              href={`/categories/${category.fields.slug}`}
+            >
+              <MenuItem onClick={handleClose}>
                 {category.fields.sectionTitle}
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           );
         })}
       <Divider />

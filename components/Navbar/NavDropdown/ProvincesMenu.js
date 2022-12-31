@@ -22,11 +22,14 @@ export default function ProvincesMenu({ anchorEl, open, handleClose }) {
       {provinces &&
         provinces.items.map((province) => {
           return (
-            <MenuItem key={province.sys.id} onClick={handleClose}>
-              <Link href={`/provinces/${province.fields.slug}`}>
+            <Link
+              key={province.sys.id}
+              href={`/provinces/${province.fields.slug}`}
+            >
+              <MenuItem onClick={handleClose}>
                 {province.fields.province}
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           );
         })}
     </MenuStyled>
