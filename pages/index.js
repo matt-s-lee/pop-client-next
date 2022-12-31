@@ -17,22 +17,22 @@ import Trending from "../components/Trending/index";
 export default function Home({
   categories,
   resources,
-  supportTypes,
+  // supportTypes,
   hero,
   searchTerms,
-  topics,
-  supportTypesNav,
+  // topics,
+  // supportTypesNav,
   allTags,
 }) {
   // Set categories to context on home page load
-  const { setTopics, setSupportTypes, setCategories, setSupportTypesNav } =
-    useContext(CategoriesContext);
+  // const { setTopics, setSupportTypes, setCategories, setSupportTypesNav } =
+  //   useContext(CategoriesContext);
   const { setAllTags } = useContext(FilterContext);
   useEffect(() => {
-    setTopics(topics);
-    setSupportTypes(supportTypes);
-    setCategories(categories);
-    setSupportTypesNav(supportTypesNav);
+    // setTopics(topics);
+    // setSupportTypes(supportTypes);
+    // setCategories(categories);
+    // setSupportTypesNav(supportTypesNav);
     setAllTags(allTags);
   }, []);
 
