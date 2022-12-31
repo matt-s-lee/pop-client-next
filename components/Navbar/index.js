@@ -10,13 +10,14 @@ export default function Navbar() {
     categories,
     supportTypesNav,
     supportTypes,
+    setTopics,
+    setSupportTypesNav,
     setSortedTopics,
     setSortedTypes,
+    setProvinces,
   } = useContext(CategoriesContext);
 
   // Extract topics based on ordered lists
-  const topicsArray = [];
-  const typesArray = [];
   const extractList = (fullList, orderedList, filteredList) => {
     orderedList?.fields?.orderSections?.forEach((section) => {
       fullList?.items?.forEach((item) => {
@@ -26,12 +27,25 @@ export default function Navbar() {
       });
     });
   };
-  extractList(categories, topics, topicsArray);
-  extractList(supportTypes, supportTypesNav, typesArray);
+
   useEffect(() => {
+    const topicsArray = [];
+    const typesArray = [];
+    extractList(categories, topics, topicsArray);
+    extractList(supportTypes, supportTypesNav, typesArray);
     setSortedTopics(topicsArray);
     setSortedTypes(typesArray);
   }, [categories, topics, supportTypes, supportTypesNav]);
+
+  useEffect(() => {
+    fetch("/api/navbar")
+      .then((response) => response.json())
+      .then((json) => {
+        setProvinces(json.provincesJson);
+        setSupportTypesNav(json.supportTypesNavJson);
+        setTopics(json.categoriesNavJson);
+      });
+  }, []);
 
   return (
     <>
