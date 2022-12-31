@@ -23,16 +23,10 @@ export default function Home({
   topics,
   supportTypesNav,
   allTags,
-  provincialResources,
 }) {
   // Set categories to context on home page load
-  const {
-    setTopics,
-    setSupportTypes,
-    setCategories,
-    setSupportTypesNav,
-    setProvinces,
-  } = useContext(CategoriesContext);
+  const { setTopics, setSupportTypes, setCategories, setSupportTypesNav } =
+    useContext(CategoriesContext);
   const { setAllTags } = useContext(FilterContext);
   useEffect(() => {
     setTopics(topics);
@@ -40,7 +34,6 @@ export default function Home({
     setCategories(categories);
     setSupportTypesNav(supportTypesNav);
     setAllTags(allTags);
-    setProvinces(provincialResources);
   }, []);
 
   return (
