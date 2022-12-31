@@ -10,11 +10,8 @@ export default function Navbar() {
     categories,
     supportTypesNav,
     supportTypes,
-    setTopics,
-    setSupportTypesNav,
     setSortedTopics,
     setSortedTypes,
-    setProvinces,
   } = useContext(CategoriesContext);
 
   // Extract topics based on ordered lists
@@ -37,16 +34,6 @@ export default function Navbar() {
     setSortedTypes(typesArray);
   }, [categories, topics, supportTypes, supportTypesNav]);
 
-  useEffect(() => {
-    fetch("/api/navbar")
-      .then((response) => response.json())
-      .then((json) => {
-        setProvinces(json.provincesJson);
-        setSupportTypesNav(json.supportTypesNavJson);
-        setTopics(json.categoriesNavJson);
-      });
-  }, []);
-
   return (
     <>
       <MobileNavbar />
@@ -54,26 +41,3 @@ export default function Navbar() {
     </>
   );
 }
-
-// const [width, setWidth] = useState();
-
-// componentDidMount() {
-//   setWidth(window.innerWidth);
-// };
-
-// // Detect if mobile device used
-// function handleWindowSizeChange() {
-//   setWidth(window.innerWidth);
-// }
-// useEffect(() => {
-//   setWidth(window.innerWidth);
-//   if (typeof window !== "undefined") {
-//     window.addEventListener("resize", handleWindowSizeChange);
-//     return () => {
-//       window.removeEventListener("resize", handleWindowSizeChange);
-//     };
-//   }
-// }, []);
-// let isMobile = width <= 500;
-
-// return <>{isMobile ? <MobileNavbar /> : <FullNavbar />}</>;
