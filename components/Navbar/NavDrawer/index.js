@@ -20,8 +20,6 @@ export default function NavDrawer({ openMain, handleClick }) {
   const handleOpenResources = () => {
     setOpenResources(!openResources);
   };
-  console.log("provinces", openProvinces);
-  console.log("resources", openResources);
 
   return (
     <Drawer

@@ -12,7 +12,6 @@ export default function MobileNavbar() {
   const handleClick = () => {
     setOpenMain(!openMain);
   };
-  console.log("main", openMain);
 
   return (
     <Wrapper>
