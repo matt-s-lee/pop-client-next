@@ -8,10 +8,11 @@ import { CgMenu } from "react-icons/cg";
 import NavDrawer from "./NavDrawer";
 
 export default function MobileNavbar() {
-  const [open, setOpen] = useState(false);
+  const [openMain, setOpenMain] = useState(false);
   const handleClick = () => {
-    setOpen(!open);
+    setOpenMain(!openMain);
   };
+  console.log("main", openMain);
 
   return (
     <Wrapper>
@@ -24,7 +25,7 @@ export default function MobileNavbar() {
         <HamburgerElement onClick={handleClick}>
           <CgMenu fontSize="1.5em" />
         </HamburgerElement>
-        <NavDrawer open={open} handleClick={handleClick} />
+        <NavDrawer openMain={openMain} handleClick={handleClick} />
       </NavItems>
     </Wrapper>
   );

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { CategoriesContext } from "../../../context/CategoriesContext";
 
@@ -11,32 +11,39 @@ import ListItem from "@mui/material/ListItem";
 
 export default function ResourcesDrawer({
   handleClick, // close original menu
-  drawerOpen,
-  handleOpen, // close nested menu
+  openResources,
+  handleOpenResources, // close nested menu
 }) {
   const { sortedTopics, sortedTypes } = useContext(CategoriesContext);
 
   return (
     <Drawer
-      open={drawerOpen}
+      open={openResources}
       anchor="right"
-      onClick={handleOpen}
-      onClose={handleOpen}
+      onClick={(handleClick, handleOpenResources)}
+      onClose={(handleClick, handleOpenResources)}
+      PaperProps={{
+        sx: {
+          width: 240,
+          elevation: 8,
+          padding: 1,
+        },
+      }}
     >
       <List>
-        <ListItem onClick={handleOpen}>x</ListItem>
+        <CloseDrawer onClick={handleOpenResources}>x</CloseDrawer>
         <Title>Explore by Topic</Title>
         {sortedTopics &&
           sortedTopics.map((category) => {
             return (
-              <ListItem
+              <Link
                 key={category.sys.id}
-                onClick={(handleOpen, handleClick)}
+                href={`/categories/${category.fields.slug}`}
               >
-                <Link href={`/categories/${category.fields.slug}`}>
+                <ListItem onClick={(handleOpenResources, handleClick)}>
                   {category.fields.sectionTitle}
-                </Link>
-              </ListItem>
+                </ListItem>
+              </Link>
             );
           })}
         <Divider />
@@ -44,7 +51,7 @@ export default function ResourcesDrawer({
         {sortedTypes &&
           sortedTypes.map((type) => {
             return (
-              <ListItem key={type.sys.id} onClick={handleOpen}>
+              <ListItem key={type.sys.id} onClick={handleOpenResources}>
                 <Link
                   href={
                     `/categories/${type.fields.slug}` ??
@@ -63,4 +70,14 @@ export default function ResourcesDrawer({
 
 const Title = styled.h3`
   margin-left: 0.5em;
+`;
+
+export const baseInputStyles = css`
+  font-size: 1.5em;
+  position: relative;
+  left: 7.7em;
+`;
+
+const CloseDrawer = styled(ListItem)`
+  ${baseInputStyles}
 `;

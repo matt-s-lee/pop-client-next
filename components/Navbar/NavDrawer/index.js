@@ -11,15 +11,21 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { CgMenuMotion } from "react-icons/cg";
 
-export default function NavDrawer({ open, setOpen, handleClick }) {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const handleOpen = () => {
-    setDrawerOpen(!drawerOpen);
+export default function NavDrawer({ openMain, handleClick }) {
+  const [openProvinces, setOpenProvinces] = useState(false);
+  const [openResources, setOpenResources] = useState(false);
+  const handleOpenProvinces = () => {
+    setOpenProvinces(!openProvinces);
   };
+  const handleOpenResources = () => {
+    setOpenResources(!openResources);
+  };
+  console.log("provinces", openProvinces);
+  console.log("resources", openResources);
 
   return (
     <Drawer
-      open={open}
+      open={openMain}
       anchor="right"
       //   onClick={handleClick}
       onClose={handleClick}
@@ -31,7 +37,7 @@ export default function NavDrawer({ open, setOpen, handleClick }) {
         },
       }}
     >
-      <StyledMenuMotion />
+      <StyledMenuMotion onClick={handleClick} />
       <List>
         <ListItem>
           <ListItemButton>
@@ -39,23 +45,25 @@ export default function NavDrawer({ open, setOpen, handleClick }) {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton onClick={handleOpen}>
+          <ListItemButton onClick={handleOpenResources}>
             <ListItemText>Access Resources</ListItemText>
           </ListItemButton>
           <ResourcesDrawer
-            handleClick={handleClick}
-            drawerOpen={drawerOpen}
-            handleOpen={handleOpen}
+            handleOpenResources={handleOpenResources}
+            openResources={openResources}
+            handleClick={handleClick} // closes main drawer
           />
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <ListItemText>Explore by Province</ListItemText>
+            <ListItemText onClick={handleOpenProvinces}>
+              Explore by Province
+            </ListItemText>
           </ListItemButton>
           <ProvincesDrawer
-            handleClick={handleClick}
-            drawerOpen={drawerOpen}
-            handleOpen={handleOpen}
+            handleOpenProvinces={handleOpenProvinces}
+            openProvinces={openProvinces}
+            handleClick={handleClick} // closes main drawer
           />
         </ListItem>
       </List>
