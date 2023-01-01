@@ -78,7 +78,6 @@ export async function getStaticProps(context) {
     `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&locale=en-CA&fields.slug[in]=${context.params.slug}`
   );
   const json = await res.json();
-  console.log("json", json);
 
   // Passed to the CategoryPage component as props
   return {

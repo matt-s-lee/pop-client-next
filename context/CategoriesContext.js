@@ -12,13 +12,6 @@ export const CategoriesProvider = ({ children }) => {
   const [sortedTopics, setSortedTopics] = useState();
   const [sortedTypes, setSortedTypes] = useState();
   const [provinces, setProvinces] = useState();
-  console.log("categories", categories);
-  console.log("topics", topics);
-  console.log("supportTypes", supportTypes);
-  console.log("supportTypesNav", supportTypesNav);
-  console.log("sortedTopics", sortedTopics);
-  console.log("sortedTypes", sortedTypes);
-  console.log("provinces", provinces);
 
   return (
     <CategoriesContext.Provider
