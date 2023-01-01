@@ -15,7 +15,6 @@ export default function ResourcesDrawer({
   handleOpenResources, // close nested menu
 }) {
   const { sortedTopics, sortedTypes } = useContext(CategoriesContext);
-
   return (
     <Drawer
       open={openResources}
@@ -51,10 +50,13 @@ export default function ResourcesDrawer({
         {sortedTypes &&
           sortedTypes.map((type) => {
             return (
-              <ListItem key={type.sys.id} onClick={handleOpenResources}>
+              <ListItem
+                key={type.sys.id}
+                onClick={(handleOpenResources, handleClick)}
+              >
                 <Link
                   href={
-                    `/categories/${type.fields.slug}` ??
+                    `/support-types/${type.fields.slug}` ??
                     type.fields.externalLinkOptional
                   }
                 >

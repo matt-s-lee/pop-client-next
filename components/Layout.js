@@ -19,7 +19,7 @@ export default function Layout({ children }) {
       .then((response) => response.json())
       .then((json) => {
         setProvinces(json.provincesJson);
-        setSupportTypes(json.supportTypesJson);
+        setSupportTypes(json.supportTypesAllJson);
         setSupportTypesNav(json.supportTypesNavJson);
         setTopics(json.categoriesNavJson);
         setCategories(json.categoriesJson);
