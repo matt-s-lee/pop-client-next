@@ -28,7 +28,7 @@ export default function ResourceCard({
   });
   matchedTags.forEach((matchedTag) => {
     tagsToDisplay.push(
-      allTags.items.find((item) => {
+      allTags?.items?.find((item) => {
         return item.sys.id === matchedTag;
       }).name
     );
