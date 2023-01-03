@@ -1,5 +1,5 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import ClientOnly from "../../components/ClientOnly";
 
@@ -10,14 +10,14 @@ export default function ProvincePage({ data }) {
     //   [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
     // },
     renderNode: {
-      // [INLINES.HYPERLINK]: (node, children) => {
-      //   const { uri } = node.data
-      //   return (
-      //     <a href={uri} className="underline">
-      //       {children}
-      //     </a>
-      //   )
-      // },
+      [INLINES.HYPERLINK]: (node, children) => {
+        const { uri } = node.data;
+        return (
+          <a href={uri} className="underline">
+            {children}
+          </a>
+        );
+      },
       [BLOCKS.TABLE]: (node, children) => {
         return (
           <table className="table">
@@ -30,10 +30,10 @@ export default function ProvincePage({ data }) {
   return (
     <ClientOnly>
       <Wrapper>
-        <div>
-          <h3>Explore resources in {province}</h3>
-        </div>
-        {documentToReactComponents(resources, options)}
+        <h1>Explore resources in {province}</h1>
+        <TableWrapper>
+          {documentToReactComponents(resources, options)}
+        </TableWrapper>
       </Wrapper>
     </ClientOnly>
   );
@@ -86,6 +86,7 @@ export async function getStaticProps(context) {
 }
 
 const Wrapper = styled.div`
+  padding: 1em;
   table,
   th,
   td {
@@ -95,4 +96,8 @@ const Wrapper = styled.div`
   td {
     padding: 1em;
   }
+`;
+
+const TableWrapper = styled.div`
+  margin-top: 1em;
 `;
