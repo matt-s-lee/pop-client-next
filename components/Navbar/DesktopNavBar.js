@@ -15,7 +15,7 @@ export default function DesktopNavBar() {
   const { language, toggleLanguage } = useContext(LanguageContext);
 
   return (
-    <>
+    <Wrapper>
       <Notif>
         In need of immediate crisis support? Call 911 if you or someone you know
         is in immediate danger or needs urgent medical care.
@@ -55,9 +55,15 @@ export default function DesktopNavBar() {
           </Ul>
         </ClientOnly>
       </Nav>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+  -webkit-box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+`;
 
 const Notif = styled.div`
   background-color: #0a69b5;

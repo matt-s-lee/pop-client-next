@@ -21,37 +21,41 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
         "aria-labelledby": "basic-button",
       }}
     >
-      <Title>Explore by Topic</Title>
-      {sortedTopics &&
-        sortedTopics.map((category) => {
-          return (
-            <Link
-              key={category.sys.id}
-              href={`/categories/${category.fields.slug}`}
-            >
-              <MenuItem onClick={handleClose}>
-                {category.fields.titleNavBar}
-              </MenuItem>
-            </Link>
-          );
-        })}
-      <Divider />
-      <Title>Explore By Support Type</Title>
-      {sortedTypes &&
-        sortedTypes.map((type) => {
-          return (
-            <MenuItem key={type.sys.id} onClick={handleClose}>
+      <div>
+        <Title>Explore by Topic</Title>
+        {sortedTopics &&
+          sortedTopics.map((category) => {
+            return (
               <Link
-                href={
-                  `/support/${type.fields.slug}` ??
-                  type.fields.externalLinkOptional
-                }
+                key={category.sys.id}
+                href={`/categories/${category.fields.slug}`}
               >
-                {type.fields.supportTypeName}
+                <MenuItem onClick={handleClose}>
+                  {category.fields.titleNavBar}
+                </MenuItem>
               </Link>
-            </MenuItem>
-          );
-        })}
+            );
+          })}
+      </div>
+      <Divider />
+      <SectionByType>
+        <Title>Explore By Support Type</Title>
+        {sortedTypes &&
+          sortedTypes.map((type) => {
+            return (
+              <MenuItem key={type.sys.id} onClick={handleClose}>
+                <Link
+                  href={
+                    `/support/${type.fields.slug}` ??
+                    type.fields.externalLinkOptional
+                  }
+                >
+                  {type.fields.supportTypeName}
+                </Link>
+              </MenuItem>
+            );
+          })}
+      </SectionByType>
     </MenuStyled>
   );
 }
@@ -60,6 +64,9 @@ const MenuStyled = styled(Menu)`
   margin-top: 1em;
 `;
 
+const SectionByType = styled.div`
+  padding-top: 1em;
+`;
 const Title = styled.h3`
   margin-left: 0.5em;
 `;
