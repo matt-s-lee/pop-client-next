@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import ResourceCard from "../../components/ResourceCard";
 
 export default function SupportTypePage({ supportType, resources }) {
@@ -14,9 +15,9 @@ export default function SupportTypePage({ supportType, resources }) {
   }
 
   return (
-    <>
-      <div>
-        <div>{supportType.fields.supportTypeName}</div>
+    <Wrapper>
+      <h1>{supportType.fields.supportTypeName}</h1>
+      <ResourceWrapper>
         {matchedResources &&
           matchedResources.map((match) => {
             if (match.fields.image) {
@@ -41,9 +42,8 @@ export default function SupportTypePage({ supportType, resources }) {
               return <></>;
             }
           })}
-        <div></div>
-      </div>
-    </>
+      </ResourceWrapper>
+    </Wrapper>
   );
 }
 
@@ -98,3 +98,12 @@ export async function getStaticProps(context) {
     props: { supportType: json.items[0], resources: resourceJson }, // should only be one result, because all slugs unique
   };
 }
+
+const Wrapper = styled.div`
+  padding: 1em;
+`;
+
+const ResourceWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;

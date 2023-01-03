@@ -1,16 +1,56 @@
-// import { useRouter } from "next/router";
+import styled from "styled-components";
+import ResourceCard from "../../components/ResourceCard";
 
-export default function CategoryPage({ category }) {
+export default function CategoryPage({ category, resources }) {
+  console.log("resources", resources);
+  const tag = category.metadata.tags[0].sys.id;
+  const assetDetails = resources.includes.Asset;
+  let matchedResources = [];
+  if (tag) {
+    resources?.items?.forEach((resource) => {
+      if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
+        matchedResources.push(resource);
+      }
+    });
+  }
+
   return (
-    <>
+    <Wrapper>
+      <h1>{category.fields.sectionTitle}</h1>
+      <Overview>
+        <h2>Overview</h2>
+        <p>{category?.fields?.description?.content[0]?.content[0]?.value}</p>
+      </Overview>
       <div>
-        <>{category.fields.sectionTitle}</>
-        <div>
-          {category?.fields?.description?.content[0]?.content[0]?.value}
-        </div>
-        <div></div>
+        <h2>Resources</h2>
+        <ResourcesWrapper>
+          {matchedResources &&
+            matchedResources.map((match) => {
+              if (match.fields.image) {
+                return (
+                  <ResourceCard
+                    key={match.sys.id}
+                    title={match.fields.title}
+                    link={match.fields.link}
+                    description={
+                      match?.fields?.descriptionForSmallCard?.content[0]
+                        ?.content[0]?.value
+                    }
+                    imageUrl={
+                      assetDetails.find((asset) => {
+                        return asset.sys.id === match.fields.image.sys.id;
+                      }).fields.file.url
+                    }
+                    tags={match.metadata.tags}
+                  />
+                );
+              } else {
+                return <></>;
+              }
+            })}
+        </ResourcesWrapper>
       </div>
-    </>
+    </Wrapper>
   );
 }
 
@@ -48,17 +88,36 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // Get resource cards for this category from Contentful API
+  // Get category name from Contentful API
   const res = await fetch(
     `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&fields.slug[in]=${context.params.slug}`
   );
   const category = await res.json();
 
+  // Get all resources
+  const resourceRes = await fetch(
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceBilingual&locale=en-CA&order=fields.resourceOrderNumber`
+  );
+  const resourceJson = await resourceRes.json();
+
   // Passed to the CategoryPage component as props
   return {
-    props: { category: category.items[0] },
+    props: { category: category.items[0], resources: resourceJson },
   };
 }
+
+const Wrapper = styled.div`
+  padding: 1em;
+`;
+
+const ResourcesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Overview = styled.div`
+  margin: 1em 0;
+`;
 
 // console.log("category page props", categories);
 
