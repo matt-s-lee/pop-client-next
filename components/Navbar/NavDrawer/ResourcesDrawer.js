@@ -40,7 +40,7 @@ export default function ResourcesDrawer({
                 href={`/categories/${category.fields.slug}`}
               >
                 <ListItem onClick={(handleOpenResources, handleClick)}>
-                  {category.fields.sectionTitle}
+                  {category.fields.titleNavBar}
                 </ListItem>
               </Link>
             );
@@ -56,7 +56,7 @@ export default function ResourcesDrawer({
               >
                 <Link
                   href={
-                    `/support-types/${type.fields.slug}` ??
+                    `/support/${type.fields.slug}` ??
                     type.fields.externalLinkOptional
                   }
                 >

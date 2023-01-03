@@ -30,7 +30,7 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
               href={`/categories/${category.fields.slug}`}
             >
               <MenuItem onClick={handleClose}>
-                {category.fields.sectionTitle}
+                {category.fields.titleNavBar}
               </MenuItem>
             </Link>
           );
@@ -43,7 +43,7 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
             <MenuItem key={type.sys.id} onClick={handleClose}>
               <Link
                 href={
-                  `/support-types/${type.fields.slug}` ??
+                  `/support/${type.fields.slug}` ??
                   type.fields.externalLinkOptional
                 }
               >
