@@ -70,7 +70,8 @@ export default function ResourceCard({
 
 const Wrapper = styled.div`
   height: 20em;
-  width: 20em;
+  min-width: 15em;
+  max-width: 20em;
   color: black;
   background: rgb(60, 58, 180);
   background: linear-gradient(
@@ -83,6 +84,7 @@ const Wrapper = styled.div`
   text-align: center;
   position: relative;
   overflow: hidden;
+  margin: 1em;
 `;
 
 const Media = styled.div`

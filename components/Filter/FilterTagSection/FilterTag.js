@@ -22,7 +22,7 @@ export default function FilterTag({ tag }) {
   );
 }
 
-const Tag = styled.div`
+export const Tag = styled.div`
   display: flex;
   align-items: center;
   color: white;

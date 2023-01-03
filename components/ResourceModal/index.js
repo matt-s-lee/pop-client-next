@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import Drawer from "@mui/material/Drawer";
 
-export default function ResourceModal({ open, handleClick, tags }) {
-  // let anchor;
-  // if (mobile) {
-  //   anchor = "bottom"
-  // } else {
-  //   anchor = "right"
-  // }
+import { Tag } from "../Filter/FilterTagSection/FilterTag";
 
+export default function ResourceModal({ open, handleClick, tags }) {
   return (
     <Drawer
       open={open}
@@ -16,19 +11,29 @@ export default function ResourceModal({ open, handleClick, tags }) {
       onClick={handleClick}
       onClose={handleClick}
       BackdropProps={{ invisible: true }}
+      PaperProps={{
+        sx: {
+          width: 400,
+          elevation: 8,
+          padding: 1,
+        },
+      }}
     >
+      <h2>About this resource</h2>
       <Section>
-        <h3>Resource information</h3>
+        <h3>How it helps</h3>
         <p>Text</p>
       </Section>
       <Section>
-        <h3>Tags</h3>
-        {tags?.map((tag) => {
-          return <span key={tag}>{tag}</span>;
-        })}
+        <h3>Topics covered</h3>
+        <Tags>
+          {tags?.map((tag) => {
+            return <StyledTag key={tag}>{tag}</StyledTag>;
+          })}
+        </Tags>
       </Section>
       <Section>
-        <h3>Resource information</h3>
+        <h3>How I can use it</h3>
         <p>Text</p>
       </Section>
     </Drawer>
@@ -38,6 +43,20 @@ export default function ResourceModal({ open, handleClick, tags }) {
 const Section = styled.div`
   padding: 1em;
 `;
+
+const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const StyledTag = styled(Tag)``;
+
+  // let anchor;
+  // if (mobile) {
+  //   anchor = "bottom"
+  // } else {
+  //   anchor = "right"
+  // }
 
 // import { useState } from "react";
 
