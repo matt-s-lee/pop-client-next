@@ -5,7 +5,9 @@ export default function CategoryPage({ category }) {
     <>
       <div>
         <>{category.fields.sectionTitle}</>
-        <div>{category.fields.description.content[0].content[0].value}</div>
+        <div>
+          {category?.fields?.description?.content[0]?.content[0]?.value}
+        </div>
         <div></div>
       </div>
     </>
