@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import TrendingTag from "./TrendingTag";
+import { editTags } from "../../hooks/useFormatTags";
 
-export default function Trending() {
-  const sampleTags = [
-    "pain education",
-    "self-directed courses",
-    "pain and neuroscience",
-  ];
+export default function Trending({ trendingTopics }) {
+  const topicsToDisplay = trendingTopics.fields.trendingTopicName;
+  const topicsHash = editTags(topicsToDisplay);
   return (
     <Wrapper>
       <Description>
         <span>Trending</span>
       </Description>
       <TagsWrapper>
-        {sampleTags.map((tag) => {
-          return <TrendingTag key={tag} tag={tag} />;
+        {topicsToDisplay?.map((topic, index) => {
+          return (
+            <TrendingTag key={topic} topic={topic} hash={topicsHash[index]} />
+          );
         })}
       </TagsWrapper>
     </Wrapper>

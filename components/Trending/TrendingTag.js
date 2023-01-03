@@ -1,7 +1,25 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
 import styled from "styled-components";
 
-export default function TrendingTag({ tag }) {
-  return <Tag>{tag}</Tag>;
+export default function TrendingTag({ topic, hash }) {
+  const router = useRouter();
+  useEffect(() => {
+    const onHashChangeStart = (url) => {};
+    router.events.on("hashChangeStart", onHashChangeStart);
+    return () => {
+      router.events.off("hashChangeStart", onHashChangeStart);
+    };
+  }, [router.events]);
+
+  return (
+    // links to category based on id attribute
+    <Link href={`/#${hash}`}>
+      <Tag>{topic}</Tag>
+    </Link>
+  );
 }
 
 const Tag = styled.div`

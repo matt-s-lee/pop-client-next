@@ -17,22 +17,14 @@ import Trending from "../components/Trending/index";
 export default function Home({
   categories,
   resources,
-  // supportTypes,
   hero,
   searchTerms,
-  // topics,
-  // supportTypesNav,
   allTags,
+  trendingTopics,
 }) {
   // Set categories to context on home page load
-  // const { setTopics, setSupportTypes, setCategories, setSupportTypesNav } =
-  //   useContext(CategoriesContext);
   const { setAllTags } = useContext(FilterContext);
   useEffect(() => {
-    // setTopics(topics);
-    // setSupportTypes(supportTypes);
-    // setCategories(categories);
-    // setSupportTypesNav(supportTypesNav);
     setAllTags(allTags);
   }, []);
 
@@ -45,7 +37,7 @@ export default function Home({
       </Head>
       <main className={styles.main}>
         <HeroCarousel hero={hero} />
-        <Trending />
+        <Trending trendingTopics={trendingTopics} />
         <Filter resources={resources} searchTerms={searchTerms} />
         <Category resources={resources} categories={categories} />
         <Calendars />

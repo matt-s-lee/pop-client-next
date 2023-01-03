@@ -17,8 +17,12 @@ export default function Category({ categories, resources }) {
         <h2>Explore all resources</h2>
       </Title>
       {categories.items.map((category, index) => {
+        // console.log(category?.metadata?.tags[0]?.sys?.id);
         return (
-          <ClientOnly key={category.sys.id}>
+          <ClientOnly
+            key={category.sys.id}
+            id={category?.metadata?.tags[0]?.sys?.id}
+          >
             <Wrapper>
               <AccordionStyled defaultExpanded={index === 0 ? true : false}>
                 <AccordianSummaryStyled
