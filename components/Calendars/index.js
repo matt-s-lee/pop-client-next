@@ -1,13 +1,25 @@
+import { parseFieldSpecs } from "@fullcalendar/core/internal";
 import styled from "styled-components";
 import BigCalendar from "./BigCalendar";
 import SmallCalendar from "./SmallCalendar";
 
-export default function Calendars() {
+export default function Calendars({ events }) {
+  const eventsArray = events.items.map((event) => {
+    return {
+      title: event.fields.eventTitle,
+      start: event.fields.dateAndTime,
+      end: event.fields.endDateAndTime,
+      description: event.fields.eventDescription?.content[0]?.content[0]?.value,
+      url: event.fields.registrationLink,
+      backgroundColor: event.fields.color,
+    };
+  });
+
   return (
     <Wrapper>
       <SectionTitle>Event Calendar</SectionTitle>
-      <BigCalendar />
-      <SmallCalendar />
+      <BigCalendar events={eventsArray} />
+      <SmallCalendar events={eventsArray} />
     </Wrapper>
   );
 }

@@ -1,20 +1,20 @@
 import styled from "styled-components";
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import list from "@fullcalendar/list";
 import Tooltip from "@mui/material/Tooltip";
-// import { showEventInfo, hideEventInfo } from "./eventTooltip";
 
-export default function BigCalendar() {
+export default function BigCalendar({ events }) {
   function renderInnerContent(innerProps) {
     return (
       <div className="fc-event-main-frame">
-        {/* {innerProps.timeText && (
+        {innerProps.timeText && (
           <div className="fc-event-time">{innerProps.timeText}</div>
-        )} */}
+        )}
         <div className="fc-event-title-container">
           <div className="fc-event-title fc-sticky">
-            {innerProps.event.title}
+            <a href={innerProps.event.url}>{innerProps.event.title}</a>
           </div>
         </div>
       </div>
@@ -39,20 +39,7 @@ export default function BigCalendar() {
         initialView="listMonth"
         eventDisplay="block"
         weekends={false}
-        events={[
-          {
-            title: "Workshop: gentle movement for pain by Dr X",
-            description: "Click event to register",
-            start: "2022-12-15T10:30:00",
-            end: "2022-12-15T12:30:00",
-          },
-          {
-            title: "Workshop: intro to the Power over Pain portal",
-            description: "Click event to register",
-            start: "2022-12-20T10:30:00",
-            end: "2022-12-20T12:30:00",
-          },
-        ]}
+        events={events}
       />
     </Wrapper>
   );
@@ -64,7 +51,7 @@ const Wrapper = styled.div`
     white-space: normal;
   }
 
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 800px) {
     display: block;
     margin: 0 10vw 10vw 10vw;
   }
@@ -73,4 +60,3 @@ const Wrapper = styled.div`
 // import frLocale from "@fullcalendar/core/locales/fr";
 // props:
 // locale={frLocale}
-//

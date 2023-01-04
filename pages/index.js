@@ -21,6 +21,7 @@ export default function Home({
   searchTerms,
   allTags,
   trendingTopics,
+  events,
 }) {
   // Set categories to context on home page load
   const { setAllTags } = useContext(FilterContext);
@@ -40,7 +41,7 @@ export default function Home({
         <Trending trendingTopics={trendingTopics} />
         <Filter resources={resources} searchTerms={searchTerms} />
         <Category resources={resources} categories={categories} />
-        <Calendars />
+        <Calendars events={events} />
       </main>
     </Wrapper>
   );
