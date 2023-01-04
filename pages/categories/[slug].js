@@ -2,7 +2,6 @@ import styled from "styled-components";
 import ResourceCard from "../../components/ResourceCard";
 
 export default function CategoryPage({ category, resources }) {
-  console.log("resources", resources);
   const tag = category.metadata.tags[0].sys.id;
   const assetDetails = resources.includes.Asset;
   let matchedResources = [];
