@@ -34,7 +34,7 @@ export default function DesktopNavBar() {
               </Button>
             </Li>
             <Li>
-              <NavDropdown text={"Explore by Province"} />
+              <NavDropdown text={"Explore by Province & Territory"} />
             </Li>
             <Li>
               <NavDropdown text={"Access Resources"} />

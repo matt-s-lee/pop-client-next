@@ -8,7 +8,7 @@ export default function Trending({ trendingTopics }) {
   return (
     <Wrapper>
       <Description>
-        <span>Trending</span>
+        <span>Quick Links</span>
       </Description>
       <TagsWrapper>
         {topicsToDisplay?.map((topic, index) => {

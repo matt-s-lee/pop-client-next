@@ -55,7 +55,7 @@ export default function NavDrawer({ openMain, handleClick }) {
         <ListItem>
           <ListItemButton>
             <ListItemText onClick={handleOpenProvinces}>
-              Explore by Province
+              Explore by Province & Territory
             </ListItemText>
           </ListItemButton>
           <ProvincesDrawer

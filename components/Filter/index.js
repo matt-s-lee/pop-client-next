@@ -26,7 +26,10 @@ export default function Filter({ searchTerms, resources }) {
   return (
     <Wrapper>
       <Description>
-        <h3>What resources are you interested in?</h3>
+        <h2>What support are you interested in today?</h2>
+        <Tagline>
+          Find resources and programs to help you manage your chronic pain
+        </Tagline>
       </Description>
       <FilterSection>
         <FilterDropdown items={topicArray} title="Topic" />
@@ -45,6 +48,19 @@ const Wrapper = styled.div`
   background: lightgrey;
 `;
 
+const Description = styled.div`
+  color: black;
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+`;
+
+const Tagline = styled.h3`
+  margin: 1em 0;
+  font-weight: 400;
+`;
+
 const FilterSection = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -56,11 +72,6 @@ const FilterSection = styled.div`
   }
 `;
 
-const Description = styled.div`
-  color: black;
-  display: flex;
-  justify-content: center;
-`;
 
 
       // {/* <TagsWrapper>
