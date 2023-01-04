@@ -16,7 +16,7 @@ export default function Calendars({ events }) {
   });
 
   return (
-    <Wrapper>
+    <Wrapper id="eventCalendar">
       <SectionTitle>Event Calendar</SectionTitle>
       <BigCalendar events={eventsArray} />
       <SmallCalendar events={eventsArray} />

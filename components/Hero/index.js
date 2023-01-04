@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-// import styled from "styled-components";
+import styled from "styled-components";
 import HeroImage from "./HeroImage";
 
 function HeroCarousel({ hero }) {
@@ -21,7 +21,7 @@ function HeroCarousel({ hero }) {
   };
 
   return (
-    <div
+    <Wrapper
       style={{
         // paddingBottom: "30px",
         position: "relative",
@@ -32,7 +32,7 @@ function HeroCarousel({ hero }) {
         arrows
         draggable
         swipeable
-        // showDots={true}
+        showDots={true}
         infinite={true}
         // autoPlay={true}
         // autoPlaySpeed={10000}
@@ -59,12 +59,17 @@ function HeroCarousel({ hero }) {
           );
         })}
       </Carousel>
-    </div>
+    </Wrapper>
   );
 }
 
 export default HeroCarousel;
 
+const Wrapper = styled.div`
+  .custom-dot-list-style {
+    padding-bottom: 1em;
+  }
+`;
 // const Banner = styled.div`
 //   height: 600px;
 //   width: 100%;
