@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import { CategoriesContext } from "../../context/CategoriesContext";
 
+import styled from "styled-components";
+
 import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
 
@@ -36,8 +38,23 @@ export default function Navbar() {
 
   return (
     <>
+      <Notif>
+        In need of immediate crisis support? Call 911 if you or someone you know
+        is in immediate danger or needs urgent medical care.
+      </Notif>
       <MobileNavbar />
       <DesktopNavBar />
     </>
   );
 }
+
+const Notif = styled.div`
+  background-color: #0a69b5;
+  font-size: 14px;
+  color: #fff;
+  height: 4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1em 2em;
+`;

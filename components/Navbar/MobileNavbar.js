@@ -31,7 +31,7 @@ export default function MobileNavbar() {
 }
 
 const Wrapper = styled.div`
-  @media only screen and (min-width: 450px) {
+  @media only screen and (min-width: 600px) {
     display: none;
   }
 `;

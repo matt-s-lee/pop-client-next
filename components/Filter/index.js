@@ -25,18 +25,20 @@ export default function Filter({ searchTerms, resources }) {
 
   return (
     <Wrapper>
-      <Description>
-        <h2>What support are you interested in today?</h2>
-        <Tagline>
-          Find resources and programs to help you manage your chronic pain
-        </Tagline>
-      </Description>
-      <FilterSection>
-        <FilterDropdown items={topicArray} title="Topic" />
-        <FilterDropdown items={formatArray} title="Format" />
-        <FilterDropdown items={supportTypeArray} title="Support Type" />
-      </FilterSection>
-      <FilterTagSection />
+      <SubWrapper>
+        <Description>
+          <h2>What support are you interested in today?</h2>
+          <Tagline>
+            Find resources and programs to help you manage your chronic pain
+          </Tagline>
+        </Description>
+        <FilterSection>
+          <FilterDropdown items={topicArray} title="Topic" />
+          <FilterDropdown items={formatArray} title="Format" />
+          <FilterDropdown items={supportTypeArray} title="Support Type" />
+        </FilterSection>
+        <FilterTagSection />
+      </SubWrapper>
       <FilterResults resources={resources} />
       <Continue />
     </Wrapper>
@@ -45,7 +47,13 @@ export default function Filter({ searchTerms, resources }) {
 
 const Wrapper = styled.div`
   padding: 1.5em;
-  background: lightgrey;
+`;
+
+const SubWrapper = styled.div`
+  border-radius: 1em;
+  box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
+  padding: 1em;
+  background: white;
 `;
 
 const Description = styled.div`

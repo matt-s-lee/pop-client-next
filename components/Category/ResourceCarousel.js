@@ -29,11 +29,11 @@ export default function ResourceCarousel({ resources, tag }) {
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
+      breakpoint: { max: 1024, min: 750 },
+      items: 2,
     },
     mobile: {
-      breakpoint: { max: 450, min: 0 },
+      breakpoint: { max: 750, min: 0 },
       items: 1,
     },
   };

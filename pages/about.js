@@ -10,7 +10,7 @@ export default function About({ data }) {
       <h1>About</h1>
       <Section>
         <h2>Who we are</h2>
-        <p>{allInfo.fields.aboutUsText}</p>
+        <Text>{allInfo.fields.aboutUsText}</Text>
       </Section>
       <Section>
         <h2>Our partners</h2>
@@ -45,6 +45,10 @@ const Wrapper = styled.div`
 
 const Section = styled.div`
   margin: 1em 0;
+`;
+
+const Text = styled.p`
+  white-space: pre-wrap;
 `;
 
 const LogosWrapper = styled.div``;

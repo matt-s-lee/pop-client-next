@@ -47,13 +47,16 @@ export default function SmallCalendar({ events }) {
 }
 
 const Wrapper = styled.div`
-  margin: 0 10vw 10vw 10vw;
+  margin: 0 3vw 10vw 3vw;
   .fc-toolbar {
     flex-direction: column;
   }
   /* .fc-toolbar-title {
     margin: 1em;
   } */
+  .fc-sticky {
+    z-index: 0;
+  }
   @media only screen and (min-width: 800px) {
     display: none;
   }

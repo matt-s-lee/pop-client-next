@@ -31,8 +31,7 @@ export default function FilterResults({ resources }) {
     <Wrapper>
       {filteredResources && (
         <ShowingText>
-          Showing <Numbers>{filteredResources.length}</Numbers> of{" "}
-          <Numbers>{resources.total}</Numbers> resources
+          Showing <Numbers>{filteredResources.length}</Numbers> resources
         </ShowingText>
       )}
       {filteredResources && <ResourceCarousel resources={resources} />}
@@ -43,6 +42,7 @@ export default function FilterResults({ resources }) {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 1.5em;
 `;
 
 const ShowingText = styled.div`

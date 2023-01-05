@@ -16,10 +16,6 @@ export default function DesktopNavBar() {
 
   return (
     <Wrapper>
-      <Notif>
-        In need of immediate crisis support? Call 911 if you or someone you know
-        is in immediate danger or needs urgent medical care.
-      </Notif>
       <Nav>
         <ClientOnly>
           <Ul>
@@ -65,17 +61,6 @@ const Wrapper = styled.div`
   -moz-box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
 `;
 
-const Notif = styled.div`
-  background-color: #0a69b5;
-  font-size: 14px;
-  color: #fff;
-  height: 4;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 1em 2em;
-`;
-
 const Nav = styled.nav`
   background: white;
   display: flex;
@@ -85,7 +70,7 @@ const Nav = styled.nav`
   z-index: 10;
   display: none;
 
-  @media only screen and (min-width: 450px) {
+  @media only screen and (min-width: 600px) {
     display: contents;
   }
 `;

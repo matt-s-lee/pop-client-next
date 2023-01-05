@@ -24,7 +24,7 @@ export default function TrendingTag({ topic, hash }) {
 
 const Tag = styled.div`
   color: white;
-  background: #6b5df6;
+  background: #143b89;
   border-radius: 1em;
   margin: 0.4em;
   padding: 0.4em 0.7em;

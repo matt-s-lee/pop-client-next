@@ -12,7 +12,7 @@ import ClientOnly from "../ClientOnly";
 export default function Category({ categories, resources }) {
   // console.log("Category comp, REsources", resources);
   return (
-    <>
+    <Wrapper>
       <Title>
         <h2>Explore all resources</h2>
       </Title>
@@ -23,7 +23,7 @@ export default function Category({ categories, resources }) {
             key={category.sys.id}
             id={category?.metadata?.tags[0]?.sys?.id}
           >
-            <Wrapper>
+            <CategoryWrapper index={index}>
               <AccordionStyled defaultExpanded={index === 0 ? true : false}>
                 <AccordianSummaryStyled
                   expandIcon={<IoChevronDown />}
@@ -31,7 +31,9 @@ export default function Category({ categories, resources }) {
                   id="panel1a-header"
                 >
                   <Text>
-                    <h2>{category.fields.sectionTitle}</h2>
+                    <CategoryTitle>
+                      {category.fields.sectionTitle}
+                    </CategoryTitle>
                     <p>
                       {
                         category?.fields?.description?.content[0]?.content[0]
@@ -47,32 +49,29 @@ export default function Category({ categories, resources }) {
                   />
                 </AccordionDetailsStyled>
               </AccordionStyled>
-            </Wrapper>
+            </CategoryWrapper>
           </ClientOnly>
         );
       })}
-    </>
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  margin-bottom: 1em;
+  background: white;
 `;
 
 const Title = styled.div`
   background: white;
-  border-radius: 0.7em;
   padding: 1em;
-  margin: 3em 10em 0 10em;
+  margin-top: 3em;
   text-align: center;
 `;
 
-const Text = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  margin: 1em 1em;
-  padding-bottom: 1em;
+const CategoryWrapper = styled.div`
+  margin: 0 1em;
+  background: ${(props) => (props.index % 2 === 0 ? "lightgrey" : "white")};
+  border-radius: 1em;
 `;
 
 const AccordionStyled = styled(Accordion)`
@@ -86,6 +85,21 @@ const AccordianSummaryStyled = styled(AccordionSummary)`
   flex-direction: row-reverse;
 `;
 
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 1em 2em 1em 1em;
+  padding-bottom: 1em;
+`;
+
+const CategoryTitle = styled.h3`
+  /* text-align: center; */
+`;
+
+// Resource carousel
 const AccordionDetailsStyled = styled(AccordionDetails)`
   margin-left: 1em;
 
@@ -93,3 +107,5 @@ const AccordionDetailsStyled = styled(AccordionDetails)`
     margin-left: 2em;
   }
 `;
+
+

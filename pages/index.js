@@ -58,11 +58,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: rgb(143, 189, 226);
+  background: #f7f7f4;
+  /* background: rgb(143, 189, 226);
   background: rgb(182, 216, 244);
   background: linear-gradient(
     337deg,
     rgba(182, 216, 244, 1) 0%,
     rgba(75, 112, 201, 1) 97%
-  );
+  ); */
 `;
