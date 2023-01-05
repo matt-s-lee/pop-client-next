@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Custom404() {
   return (
     <Wrapper>
-      <Title>Sorry - this page doesn't exist</Title>
+      <Title>Sorry - this page doesn&apos;t exist</Title>
       <div>
         Are you looking for resources? Click{" "}
         <StyledLink href="/">here</StyledLink> to return to the homepage
