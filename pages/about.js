@@ -4,7 +4,6 @@ import Logo from "../components/Logo";
 export default function About({ data }) {
   const allInfo = data.items[0];
   const assetDetails = data.includes.Asset;
-  console.log(assetDetails);
 
   return (
     <Wrapper>
