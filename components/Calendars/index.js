@@ -1,4 +1,3 @@
-import { parseFieldSpecs } from "@fullcalendar/core/internal";
 import styled from "styled-components";
 import BigCalendar from "./BigCalendar";
 import SmallCalendar from "./SmallCalendar";
