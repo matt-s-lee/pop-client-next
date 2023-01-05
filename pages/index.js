@@ -13,6 +13,7 @@ import HeroCarousel from "../components/Hero/index";
 import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
+import HomeFooter from "../components/HomeFooter";
 
 export default function Home({
   categories,
@@ -42,6 +43,7 @@ export default function Home({
         <Filter resources={resources} searchTerms={searchTerms} />
         <Category resources={resources} categories={categories} />
         <Calendars events={events} />
+        <HomeFooter />
       </main>
     </Wrapper>
   );
