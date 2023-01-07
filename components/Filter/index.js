@@ -26,8 +26,9 @@ export default function Filter({ searchTerms, resources }) {
   return (
     <Wrapper>
       <SubWrapper>
+        <DecorativeDiv />
         <Description>
-          <h2>What support are you interested in today?</h2>
+          <Title>What support are you interested in today?</Title>
           <Tagline>
             Find resources and programs to help you manage your chronic pain
           </Tagline>
@@ -38,6 +39,7 @@ export default function Filter({ searchTerms, resources }) {
           <FilterDropdown items={supportTypeArray} title="Support Type" />
         </FilterSection>
         <FilterTagSection />
+        <SecondDecorativeDiv />
       </SubWrapper>
       <FilterResults resources={resources} />
       <Continue />
@@ -46,6 +48,7 @@ export default function Filter({ searchTerms, resources }) {
 }
 
 const Wrapper = styled.div`
+  margin-top: 2em;
   padding: 1.5em;
 `;
 
@@ -54,14 +57,43 @@ const SubWrapper = styled.div`
   box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
   padding: 1em;
   background: white;
+  background: #f2efd5;
+  position: relative;
+  overflow: hidden;
+`;
+
+const DecorativeDiv = styled.div`
+  background: #f26d9d;
+  height: 9em;
+  width: 30em;
+  border-radius: 60%;
+  position: absolute;
+  top: 10em;
+  left: -10em;
+`;
+
+const SecondDecorativeDiv = styled.div`
+  top: -4em;
+  left: 38em;
+  background: #edb8cb;
+  height: 10em;
+  width: 30em;
+  border-radius: 50%;
+  position: absolute;
 `;
 
 const Description = styled.div`
-  color: black;
   text-align: center;
+  color: #333333;
+  z-index: 2;
+  position: relative;
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
+`;
+
+const Title = styled.h2`
+  color: black;
 `;
 
 const Tagline = styled.h3`
@@ -71,10 +103,13 @@ const Tagline = styled.h3`
 
 const FilterSection = styled.div`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  align-items: center;
   margin: 1em 0;
 
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
     justify-content: center;
     margin: none;
   }

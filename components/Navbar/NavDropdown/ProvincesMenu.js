@@ -1,10 +1,13 @@
+import { useContext } from "react";
+import { CategoriesContext } from "../../../context/CategoriesContext";
+
 import styled from "styled-components";
+import { theme } from "../../../styles/font";
+
+import Link from "next/link";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useContext } from "react";
-import { CategoriesContext } from "../../../context/CategoriesContext";
-import Link from "next/link";
 
 export default function ProvincesMenu({ anchorEl, open, handleClose }) {
   const { provinces } = useContext(CategoriesContext);
@@ -26,7 +29,12 @@ export default function ProvincesMenu({ anchorEl, open, handleClose }) {
               key={province.sys.id}
               href={`/provinces/${province.fields.slug}`}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={handleClose}
+                sx={{
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
                 {province.fields.province}
               </MenuItem>
             </Link>

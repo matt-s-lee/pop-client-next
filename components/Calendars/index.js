@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BigCalendar from "./BigCalendar";
 import SmallCalendar from "./SmallCalendar";
+import { TitleWrapper } from "../Category";
 
 export default function Calendars({ events }) {
   const eventsArray = events.items.map((event) => {
@@ -16,7 +17,14 @@ export default function Calendars({ events }) {
 
   return (
     <Wrapper id="eventCalendar">
-      <SectionTitle>Event Calendar</SectionTitle>
+      <TitleWrapper>
+        <h1>Event Calendar</h1>
+      </TitleWrapper>
+      <Description>
+        Please see below for workshops on pain-related topics delivered by
+        experts in the field and Orientation sessions helping you make your way
+        around the Power Over Pain Portal
+      </Description>
       <BigCalendar events={eventsArray} />
       <SmallCalendar events={eventsArray} />
     </Wrapper>
@@ -25,11 +33,12 @@ export default function Calendars({ events }) {
 
 const Wrapper = styled.div`
   text-align: center;
-  background: lightgrey;
-  margin-top: 2em;
+  /* background: lightgrey; */
   padding: 2em;
 `;
 
-const SectionTitle = styled.h2`
-  margin-bottom: 1em;
+const Description = styled(TitleWrapper)`
+  box-shadow: none;
+  margin: -2em 3em 3em 3em;
+  background: #f2f1ef;
 `;

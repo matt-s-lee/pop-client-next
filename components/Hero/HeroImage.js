@@ -1,6 +1,17 @@
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 import styled from "styled-components";
 
 export default function HeroImage({ title, text, imageUrl }) {
+  const Text = ({ children }) => <div className="margin">{children}</div>;
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        return <Text>{children}</Text>;
+      },
+    },
+  };
+
   return (
     <Wrapper
       style={{
@@ -12,7 +23,7 @@ export default function HeroImage({ title, text, imageUrl }) {
           <Title>
             <Span>{title}</Span>
           </Title>
-          <Body>{text}</Body>
+          <Body>{documentToReactComponents(text, options)}</Body>
         </TextBox>
       </Row>
     </Wrapper>
@@ -62,6 +73,10 @@ const Body = styled.div`
   line-height: 1.2em;
   background-color: rgba(66, 60, 64, 0.7);
   padding: 1em;
+
+  .margin {
+    margin: 0.5em 0;
+  }
 `;
 
 const Span = styled.span`

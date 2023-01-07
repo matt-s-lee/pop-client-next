@@ -2,8 +2,15 @@ import styled from "styled-components";
 import Drawer from "@mui/material/Drawer";
 
 import { Tag } from "../Filter/FilterTagSection/FilterTag";
+import { overpass, libre } from "../../styles/font";
 
-export default function ResourceModal({ open, handleClick, tags }) {
+export default function ResourceModal({
+  open,
+  handleClick,
+  tags,
+  title,
+  description,
+}) {
   return (
     <Drawer
       open={open}
@@ -18,23 +25,28 @@ export default function ResourceModal({ open, handleClick, tags }) {
           padding: 1,
         },
       }}
+      className={overpass.className}
     >
-      <h2>About this resource</h2>
       <Section>
-        <h3>How it helps</h3>
-        <p>Text</p>
+        <h2>{title}</h2>
       </Section>
       <Section>
-        <h3>Topics covered</h3>
+        <SectionTitle>Topics covered</SectionTitle>
         <Tags>
           {tags?.map((tag) => {
-            return <StyledTag key={tag}>{tag}</StyledTag>;
+            return (
+              <Tag key={tag} className={libre.className}>
+                {tag}
+              </Tag>
+            );
           })}
         </Tags>
       </Section>
       <Section>
-        <h3>How I can use it</h3>
-        <p>Text</p>
+        <SectionTitle className={overpass.className}>
+          How this resource can support me
+        </SectionTitle>
+        <p className={libre.className}>{description}</p>
       </Section>
     </Drawer>
   );
@@ -49,7 +61,13 @@ const Tags = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledTag = styled(Tag)``;
+
+const SectionTitle = styled.h3`
+  margin-bottom: 0.5em;
+`
+
+// const StyledTag = styled(Tag)``;
+
 
   // let anchor;
   // if (mobile) {

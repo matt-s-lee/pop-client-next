@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CategoriesContext } from "../../../context/CategoriesContext";
 
 import styled from "styled-components";
+import { overpass, theme } from "../../../styles/font";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,7 +23,7 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
       }}
     >
       <div>
-        <Title>Explore by Topic</Title>
+        <Title className={overpass.className}>Explore by Topic</Title>
         {sortedTopics &&
           sortedTopics.map((category) => {
             return (
@@ -30,7 +31,12 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
                 key={category.sys.id}
                 href={`/categories/${category.fields.slug}`}
               >
-                <MenuItem onClick={handleClose}>
+                <MenuItem
+                  onClick={handleClose}
+                  sx={{
+                    fontFamily: theme.typography.fontFamily,
+                  }}
+                >
                   {category.fields.titleNavBar}
                 </MenuItem>
               </Link>
@@ -39,11 +45,17 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
       </div>
       <Divider />
       <SectionByType>
-        <Title>Explore By Support Type</Title>
+        <Title className={overpass.className}>Explore By Support Type</Title>
         {sortedTypes &&
           sortedTypes.map((type) => {
             return (
-              <MenuItem key={type.sys.id} onClick={handleClose}>
+              <MenuItem
+                key={type.sys.id}
+                onClick={handleClose}
+                sx={{
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
                 <Link
                   href={
                     `/support/${type.fields.slug}` ??
@@ -65,10 +77,10 @@ const MenuStyled = styled(Menu)`
 `;
 
 const SectionByType = styled.div`
-  padding-top: 1em;
+  padding: 0.8em 0 0.5em 0;
 `;
 const Title = styled.h3`
-  margin-left: 0.5em;
+  margin: 0 0 0.3em 0.5em;
 `;
 
   // const { topics, categories, supportNavBar, supportTypes } =

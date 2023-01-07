@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import ResourcesMenu from "./ResourcesMenu";
 import ProvincesMenu from "./ProvincesMenu";
+import { theme } from "../../../styles/font";
 
 export default function NavDropdown({ text }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +26,9 @@ export default function NavDropdown({ text }) {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        sx={{
+          fontFamily: theme.typography.fontFamily,
+        }}
       >
         {text}
       </ButtonStyled>

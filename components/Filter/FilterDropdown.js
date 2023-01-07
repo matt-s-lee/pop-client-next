@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { FilterContext } from "../../context/FilterContext";
 import styled from "styled-components";
+import { theme } from "../../styles/font";
 
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -8,7 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import ClientOnly from "../ClientOnly";
 
 import { IoChevronDown } from "react-icons/io5";
-
 
 export default function FilterDropdown({ items, title }) {
   const { queryTerm, setQueryTerm } = useContext(FilterContext);
@@ -40,6 +40,10 @@ export default function FilterDropdown({ items, title }) {
           disableElevation
           onClick={handleClick}
           endIcon={<IoChevronDown />}
+          sx={{
+            fontFamily: theme.typography.body1.fontFamily,
+            fontSize: "1em",
+          }}
         >
           {title}
         </ButtonStyled>
@@ -60,7 +64,14 @@ export default function FilterDropdown({ items, title }) {
         >
           {items.map((item) => {
             return (
-              <MenuItem key={item} onClick={handleSelect} disableRipple>
+              <MenuItem
+                key={item}
+                onClick={handleSelect}
+                disableRipple
+                sx={{
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
                 {item}
               </MenuItem>
             );

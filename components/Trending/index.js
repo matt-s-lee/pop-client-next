@@ -24,10 +24,15 @@ export default function Trending({ trendingTopics }) {
 const Wrapper = styled.div`
   /* margin: 1.5em; */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #0a69b5;
   padding: 0.25em 0;
+
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+  }
 `;
 
 const TagsWrapper = styled.div`
@@ -38,7 +43,11 @@ const TagsWrapper = styled.div`
 `;
 
 const Description = styled.div`
-  color: white;
   display: flex;
-  justify-content: center;
+  color: white;
+  margin-top: 1em;
+  @media only screen and (min-width: 800px) {
+    justify-content: center;
+    margin-top: 0;
+  }
 `;

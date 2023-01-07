@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import ReactComponent from "../../public/popEN.png";
 import NavDropdown from "./NavDropdown/index.js";
 import ClientOnly from "../ClientOnly";
+import { libre } from "../../styles/font";
 
 export default function DesktopNavBar() {
   const { language, toggleLanguage } = useContext(LanguageContext);
@@ -26,7 +27,9 @@ export default function DesktopNavBar() {
             </Logo>
             <Li>
               <Button>
-                <StyledLink href="/about">About Us</StyledLink>
+                <StyledLink href="/about" className={libre.className}>
+                  About Us
+                </StyledLink>
               </Button>
             </Li>
             <Li>
@@ -84,6 +87,35 @@ const StyledLogo = styled(Image)`
   width: auto;
 `;
 
+const Ul = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0.5em 1em;
+  background: white;
+`;
+
+const StyledLink = styled(Link)`
+  color: #666666;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+`;
+
+const Li = styled.li`
+  color: #666666;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 1.5em;
+`;
+
+const ClickLi = styled(Li)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+
 // const Tab = styled(Link)`
 //   width: 100%;
 //   color: var(--clr-fg);
@@ -102,30 +134,6 @@ const StyledLogo = styled(Image)`
 //   }
 // `;
 
-const Ul = styled.ul`
-  display: flex;
-  /* width: 100%; */
-  /* margin-right: 1.5em; */
-  align-items: center;
-  list-style-type: none;
-  padding: 0.5em 1em;
-  background: white;
-`;
-
-const StyledLink = styled(Link)`
-  color: #666666;
-  font-size: 15px;
-  font-weight: 700;
-  text-transform: capitalize;
-  //   font-size: 16px;
-  //   font-weight: 700;
-  //   color: #fff;
-  //   background-color: #f54e5f;
-  //   border: none;
-  //   outline: none;
-  //   border-radius: 3px;
-  //   padding: 10px 20px;
-`;
 
 // const Header = styled(Link)`
 //   font-size: 32px;
@@ -137,16 +145,3 @@ const StyledLink = styled(Link)`
 //   margin: 0 0 0 20px;
 //   color: var(--clr-primary);
 // `;
-
-const Li = styled.li`
-  color: #666666;
-  font-size: 15px;
-  font-weight: 700;
-  margin-left: 1.5em;
-`;
-
-const ClickLi = styled(Li)`
-  &:hover {
-    cursor: pointer;
-  }
-`;

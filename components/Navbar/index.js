@@ -6,6 +6,8 @@ import styled from "styled-components";
 import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
 
+import { overpass } from "../../styles/font";
+
 export default function Navbar() {
   const {
     topics,
@@ -37,14 +39,14 @@ export default function Navbar() {
   }, [categories, topics, supportTypes, supportTypesNav]);
 
   return (
-    <>
-      <Notif>
+    <div>
+      <Notif className={overpass.className}>
         In need of immediate crisis support? Call 911 if you or someone you know
         is in immediate danger or needs urgent medical care.
       </Notif>
       <MobileNavbar />
       <DesktopNavBar />
-    </>
+    </div>
   );
 }
 

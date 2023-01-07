@@ -62,6 +62,8 @@ export default function ResourceCard({
           open={open}
           handleClick={handleClick}
           tags={tagsToDisplay}
+          title={title}
+          description={description}
         />
       </ButtonWrapper>
     </Wrapper>
@@ -72,24 +74,26 @@ const Wrapper = styled.div`
   height: 20em;
   min-width: 15em;
   max-width: 20em;
-  color: black;
-  background: rgb(60, 58, 180);
-  background: linear-gradient(
+  color: white;
+  background: #4372ba;
+  /* background: linear-gradient(
     140deg,
     rgba(60, 58, 180, 1) 0%,
     rgba(29, 229, 253, 1) 50%,
     rgba(242, 242, 217, 1) 100%
-  );
+  ); */
   border-radius: 1em;
   text-align: center;
   position: relative;
   overflow: hidden;
   margin: 1em;
+  padding-bottom: 1em;
 `;
 
 const Media = styled.div`
   height: 50%;
   overflow: hidden;
+  background: white;
 `;
 
 const Text = styled.div`
@@ -118,8 +122,19 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.button`
   margin: 0.2em;
-  padding: 0.1em;
+  padding: 0.5em 1em;
+  background: lightgrey;
+  border: none;
+  border-radius: 0.3em;
+
+  &:hover {
+    cursor: pointer;
+    background: grey;
+    color: white;
+  }
 `;
+
+const LearnMore = styled(Button)``;
 // const Pic = styled(Image)`
 //   height: 100%;
 //   width: auto;

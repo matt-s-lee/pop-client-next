@@ -21,10 +21,11 @@ export default function FilterTagSection() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  height: 3em;
+  /* height: 3em; */
 `;
 
 const HelperText = styled.span`
   color: darkgrey;
   font-style: italic;
+  z-index: 2;
 `;

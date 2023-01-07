@@ -13,9 +13,9 @@ export default function Category({ categories, resources }) {
   // console.log("Category comp, REsources", resources);
   return (
     <Wrapper>
-      <Title>
-        <h2>Explore all resources</h2>
-      </Title>
+      <TitleWrapper>
+        <h1>Explore all resources</h1>
+      </TitleWrapper>
       {categories.items.map((category, index) => {
         // console.log(category?.metadata?.tags[0]?.sys?.id);
         return (
@@ -58,26 +58,29 @@ export default function Category({ categories, resources }) {
 }
 
 const Wrapper = styled.div`
-  background: white;
+  padding: 1em 0 4em 0;
 `;
 
-const Title = styled.div`
-  background: white;
-  padding: 1em;
-  margin-top: 3em;
+export const TitleWrapper = styled.div`
+  background: #f2efd5;
+  padding: 2em 1em;
+  margin: 2em 3em 3em 3em;
   text-align: center;
+  border-radius: 0.5em;
+  box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
 `;
 
 const CategoryWrapper = styled.div`
-  margin: 0 1em;
-  background: ${(props) => (props.index % 2 === 0 ? "lightgrey" : "white")};
-  border-radius: 1em;
+  margin: 0 3em;
+  background: ${(props) => (props.index % 2 === 0 ? "#e0e0e0" : "white")};
+  /* border-radius: 1em; */
 `;
 
 const AccordionStyled = styled(Accordion)`
   background-color: transparent;
   border: none;
-  box-shadow: none;
+  /* box-shadow: none; */
+  /* box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62); */
 `;
 
 const AccordianSummaryStyled = styled(AccordionSummary)`
