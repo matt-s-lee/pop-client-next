@@ -15,7 +15,7 @@ export default function CategoryPage({ category, resources }) {
 
   return (
     <Wrapper>
-      <h1>{category.fields.sectionTitle}</h1>
+      <h1>{category.fields.titleNavBar}</h1>
       <Overview>
         <h2>Overview</h2>
         <p>{category?.fields?.description?.content[0]?.content[0]?.value}</p>

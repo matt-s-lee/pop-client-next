@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
 import { CategoriesContext } from "../../context/CategoriesContext";
 
+import Link from "next/link";
+
 import styled from "styled-components";
+import { overpass } from "../../styles/font";
 
 import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
-
-import { overpass } from "../../styles/font";
 
 export default function Navbar() {
   const {
@@ -41,8 +42,10 @@ export default function Navbar() {
   return (
     <div>
       <Notif className={overpass.className}>
-        In need of immediate crisis support? Call 911 if you or someone you know
-        is in immediate danger or needs urgent medical care.
+        In need of immediate crisis support?
+        <Link href="/help-now">
+          <Button className={overpass.className}>I need help now</Button>
+        </Link>
       </Notif>
       <MobileNavbar />
       <DesktopNavBar />
@@ -59,4 +62,17 @@ const Notif = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 1em 2em;
+`;
+
+const Button = styled.div`
+  margin-left: 1em;
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.3em;
+  background: grey;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    background: darkgrey;
+  }
 `;
