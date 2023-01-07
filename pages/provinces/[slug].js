@@ -6,9 +6,6 @@ import ClientOnly from "../../components/ClientOnly";
 export default function ProvincePage({ data }) {
   const { province, resources } = data.fields;
   const options = {
-    // renderMark: {
-    //   [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
-    // },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
         const { uri } = node.data;
@@ -27,6 +24,7 @@ export default function ProvincePage({ data }) {
       },
     },
   };
+
   return (
     <ClientOnly>
       <Wrapper>
