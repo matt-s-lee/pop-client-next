@@ -1,4 +1,4 @@
-import { Libre_Franklin, Quicksand, Overpass } from "@next/font/google";
+import { Libre_Franklin, Overpass } from "@next/font/google";
 import { createTheme } from "@mui/material/styles";
 
 export const libre = Libre_Franklin({ subsets: ["latin"] });
