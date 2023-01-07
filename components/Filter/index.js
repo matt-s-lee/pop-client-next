@@ -87,9 +87,6 @@ const Description = styled.div`
   color: #333333;
   z-index: 2;
   position: relative;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
 `;
 
 const Title = styled.h2`

@@ -55,7 +55,9 @@ const Wrapper = styled.div`
   position: fixed;
   top: calc(100vh - 8em);
   left: calc(100vw - 7em);
+  z-index: 50;
 `;
+
 const ButtonStyled = styled.button`
   color: white;
   width: 6em;
