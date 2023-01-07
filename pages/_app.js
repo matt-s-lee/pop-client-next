@@ -5,18 +5,21 @@ import { FilterProvider } from "../context/FilterContext";
 import Layout from "../components/Layout";
 
 import "../styles/globals.css";
+import { libre } from "../styles/font";
 
 function App({ Component, pageProps }) {
   return (
-    <FilterProvider>
-      <CategoriesProvider>
-        <LanguageProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </LanguageProvider>
-      </CategoriesProvider>
-    </FilterProvider>
+    <main className={libre.className}>
+      <FilterProvider>
+        <CategoriesProvider>
+          <LanguageProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </LanguageProvider>
+        </CategoriesProvider>
+      </FilterProvider>
+    </main>
   );
 }
 
