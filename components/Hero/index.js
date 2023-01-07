@@ -23,7 +23,6 @@ function HeroCarousel({ hero }) {
   return (
     <Wrapper
       style={{
-        // paddingBottom: "30px",
         position: "relative",
       }}
     >
@@ -47,7 +46,7 @@ function HeroCarousel({ hero }) {
             <HeroImage
               key={image.sys.id}
               title={image.fields.titleForCarouselImage}
-              text={image.fields.textForCarouselImage}
+              text={image.fields.text}
               imageUrl={
                 assetDetails.find((asset) => {
                   return (
