@@ -8,12 +8,14 @@ import styles from "../styles/Home.module.css";
 
 import Head from "next/head";
 
+import Intro from "../components/Intro";
 import Filter from "../components/Filter";
 import HeroCarousel from "../components/Hero/index";
 import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
 import HomeFooter from "../components/HomeFooter";
+import Divider from "../components/Divider";
 
 export default function Home({
   categories,
@@ -40,8 +42,12 @@ export default function Home({
       <main className={styles.main}>
         <HeroCarousel hero={hero} />
         <Trending trendingTopics={trendingTopics} />
+        <Intro />
+        <Divider />
         <Filter resources={resources} searchTerms={searchTerms} />
+        <Divider />
         <Category resources={resources} categories={categories} />
+        <Divider />
         <Calendars events={events} />
         <HomeFooter />
       </main>
@@ -59,6 +65,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   background: #f7f7f4;
+  overflow: hidden;
   /* background: rgb(143, 189, 226);
   background: rgb(182, 216, 244);
   background: linear-gradient(
