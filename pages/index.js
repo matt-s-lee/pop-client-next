@@ -14,7 +14,6 @@ import HeroCarousel from "../components/Hero/index";
 import Category from "../components/Category";
 import Calendars from "../components/Calendars";
 import Trending from "../components/Trending/index";
-import HomeFooter from "../components/HomeFooter";
 import Divider from "../components/Divider";
 
 export default function Home({
@@ -49,7 +48,6 @@ export default function Home({
         <Category resources={resources} categories={categories} />
         <Divider />
         <Calendars events={events} />
-        <HomeFooter />
       </main>
     </Wrapper>
   );
