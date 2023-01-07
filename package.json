@@ -16,7 +16,7 @@
     "@fullcalendar/react": "^6.0.0",
     "@mui/material": "^5.11.0",
     "@mui/styled-engine-sc": "^5.11.0",
-    "@next/font": "^13.0.6",
+    "@next/font": "^13.1.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "next": "13.0.6",
