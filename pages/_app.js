@@ -1,6 +1,7 @@
 import { LanguageProvider } from "../context/LanguageContext";
 import { CategoriesProvider } from "../context/CategoriesContext";
 import { FilterProvider } from "../context/FilterContext";
+import { BookmarksProvider } from "../context/BookmarksContext";
 
 import Layout from "../components/Layout";
 
@@ -10,15 +11,17 @@ import { libre } from "../styles/font";
 function App({ Component, pageProps }) {
   return (
     <main className={libre.className}>
-      <FilterProvider>
-        <CategoriesProvider>
-          <LanguageProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </LanguageProvider>
-        </CategoriesProvider>
-      </FilterProvider>
+      <BookmarksProvider>
+        <FilterProvider>
+          <CategoriesProvider>
+            <LanguageProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </LanguageProvider>
+          </CategoriesProvider>
+        </FilterProvider>
+      </BookmarksProvider>
     </main>
   );
 }
