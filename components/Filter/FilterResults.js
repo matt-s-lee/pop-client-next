@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+
 import styled from "styled-components";
+import { overpass } from "../../styles/font";
+
 import { FilterContext } from "../../context/FilterContext";
-// import ResourceCarousel from "../Category/ResourceCarousel";
 import { editTags } from "../../hooks/useFormatTags";
+
 import ResourceCard from "../ResourceCard/index";
 
 export default function FilterResults({ resources }) {
@@ -68,9 +71,9 @@ export default function FilterResults({ resources }) {
           })}
       </ResourcesWrapper>
       {filteredResources && resultsLoaded < filteredResources.length && (
-        <button onClick={handleClick}>
+        <Button onClick={handleClick} className={overpass.className}>
           <span>Load More</span>
-        </button>
+        </Button>
       )}
     </Wrapper>
   );
@@ -79,6 +82,7 @@ export default function FilterResults({ resources }) {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 1.5em;
 `;
 
@@ -96,108 +100,13 @@ const ResourcesWrapper = styled.div`
   justify-content: center;
 `;
 
-// // -----------------------------------------------------------------
-// // Function to format query terms to be able to match with tag IDs - moved to /hooks
-// // -----------------------------------------------------------------
-// const titleCase = (str) => {
-//   // Remove special characters
-//   let splitStr = str.toLowerCase().split(/[\s-]/);
-//   // Keep first word lowercase
-//   for (let i = 1; i < splitStr.length; i++) {
-//     splitStr[i] =
-//       splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-//   }
-//   return splitStr.join("").replace(/[^a-zA-Z ]/g, "");
-// };
-// const editTags = (array) => {
-//   const editedTags = [];
-//   array.forEach((tag) => {
-//     editedTags.push(titleCase(tag));
-//   });
-//   return editedTags;
-// };
-
-//  {/* {filteredResources &&
-//         filteredResources.map((resource) => {
-//           return (
-//             <ResourceCard
-//               key={resource.sys.id}
-//               title={resource.fields.title}
-//               link={resource.fields.link}
-//               description={
-//                 resource.fields?.descriptionForSmallCard?.content[0]
-//                   ?.content[0]?.value
-//               }
-//               imageUrl={
-//                 assetDetails.find((asset) => {
-//                   return asset.sys.id === resource.fields.image.sys.id;
-//                 }).fields.file.url
-//               }
-//             />
-//           );
-//         })} */}
-
-// const ResourcesWrapper = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-// `;
-// target.every((v) => arr.includes(v));
-// setFilteredResources([
-//   // 3. resource is returned in a shallow array.
-//   resources.items.filter((resource) =>
-//     // 2. if there is a shallow array for every tag, returns true. if returns true...
-//     resource.metadata.tags.every((tag) => {
-//       // 1. if the tag includes the (edited) term, returns to a shallow array.
-//       termToTag.filter((term) => {
-//         tag.sys.id.includes(term);
-//       });
-//     })
-//   ),
-// ]);
-
-// setFilteredResources([
-//   // 3. resource is returned in a shallow array.
-//   resources.items.filter((resource) =>
-//     // 2. if there is a shallow array for every tag, returns true. if returns true...
-//     resource.metadata.tags.every((tag) => {
-//       // 1. if the tag includes the (edited) term, returns to a shallow array.
-//       termToTag.filter((term) => {
-//         tag.sys.id.includes(term);
-//       });
-//     })
-//   ),
-// ]);
-
-// resources.items.forEach((resource) => {
-//   if (resource.metadata.tags.find((object) => object.sys.id === tag)) {
-//     matchedResources.push(resource);
-//   }
-// })
-
-// console.log(
-//   resourceTags.every((fullTag) => {
-//     return termToTag.find((editedTag) => {
-//       return fullTag.includes(editedTag);
-//     });
-//   })
-// );
-// ******** SAMPLE
-// target.every((v) => arr.includes(v));
-// ******** WORKS
-// console.log(
-//   "tag present?",
-//   resourceTags.find((fullTag) => {
-//     return fullTag.includes("Movement");
-//   })
-// );
-
-// *********
-// if (
-//   resourceTags.every((fullTag) => {
-//     termToTag.find((editedTag) => {
-//       fullTag.includes(editedTag);
-//     });
-//   })
-// ) {
-//   setFilteredResources(resource);
-// }
+const Button = styled.button`
+  margin-top: 1em;
+  padding: 0.7em 1em;
+  font-size: 1.2em;
+  width: 10em;
+  background: var(--popRed);
+  color: white;
+  border: none;
+  border-radius: 0.4em;
+`;
