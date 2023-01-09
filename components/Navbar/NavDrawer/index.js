@@ -10,6 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { CgMenuMotion } from "react-icons/cg";
+import { TiStarOutline } from "react-icons/ti";
 
 export default function NavDrawer({ openMain, handleClick }) {
   const [openProvinces, setOpenProvinces] = useState(false);
