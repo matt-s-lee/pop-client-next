@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState } from "react";
 
-import Button from "@mui/material/Button";
+import styled from "styled-components";
+import { libre } from "../styles/font";
+
 import Drawer from "@mui/material/Drawer";
-import { positions } from "@mui/system";
 import { FadeIn } from "./FadeIn";
+import { RiCloseFill } from "react-icons/ri";
 
 export default function Navigator() {
   const [open, setOpen] = useState(false);
@@ -19,13 +20,18 @@ export default function Navigator() {
     <Wrapper>
       <FadeIn>
         <CloseButton visible={visible} onClick={() => setVisible(false)}>
-          x
+          <RiCloseFill />
         </CloseButton>
-        <ButtonStyled visible={visible} onClick={handleClick}>
+        <StartButton
+          className={libre.className}
+          visible={visible}
+          onClick={handleClick}
+        >
           Not sure where to start?
-        </ButtonStyled>
+        </StartButton>
       </FadeIn>
       <Drawer
+        className={libre.className}
         open={open}
         anchor="right"
         onClick={handleClick}
@@ -34,16 +40,20 @@ export default function Navigator() {
         PaperProps={{
           sx: {
             width: 240,
-            height: 350,
+            height: 300,
             elevation: 8,
-            padding: 1,
             top: 300,
             borderRadius: 2,
           },
         }}
       >
-        Have questions? E-mail us at poweroverpain@ohri.ca to get in touch with
-        a site navigator
+        <StyledDiv>
+          <Title>Have questions?</Title>
+          <Text>
+            E-mail us at <Highlight>poweroverpain@ohri.ca</Highlight> to get in
+            touch with a site navigator
+          </Text>
+        </StyledDiv>
       </Drawer>
     </Wrapper>
   );
@@ -53,100 +63,57 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: calc(100vh - 8em);
-  left: calc(100vw - 7em);
-  z-index: 50;
+  top: calc(100vh - 11.5em);
+  left: calc(100vw - 8em);
+  z-index: 1000;
 `;
 
-const ButtonStyled = styled.button`
-  color: white;
-  width: 6em;
-  background: black;
-  backdrop-filter: blur(10px);
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
-  border: none;
-  padding: 1em 0;
-`;
 const CloseButton = styled.button`
-  width: 1em;
-  background: black;
-  color: white;
-  /* position: relative;
-  left: 0.2em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+  background-color: rgba(214, 214, 214, 0.8);
+  color: grey;
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
   margin-bottom: -0.2em;
-  border: none;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.2em;
 `;
 
-// const [clientWindowHeight, setClientWindowHeight] = useState("");
-// console.log(clientWindowHeight);
+const StartButton = styled.button`
+  color: white;
+  width: 6em;
+  background: #345689;
+  backdrop-filter: blur(10px);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  border: 1px solid black;
+  padding: 1em 0;
+  border-radius: 0.2em;
+  box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
+`;
 
-// const handleScroll = () => {
-//   setClientWindowHeight(window.scrollY);
-// };
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  background: white;
+  height: 80%;
+`;
 
-// useEffect(() => {
-//   window.addEventListener("scroll", handleScroll);
-//   return () => window.removeEventListener("scroll", handleScroll);
-// });
+const Title = styled.h3`
+  text-align: center;
+`;
 
-// const Wrapper = styled.div`
-//   @media (prefers-reduced-motion: no-preference) {
-//     animation-name: ${fadeIn};
-//     animation-fill-mode: backwards;
-//   }
-// `;
+const Text = styled.p`
+  margin-top: 1em;
+`;
 
-// const fadeIn = keyframes`
-//   from {
-//     opacity: 0;
-//   }
-//   to {
-//     opacity: 1;
-//   }
-
-// <SwipeableDrawer
-//   anchor="bottom"
-//   open={open}
-//   onClose={toggleDrawer(false)}
-//   onOpen={toggleDrawer(true)}
-//   swipeAreaWidth={drawerBleeding}
-//   disableSwipeToOpen={false}
-//   ModalProps={{
-//     keepMounted: true,
-//   }}
-// >
-//   <Button onClick={toggleDrawer(true)}>Open</Button>
-//   <Box
-//     sx={{
-//       position: "absolute",
-//       top: -drawerBleeding,
-//       borderTopLeftRadius: 8,
-//       borderTopRightRadius: 8,
-//       visibility: "visible",
-//       right: 0,
-//       left: 0,
-//     }}
-//   >
-//     <Puller />
-//     <span>Test</span>
-//   </Box>
-//   <Box
-//     sx={{
-//       px: 2,
-//       pb: 2,
-//       height: "100%",
-//       overflow: "auto",
-//     }}
-//   >
-//     <Skeleton variant="rectangular" height="100%" />
-//   </Box>
-// </SwipeableDrawer>
-
-// const Puller = styled.div`
-//   width: 6em;
-//   height: 1em;
-//   position: absolute;
-//   top: 1em;
-//   left: 2em;
-// `;
+const Highlight = styled.p`
+  color: var(--popBlue);
+  margin: 0.5em 0;
+  font-weight: 600;
+`;

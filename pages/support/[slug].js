@@ -105,4 +105,5 @@ const Wrapper = styled.div`
 const ResourceWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;

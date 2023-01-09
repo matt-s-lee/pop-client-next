@@ -3,6 +3,7 @@ import Drawer from "@mui/material/Drawer";
 
 import { Tag } from "../Filter/FilterTagSection/FilterTag";
 import { overpass, libre } from "../../styles/font";
+import { RiCloseFill } from "react-icons/ri";
 
 export default function ResourceModal({
   open,
@@ -27,6 +28,9 @@ export default function ResourceModal({
       }}
       className={overpass.className}
     >
+      <Section>
+        <CloseIcon />
+      </Section>
       <Section>
         <h2>{title}</h2>
       </Section>
@@ -66,6 +70,11 @@ const SectionTitle = styled.h3`
   margin-bottom: 0.5em;
 `
 
+const CloseIcon = styled(RiCloseFill)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 // const StyledTag = styled(Tag)``;
 
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { ImCheckmark } from "react-icons/im";
 
 export default function Footer() {
   return (
@@ -8,11 +9,20 @@ export default function Footer() {
         <DecorativeDiv />
         <Text>
           <Title>Your pain is real and you belong here. </Title>
-          <ul>
-            <li>Accessible 24/7</li>
-            <li>Private and confidential</li>
-            <li>Free to use</li>
-          </ul>
+          <List>
+            <li>
+              <Check />
+              Accessible 24/7
+            </li>
+            <li>
+              <Check />
+              Private and confidential
+            </li>
+            <li>
+              <Check />
+              Free to use
+            </li>
+          </List>
         </Text>
       </Message>
       <Banner>
@@ -63,11 +73,21 @@ const Banner = styled.div`
   display: flex;
   align-items: center;
   height: 4em;
-  background: black;
+  background: var(--popBlue);
   color: white;
   padding: 0 1em;
 `;
 
 const CrisisText = styled.span`
   flex-grow: 4;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Check = styled(ImCheckmark)`
+  margin-right: 1em;
 `;

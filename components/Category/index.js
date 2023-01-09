@@ -73,14 +73,10 @@ export const TitleWrapper = styled.div`
 const CategoryWrapper = styled.div`
   margin: 0 3em;
   background: ${(props) => (props.index % 2 === 0 ? "#e0e0e0" : "white")};
-  /* border-radius: 1em; */
 `;
 
 const AccordionStyled = styled(Accordion)`
   background-color: transparent;
-  border: none;
-  /* box-shadow: none; */
-  /* box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62); */
 `;
 
 const AccordianSummaryStyled = styled(AccordionSummary)`
@@ -107,7 +103,7 @@ const AccordionDetailsStyled = styled(AccordionDetails)`
   margin-left: 1em;
 
   @media only screen and (min-width: 450px) {
-    margin-left: 2em;
+    /* margin-left: 2em; */
   }
 `;
 

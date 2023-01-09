@@ -26,7 +26,6 @@ export default function Filter({ searchTerms, resources }) {
   return (
     <Wrapper>
       <SubWrapper>
-        <DecorativeDiv />
         <Description>
           <Title>What support are you interested in today?</Title>
           <Tagline>
@@ -39,7 +38,9 @@ export default function Filter({ searchTerms, resources }) {
           <FilterDropdown items={supportTypeArray} title="Support Type" />
         </FilterSection>
         <FilterTagSection />
+        <DecorativeDiv />
         <SecondDecorativeDiv />
+        <ThirdDecorativeDiv />
       </SubWrapper>
       <FilterResults resources={resources} />
       <Continue />
@@ -63,23 +64,36 @@ const SubWrapper = styled.div`
 `;
 
 const DecorativeDiv = styled.div`
+  position: absolute;
+  top: 10em;
+  left: -10em;
   background: #f26d9d;
   height: 9em;
   width: 30em;
   border-radius: 60%;
-  position: absolute;
-  top: 10em;
-  left: -10em;
+  box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
 `;
 
 const SecondDecorativeDiv = styled.div`
+  position: absolute;
   top: -4em;
-  left: 38em;
-  background: #edb8cb;
+  left: 45em;
+  background: #fcc4d8;
   height: 10em;
   width: 30em;
   border-radius: 50%;
+  box-shadow: 0px 0px 1px 0px rgba(87, 87, 87, 0.62);
+`;
+
+const ThirdDecorativeDiv = styled.div`
   position: absolute;
+  top: 5em;
+  left: 55em;
+  background: #f64c5e;
+  height: 30em;
+  width: 30em;
+  border-radius: 50%;
+  box-shadow: 1px 3px 12px 0px rgba(87, 87, 87, 0.62);
 `;
 
 const Description = styled.div`
