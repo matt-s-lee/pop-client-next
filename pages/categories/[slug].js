@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import ResourceCard from "../../components/ResourceCard";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 export default function CategoryPage({ category, resources }) {
+  // Find all the resources in this category
   const tag = category.metadata.tags[0].sys.id;
   const assetDetails = resources.includes.Asset;
   let matchedResources = [];
@@ -13,12 +16,24 @@ export default function CategoryPage({ category, resources }) {
     });
   }
 
+  // Renders rich text from Contentful
+  const Text = ({ children }) => <p className="margin">{children}</p>;
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        return <Text>{children}</Text>;
+      },
+    },
+  };
+
   return (
     <Wrapper>
       <h1>{category.fields.titleNavBar}</h1>
       <Overview>
         <h2>Overview</h2>
-        <p>{category?.fields?.description?.content[0]?.content[0]?.value}</p>
+        <div>
+          {documentToReactComponents(category.fields.overview, options)}
+        </div>
       </Overview>
       <div>
         <h2>Resources</h2>
@@ -87,7 +102,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // Get category name from Contentful API
+  // Get category information from Contentful API
   const res = await fetch(
     `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&fields.slug[in]=${context.params.slug}`
   );
@@ -112,26 +127,13 @@ const Wrapper = styled.div`
 const ResourcesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Overview = styled.div`
   margin: 1em 0;
+
+  .margin {
+    margin-bottom: 1em;
+  }
 `;
-
-// console.log("category page props", categories);
-
-// return category.items.map((category) => {
-//   return (
-//     <div key={category.fields.sectionTitle}>
-//       <>{category.fields.sectionTitle}</>
-//       <div>{category.fields.description.content[0].content[0].value}</div>
-//       <div></div>
-//     </div>
-//   );
-// });
-
-// const [categoryData, setCategoryData] = useState();
-// setCategoryData(categories.items);
-// const router = useRouter();
-// const slug = router.query.slug;
-// const locale = router.locale;
