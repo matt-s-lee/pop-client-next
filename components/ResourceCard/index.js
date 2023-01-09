@@ -1,8 +1,13 @@
 import { useContext, useState } from "react";
+import { FilterContext } from "../../context/FilterContext";
+import { BookmarksContext } from "../../context/BookmarksContext";
+
 import styled from "styled-components";
+import { overpass } from "../../styles/font";
+
 import Image from "next/image";
 import ResourceModal from "../ResourceModal";
-import { FilterContext } from "../../context/FilterContext";
+import { TiStarOutline } from "react-icons/ti";
 
 export default function ResourceCard({
   title,
@@ -10,12 +15,34 @@ export default function ResourceCard({
   description,
   imageUrl,
   tags,
+  pathname,
 }) {
   const { allTags } = useContext(FilterContext);
+  const { bookmarks, setBookmarks } = useContext(BookmarksContext);
 
+  // To open resource modal
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  // To set bookmarks
+  const [bookmarked, setBookmarked] = useState(false);
+  const handleFavorite = () => {
+    setBookmarked(!bookmarked);
+    // TODO add French pathname
+    if (bookmarked === false && pathname !== "/bookmarks") {
+      setBookmarks([
+        { title, link, description, imageUrl, tags },
+        ...bookmarks,
+      ]);
+    } else {
+      setBookmarks((bookmarks) =>
+        bookmarks.filter((bookmark) => {
+          return bookmark.title !== title;
+        })
+      );
+    }
   };
 
   // Convert tag IDs to names to display
@@ -56,32 +83,38 @@ export default function ResourceCard({
         <Description>{description}</Description>
       </Text>
       <ButtonWrapper>
-        <Button onClick={() => window.open(link)}>Go to resource</Button>
-        <Button onClick={handleClick}>Learn more</Button>
-        <ResourceModal
-          open={open}
-          handleClick={handleClick}
-          tags={tagsToDisplay}
-          title={title}
-          description={description}
-        />
+        <Row>
+          <Star $bookmarked={bookmarked} onClick={handleFavorite} />
+        </Row>
+        <div>
+          <Button
+            className={overpass.className}
+            onClick={() => window.open(link)}
+          >
+            Go to resource
+          </Button>
+          <Button className={overpass.className} onClick={handleClick}>
+            Learn more
+          </Button>
+          <ResourceModal
+            open={open}
+            handleClick={handleClick}
+            tags={tagsToDisplay}
+            title={title}
+            description={description}
+          />
+        </div>
       </ButtonWrapper>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  height: 20em;
+  height: 26em;
   min-width: 15em;
   max-width: 20em;
   color: white;
   background: #4372ba;
-  /* background: linear-gradient(
-    140deg,
-    rgba(60, 58, 180, 1) 0%,
-    rgba(29, 229, 253, 1) 50%,
-    rgba(242, 242, 217, 1) 100%
-  ); */
   border-radius: 1em;
   text-align: center;
   position: relative;
@@ -91,15 +124,19 @@ const Wrapper = styled.div`
 `;
 
 const Media = styled.div`
-  height: 50%;
+  height: 45%;
   overflow: hidden;
   background: white;
 `;
 
 const Text = styled.div`
   padding: 1em 1em 1em 1.3em;
-  height: 40%;
+  height: 35%;
   overflow: hidden;
+`;
+
+const ButtonWrapper = styled.div`
+  height: 20%;
 `;
 
 const Title = styled.h3`
@@ -116,16 +153,28 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-const ButtonWrapper = styled.div`
-  height: 2em;
+const Row = styled.div`
+  display: flex;
+  padding: 0 0 0.2em 0.8em;
+`;
+
+const Star = styled(TiStarOutline)`
+  font-size: 2em;
+  fill: ${(props) => (props.$bookmarked === true ? "yellow" : "lightblue")};
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Button = styled.button`
   margin: 0.2em;
-  padding: 0.5em 1em;
-  background: lightgrey;
+  padding: 0.5em 0.5em;
   border: none;
   border-radius: 0.3em;
+  width: 45%;
+  font-size: 1em;
 
   &:hover {
     cursor: pointer;
@@ -135,7 +184,3 @@ const Button = styled.button`
 `;
 
 const LearnMore = styled(Button)``;
-// const Pic = styled(Image)`
-//   height: 100%;
-//   width: auto;
-// `;
