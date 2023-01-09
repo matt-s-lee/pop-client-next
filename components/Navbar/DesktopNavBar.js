@@ -1,19 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { LanguageContext } from "../../context/LanguageContext";
+import { BookmarksContext } from "../../context/BookmarksContext";
 
-import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@mui/material";
+import styled from "styled-components";
+import { libre } from "../../styles/font";
 
+import { Button } from "@mui/material";
+import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
 import ReactComponent from "../../public/popEN.png";
 import NavDropdown from "./NavDropdown/index.js";
 import ClientOnly from "../ClientOnly";
-import { libre } from "../../styles/font";
 
 export default function DesktopNavBar() {
   const { language, toggleLanguage } = useContext(LanguageContext);
+  const { bookmarks } = useContext(BookmarksContext);
 
   return (
     <Wrapper>
@@ -51,6 +54,12 @@ export default function DesktopNavBar() {
             >
               FR
             </ClickLi>
+            <Li>
+              <Link href="/bookmarks">
+                <StarOutline bookmarks={bookmarks} />
+                <StarFull bookmarks={bookmarks} />
+              </Link>
+            </Li>
           </Ul>
         </ClientOnly>
       </Nav>
@@ -115,33 +124,10 @@ const ClickLi = styled(Li)`
   }
 `;
 
+const StarOutline = styled(TiStarOutline)`
+  display: ${(props) => (props.bookmarks.length > 0 ? "none" : "block")};
+`;
 
-// const Tab = styled(Link)`
-//   width: 100%;
-//   color: var(--clr-fg);
-//   text-align: center;
-//   padding: 14px 16px;
-//   text-decoration: none;
-//   font-size: 24px;
-//   /* Change the color of links on hover */
-//   &:hover {
-//     color: var(--clr-fg);
-//   }
-//   /* Add a color to the active/current link */
-//   &:active {
-//     background-color: var(--clr-primary);
-//     color: var(--clr-fg);
-//   }
-// `;
-
-
-// const Header = styled(Link)`
-//   font-size: 32px;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 0 0 0 20px;
-//   color: var(--clr-primary);
-// `;
+const StarFull = styled(TiStarFullOutline)`
+  display: ${(props) => (props.bookmarks.length === 0 ? "none" : "block")};
+`;
