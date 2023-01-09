@@ -111,7 +111,7 @@ export default function ResourceCard({
 
 const Wrapper = styled.div`
   height: 26em;
-  min-width: 15em;
+  min-width: 16em;
   max-width: 20em;
   color: white;
   background: #4372ba;
@@ -170,7 +170,7 @@ const Star = styled(TiStarOutline)`
 
 const Button = styled.button`
   margin: 0.2em;
-  padding: 0.5em 0.5em;
+  padding: 0.5em 0.3em;
   border: none;
   border-radius: 0.3em;
   width: 45%;
