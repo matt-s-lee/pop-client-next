@@ -29,7 +29,7 @@ export default function Footer() {
         <CrisisText>
           Immediate Crisis Support: Text WELLNESS to 741741
         </CrisisText>
-        <Link href="/">Feedback</Link>
+        <Link href="/feedback">Feedback</Link>
       </Banner>
     </Wrapper>
   );
