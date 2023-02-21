@@ -40,7 +40,7 @@ export default function NavDrawer({ openMain, handleClick }) {
       <List>
         <ListItem>
           <ListItemButton>
-            <ListItemText>ABOUT US!!!!</ListItemText>
+            <ListItemText>About Us</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem>

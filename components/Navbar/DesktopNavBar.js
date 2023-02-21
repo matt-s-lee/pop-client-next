@@ -31,7 +31,7 @@ export default function DesktopNavBar() {
             <Li>
               <Button>
                 <StyledLink href="/about" className={libre.className}>
-                  About Us
+                  About Us?
                 </StyledLink>
               </Button>
             </Li>
@@ -82,7 +82,7 @@ const Nav = styled.nav`
   z-index: 10;
   display: none;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
     display: contents;
   }
 `;
