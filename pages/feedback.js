@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
+import { SnackbarComponent } from "../components/Snackbar";
 
 export default function Feedback() {
   const form = useRef();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [message, setMessage] = useState();
+  const [feedbackSnackbarOpen, setFeedbackSnackbarOpen] = useState();
 
   const handleInputChange = (ev, setter) => {
     setter(ev.target.value);
@@ -28,6 +30,7 @@ export default function Feedback() {
           setName("");
           setEmail("");
           setMessage("");
+          setFeedbackSnackbarOpen(true);
         },
         (error) => {
           console.log("FAILED...", error);
@@ -37,6 +40,11 @@ export default function Feedback() {
 
   return (
     <Container>
+      <SnackbarComponent
+        message="Thank you for your feedback!"
+        snackbarOpen={feedbackSnackbarOpen}
+        setSnackbarOpen={setFeedbackSnackbarOpen}
+      />
       <div>Please fill out the form below to send any feedback.</div>
       <Form ref={form} onSubmit={sendEmail}>
         <label>Name</label>
