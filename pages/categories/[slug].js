@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ResourceCard from "../../components/ResourceCard";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { createSlugs } from "../../utils/utils";
 
 export default function CategoryPage({ category, resources }) {
   // Find all the resources in this category
@@ -50,11 +51,11 @@ export default function CategoryPage({ category, resources }) {
                       match?.fields?.descriptionForSmallCard?.content[0]
                         ?.content[0]?.value
                     }
-                    imageUrl={
-                      assetDetails.find((asset) => {
-                        return asset.sys.id === match.fields.image.sys.id;
-                      }).fields.file.url
-                    }
+                    // imageUrl={
+                    //   assetDetails.find((asset) => {
+                    //     return asset.sys.id === match.fields.image.sys.id;
+                    //   }).fields.file.url
+                    // }
                     tags={match.metadata.tags}
                   />
                 );
@@ -80,37 +81,29 @@ export async function getStaticPaths() {
 
   // Fetch all categories in English, from Contentful API
   const res = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA`
+    // `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=*`
   );
   const categories = await res.json();
 
-  // Create array of slugs from objects, i.e. {locale: slug}
-  const allSlugs = [];
-  categories.items.forEach((category) => {
-    allSlugs.push(category.fields.slug);
-  });
-
-  // Get slug paths to prerender
-  const paths = allSlugs.map((slug) => {
-    return { params: { slug } };
-  });
+  const slugs = createSlugs(categories);
 
   return {
-    paths,
+    paths: slugs,
     fallback: false, // All other routes should 404
   };
 }
 
 export async function getStaticProps(context) {
-  // Get category information from Contentful API
+  // Get information for this cateogry, via slug
   const res = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=en-CA&fields.slug[in]=${context.params.slug}`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=categories&locale=${context.locale}&fields.slug[in]=${context.params.slug}`
   );
   const category = await res.json();
 
-  // Get all resources
+  // Get all resources by locale:
   const resourceRes = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceBilingual&locale=en-CA&order=fields.resourceOrderNumber`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=resourceBilingual&locale=${context.locale}&order=fields.resourceOrderNumber`
   );
   const resourceJson = await resourceRes.json();
 

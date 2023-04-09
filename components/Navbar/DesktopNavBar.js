@@ -1,10 +1,11 @@
 import { useContext, useEffect } from "react";
 
-import { LanguageContext } from "../../context/LanguageContext";
+// import { LanguageContext } from "../../context/LanguageContext";
 import { BookmarksContext } from "../../context/BookmarksContext";
 
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { libre } from "../../styles/font";
 
@@ -15,8 +16,15 @@ import NavDropdown from "./NavDropdown/index.js";
 import ClientOnly from "../ClientOnly";
 
 export default function DesktopNavBar() {
-  const { language, toggleLanguage } = useContext(LanguageContext);
+  // const { language, toggleLanguage } = useContext(LanguageContext);
   const { bookmarks } = useContext(BookmarksContext);
+
+  // Determine locale
+  const router = useRouter();
+  const { locales, locale: currentLocale } = router;
+  function handleLocaleChange(locale) {
+    router.push(router.pathname, router.asPath, { locale });
+  }
 
   return (
     <Wrapper>
@@ -31,29 +39,39 @@ export default function DesktopNavBar() {
             <Li>
               <Button>
                 <StyledLink href="/about" className={libre.className}>
-                  About Us?
+                  {currentLocale === "en-CA" ? "About Us" : "À propos"}
                 </StyledLink>
               </Button>
             </Li>
             <Li>
-              <NavDropdown text={"Explore by Province & Territory"} />
+              <NavDropdown
+                text={
+                  currentLocale === "en-CA"
+                    ? "Explore by Province & Territory"
+                    : "Explorer par province et territoire"
+                }
+              />
             </Li>
             <Li>
-              <NavDropdown text={"Access Resources"} />
+              <NavDropdown
+                text={
+                  currentLocale === "en-CA"
+                    ? "Access Resources"
+                    : "Accéder aux ressources"
+                }
+              />
             </Li>
-            <ClickLi
-              onClick={language === "fr" ? toggleLanguage : null}
-              className={language === "en" && "clicked"}
-            >
-              EN
-            </ClickLi>
-            <Li>|</Li>
-            <ClickLi
-              onClick={language === "en" ? toggleLanguage : null}
-              className={language === "fr" && "clicked"}
-            >
-              FR
-            </ClickLi>
+            <div>
+              {locales.map((locale) => (
+                <button
+                  key={locale}
+                  onClick={() => handleLocaleChange(locale)}
+                  disabled={currentLocale === locale}
+                >
+                  {locale}
+                </button>
+              ))}
+            </div>
             <Li>
               <Link href="/bookmarks">
                 <StarOutline bookmarks={bookmarks} />

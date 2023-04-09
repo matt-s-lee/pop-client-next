@@ -32,7 +32,7 @@ export default function NavDropdown({ text }) {
       >
         {text}
       </ButtonStyled>
-      {text === "Access Resources" ? (
+      {text === "Access Resources" || text === "Accéder aux ressources" ? (
         <ResourcesMenu
           text={text}
           anchorEl={anchorEl}

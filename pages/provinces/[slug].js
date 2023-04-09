@@ -2,6 +2,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import ClientOnly from "../../components/ClientOnly";
+import { createSlugs } from "../../utils/utils";
 
 export default function ProvincePage({ data }) {
   const { province, resources } = data.fields;
@@ -49,23 +50,16 @@ export async function getStaticPaths() {
 
   // Fetch all categories in English, from Contentful API
   const res = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&order=fields.orderNumber`
+    // `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&order=fields.orderNumber`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&order=fields.orderNumber&locale=*`
   );
   const json = await res.json();
 
   // Create array of slugs from objects, i.e. {locale: slug}
-  const slugs = [];
-  json.items.forEach((province) => {
-    slugs.push(province.fields.slug);
-  });
-
-  // Get slug paths to prerender
-  const paths = slugs.map((slug) => {
-    return { params: { slug } };
-  });
+  const slugs = createSlugs(json);
 
   return {
-    paths,
+    paths: slugs,
     fallback: false, // All other routes should 404
   };
 }
@@ -73,7 +67,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // Get resource cards for this province from Contentful API
   const res = await fetch(
-    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&locale=en-CA&fields.slug[in]=${context.params.slug}`
+    `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=provinceSpecificResourceList&locale=${context.locale}&fields.slug[in]=${context.params.slug}`
   );
   const json = await res.json();
 
