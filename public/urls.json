@@ -1,0 +1,137 @@
+{
+  "urls": [
+    {
+      "en-CA": "/support/connect-with-peer-support",
+      "fr-CA": "/support/soutien-des-paires"
+    },
+    {
+      "en-CA": "/support/talk-to-a-counsellor",
+      "fr-CA": "/support/parler-avec-quelqu-un"
+    },
+    {
+      "en-CA": "/support/practice-new-skills",
+      "fr-CA": "/support/developper-de-nouvelles-competences"
+    },
+    {
+      "en-CA": "/categories/pain-education",
+      "fr-CA": "/categories/apprendre-sur-la-douleur"
+    },
+    {
+      "en-CA": "/categories/managing-substance-use",
+      "fr-CA": "/categories/consommation-des-substances"
+    },
+    {
+      "en-CA": "/categories/podcasts",
+      "fr-CA": "/categories/balados"
+    },
+    {
+      "en-CA": "/categories/sleep",
+      "fr-CA": "/categories/sommeil"
+    },
+    {
+      "en-CA": "/categories/research",
+      "fr-CA": "/categories/recherches-scientifiques"
+    },
+    {
+      "en-CA": "/categories/connection",
+      "fr-CA": "/categories/connection"
+    },
+    {
+      "en-CA": "/categories/physical-activity-and-movement",
+      "fr-CA": "/categories/mouvement"
+    },
+    {
+      "en-CA": "/categories/indigenous-healing",
+      "fr-CA": "/categories/guerison-autochones"
+    },
+    {
+      "en-CA": "/categories/phone-counselling",
+      "fr-CA": "/categories/soutien-au-telephone"
+    },
+    {
+      "en-CA": "/categories/get-involved",
+      "fr-CA": "/categories/impliquez-vous"
+    },
+    {
+      "en-CA": "/categories/neuroscience",
+      "fr-CA": "/categories/neurosciences"
+    },
+    {
+      "en-CA": "/categories/pain-management-courses",
+      "fr-CA": "/categories/cours-de-gestion-de-douleur"
+    },
+    {
+      "en-CA": "/provinces/alberta",
+      "fr-CA": "/provinces/alberta"
+    },
+    {
+      "en-CA": "/provinces/british-columbia",
+      "fr-CA": "/provinces/colombie-britannique"
+    },
+    {
+      "en-CA": "/provinces/manitoba",
+      "fr-CA": "/provinces/manitoba"
+    },
+    {
+      "en-CA": "/provinces/new-brunswick",
+      "fr-CA": "/provinces/nouveau-brunswick"
+    },
+
+    {
+      "en-CA": "/provinces/newfoundland-and-labrador",
+      "fr-CA": "/provinces/terre-neuve-et-labrador"
+    },
+    {
+      "en-CA": "/provinces/northwest-territories",
+      "fr-CA": "/provinces/territoires-du-nord-ouest"
+    },
+    {
+      "en-CA": "/provinces/nova-scotia",
+      "fr-CA": "/provinces/nouvelle-ecosse"
+    },
+    {
+      "en-CA": "/provinces/nunavut",
+      "fr-CA": "/provinces/nunavut"
+    },
+    {
+      "en-CA": "/provinces/ontario",
+      "fr-CA": "/provinces/ontario"
+    },
+    {
+      "en-CA": "/provinces/prince-edward-island",
+      "fr-CA": "/provinces/ile-du-prince-edouard"
+    },
+    {
+      "en-CA": "/provinces/quebec",
+      "fr-CA": "/provinces/quebec"
+    },
+    {
+      "en-CA": "/provinces/saskatchewan",
+      "fr-CA": "/provinces/saskatchewan"
+    },
+    {
+      "en-CA": "/provinces/yukon",
+      "fr-CA": "/provinces/yukon"
+    },
+    {
+      "en-CA": "/about",
+      "fr-CA": "/a-propos"
+    },
+    {
+      "en-CA": "/feedback",
+      "fr-CA": "/commentaires"
+    },
+    {
+      "en-CA": "/bookmarks",
+      "fr-CA": "/favoris"
+    },
+    {
+      "en-CA": "/help-now",
+      "fr-CA": "/au-secours"
+    },
+    {
+      "en-CA": "/",
+      "fr-CA": "/"
+    }
+  ]
+}

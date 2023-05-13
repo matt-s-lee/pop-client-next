@@ -13,3 +13,16 @@ export function createSlugs(apiData) {
     .flat();
   return slugs;
 }
+
+export function findCorrespondingUrl(data, locale, slug) {
+  const urlPair = data.urls.find((obj) => Object.values(obj).includes(slug));
+  if (urlPair) {
+    if (locale === "fr-CA") {
+      return urlPair["en-CA"];
+    } else {
+      return urlPair["fr-CA"];
+    }
+  } else {
+    return "/404";
+  }
+}

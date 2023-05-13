@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { CategoriesContext } from "../../../context/CategoriesContext";
+import { useRouter } from "next/router";
 
 import styled from "styled-components";
 import { overpass, theme } from "../../../styles/font";
@@ -11,7 +12,9 @@ import Divider from "@mui/material/Divider";
 
 export default function ResourcesMenu({ anchorEl, open, handleClose }) {
   const { sortedTopics, sortedTypes } = useContext(CategoriesContext);
-
+  const router = useRouter();
+  const { locale } = router;
+  console.log("sortedTypes", sortedTypes);
   return (
     <MenuStyled
       id="basic-menu"
@@ -23,13 +26,15 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
       }}
     >
       <div>
-        <Title className={overpass.className}>Explore by Topic</Title>
+        <Title className={overpass.className}>
+          {locale === "en-CA" ? "Explore by Topic" : "Découvrir par sujet"}
+        </Title>
         {sortedTopics &&
           sortedTopics.map((category) => {
             return (
               <Link
                 key={category.sys.id}
-                href={`/categories/${category.fields.slug}`}
+                href={`/categories/${category.fields.slug[locale]}`}
               >
                 <MenuItem
                   onClick={handleClose}
@@ -37,7 +42,7 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
                     fontFamily: theme.typography.fontFamily,
                   }}
                 >
-                  {category.fields.titleNavBar}
+                  {category.fields.titleNavBar[locale]}
                 </MenuItem>
               </Link>
             );
@@ -45,7 +50,11 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
       </div>
       <Divider />
       <SectionByType>
-        <Title className={overpass.className}>Explore By Support Type</Title>
+        <Title className={overpass.className}>
+          {locale === "en-CA"
+            ? "Explore By Support Type"
+            : "Découvrir par type de soutien"}
+        </Title>
         {sortedTypes &&
           sortedTypes.map((type) => {
             return (
@@ -58,11 +67,11 @@ export default function ResourcesMenu({ anchorEl, open, handleClose }) {
               >
                 <Link
                   href={
-                    `/support/${type.fields.slug}` ??
+                    `/support/${type.fields.slug[locale]}` ??
                     type.fields.externalLinkOptional
                   }
                 >
-                  {type.fields.supportTypeName}
+                  {type.fields.supportTypeName[locale]}
                 </Link>
               </MenuItem>
             );

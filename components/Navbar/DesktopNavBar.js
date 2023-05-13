@@ -12,18 +12,23 @@ import { libre } from "../../styles/font";
 import { Button } from "@mui/material";
 import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
 import ReactComponent from "../../public/popEN.png";
+import ReactComponentFr from "../../public/popFr.png";
 import NavDropdown from "./NavDropdown/index.js";
 import ClientOnly from "../ClientOnly";
+import data from "../../public/urls.json";
+import { findCorrespondingUrl } from "../../utils/utils";
 
 export default function DesktopNavBar() {
-  // const { language, toggleLanguage } = useContext(LanguageContext);
   const { bookmarks } = useContext(BookmarksContext);
 
   // Determine locale
   const router = useRouter();
-  const { locales, locale: currentLocale } = router;
+  const { locales, pathname, asPath, locale: currentLocale, query } = router;
+
+  const path = findCorrespondingUrl(data, currentLocale, asPath);
   function handleLocaleChange(locale) {
-    router.push(router.pathname, router.asPath, { locale });
+    // router.push(pathname, asPath, { locale });
+    router.push(path, path, { locale });
   }
 
   return (
@@ -33,7 +38,14 @@ export default function DesktopNavBar() {
           <Ul>
             <Logo>
               <Link href="/">
-                <StyledLogo alt="Power over Pain logo" src={ReactComponent} />
+                {currentLocale === "en-CA" ? (
+                  <StyledLogo alt="Power over Pain logo" src={ReactComponent} />
+                ) : (
+                  <StyledLogo
+                    alt="Logo Surmonter sa douleur"
+                    src={ReactComponentFr}
+                  />
+                )}
               </Link>
             </Logo>
             <Li>
@@ -63,13 +75,13 @@ export default function DesktopNavBar() {
             </Li>
             <div>
               {locales.map((locale) => (
-                <button
+                <Button
                   key={locale}
                   onClick={() => handleLocaleChange(locale)}
                   disabled={currentLocale === locale}
                 >
-                  {locale}
-                </button>
+                  {locale === "en-CA" ? "EN" : "FR"}
+                </Button>
               ))}
             </div>
             <Li>
