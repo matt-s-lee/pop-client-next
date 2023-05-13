@@ -10,6 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { CgMenuMotion } from "react-icons/cg";
+import { RiCloseFill } from "react-icons/ri";
 import { TiStarOutline } from "react-icons/ti";
 
 export default function NavDrawer({ openMain, handleClick }) {
@@ -36,7 +37,10 @@ export default function NavDrawer({ openMain, handleClick }) {
         },
       }}
     >
-      <StyledMenuMotion onClick={handleClick} />
+      <Icons>
+        <StyledMenuMotion />
+        <StyledClose onClick={handleClick} />
+      </Icons>
       <List>
         <ListItem>
           <ListItemButton>
@@ -70,9 +74,20 @@ export default function NavDrawer({ openMain, handleClick }) {
   );
 }
 
+const Icons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const StyledMenuMotion = styled(CgMenuMotion)`
   margin-top: 0.5em;
   font-size: 1.5em;
-  position: relative;
-  left: 7.7em;
+  /* position: relative; */
+  /* left: 7.7em; */
+`;
+
+const StyledClose = styled(RiCloseFill)`
+  margin-top: 0.5em;
+  font-size: 1.5em;
+  cursor: pointer;
 `;

@@ -31,7 +31,11 @@ export default function MobileNavbar() {
 }
 
 const Wrapper = styled.div`
-  @media only screen and (min-width: 600px) {
+  box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+  -webkit-box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: -2px 3px 20px 0px rgba(0, 0, 0, 0.54);
+
+  @media only screen and (min-width: 900px) {
     display: none;
   }
 `;
@@ -53,7 +57,7 @@ const NavElement = styled.li`
 `;
 
 const Logo = styled(Image)`
-  height: 3em;
+  height: 60px;
   width: auto;
 `;
 

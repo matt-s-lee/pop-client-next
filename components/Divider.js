@@ -6,6 +6,6 @@ export default function Divider() {
 
 const Line = styled.div`
   height: 1px;
-  border: 1px solid darkgrey;
+  border: 1px solid grey;
   margin: 0 20vw;
 `;

@@ -8,6 +8,8 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import { RiCloseFill } from "react-icons/ri";
+
 
 export default function ResourcesDrawer({
   handleClick, // close original menu
@@ -30,7 +32,9 @@ export default function ResourcesDrawer({
       }}
     >
       <List>
-        <CloseDrawer onClick={handleOpenResources}>x</CloseDrawer>
+        <CloseDrawer onClick={handleOpenResources}>
+          <RiCloseFill />
+        </CloseDrawer>
         <Title>Explore by Topic</Title>
         {sortedTopics &&
           sortedTopics.map((category) => {

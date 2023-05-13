@@ -8,6 +8,7 @@ import Link from "next/link";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import { RiCloseFill } from "react-icons/ri";
 
 export default function ProvincesDrawer({
   handleClick, // close original menu
@@ -30,7 +31,9 @@ export default function ProvincesDrawer({
       }}
     >
       <List>
-        <CloseDrawer onClick={handleOpenProvinces}>x</CloseDrawer>
+        <CloseDrawer onClick={handleOpenProvinces}>
+          <RiCloseFill />
+        </CloseDrawer>
         {provinces &&
           provinces.items.map((province) => {
             return (
