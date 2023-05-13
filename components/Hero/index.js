@@ -2,8 +2,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styled from "styled-components";
 import HeroImage from "./HeroImage";
+import { useRouter } from "next/router";
 
 function HeroCarousel({ hero }) {
+  const router = useRouter();
+  const { locale } = router;
+
   const assetDetails = hero.includes.Asset; // Details for all assets, to link to resources
   const responsive = {
     desktop: {
@@ -45,14 +49,16 @@ function HeroCarousel({ hero }) {
           return (
             <HeroImage
               key={image.sys.id}
-              title={image.fields.titleForCarouselImage}
-              text={image.fields.text}
+              title={image.fields.titleForCarouselImage[locale]}
+              text={image.fields.text[locale]}
               imageUrl={
                 assetDetails.find((asset) => {
                   return (
-                    asset.sys.id === image.fields.imageForCarouselImage.sys.id
+                    asset.sys.id ===
+                    image.fields.imageForCarouselImage["en-CA"].sys.id
                   );
-                }).fields.file.url
+                }).fields.file["en-CA"].url
+                // en-CA is default when only one locale
               }
             />
           );

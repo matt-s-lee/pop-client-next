@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import TrendingTag from "./TrendingTag";
 import { editTags } from "../../hooks/useFormatTags";
+import { useRouter } from "next/router";
 
 export default function Trending({ trendingTopics }) {
-  const topicsToDisplay = trendingTopics.fields.trendingTopicName;
+  const router = useRouter();
+  const { locale } = router;
+
+  const topicsToDisplay = trendingTopics.fields.trendingTopicName[locale];
+  console.log(topicsToDisplay);
   const topicsHash = editTags(topicsToDisplay);
   return (
     <Wrapper>
       <Description>
-        <span>Quick Links</span>
+        <span>{locale === "en-CA" ? "Quick Links" : "Liens rapides"}</span>
       </Description>
       <TagsWrapper>
         {topicsToDisplay?.map((topic, index) => {

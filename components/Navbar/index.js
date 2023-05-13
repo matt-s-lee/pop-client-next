@@ -5,11 +5,15 @@ import Link from "next/link";
 
 import styled from "styled-components";
 import { overpass } from "../../styles/font";
+import { useRouter } from "next/router";
 
 import DesktopNavBar from "./DesktopNavBar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Navbar() {
+  const router = useRouter();
+  const { locale } = router;
+
   const {
     topics,
     categories,
@@ -42,9 +46,15 @@ export default function Navbar() {
   return (
     <div>
       <Notif className={overpass.className}>
-        In need of immediate crisis support?
+        {locale === "en-CA"
+          ? "In need of immediate crisis support?"
+          : "Besoin d'un soutien immédiat en cas de crise?"}
         <Link href="/help-now">
-          <Button className={overpass.className}>I need help now</Button>
+          <Button className={overpass.className}>
+            {locale === "en-CA"
+              ? "I need help now"
+              : "J'ai besoin d'aide immédiate"}
+          </Button>
         </Link>
       </Notif>
       <MobileNavbar />
